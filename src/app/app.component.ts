@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 
 interface IIndividuo { nombre: string; edad: number; sexo: string };
@@ -10,7 +11,7 @@ interface IIndividuo { nombre: string; edad: number; sexo: string };
 
 export class AppComponent {
   title: string = 'phosphorum';
-
+  datos: any="";
   urlimagen: string = "https://estaticos-cdn.sport.es/clip/885c9147-8b6a-4bc9-8937-aa27780bfabd_media-libre-aspect-ratio_default_0.jpg";
   w: string = "400";
   personas: string[] = ['Antoni', 'Luis', 'Maria', 'Pedro', 'Juan', 'Jose', 'Ana', 'Luisa'];
@@ -61,6 +62,9 @@ export class AppComponent {
     }
   ]
 
+  constructor(
+    private http: HttpClient
+  ) { }
 
   saludar(): void {
     alert("Hola");
@@ -68,6 +72,21 @@ export class AppComponent {
 
   escribir(): void {
     console.log("Escribiendo");
+  }
+
+  cargar(): void {
+    console.log("Cargando AJAX...");
+
+    this.http.get("http://localhost:8083/user/1").subscribe(
+      (data: any) => {
+        console.log(data);
+        this.datos = data;
+      }
+    )
+
+
+
+
   }
 
 }
