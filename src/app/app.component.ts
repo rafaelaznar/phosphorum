@@ -3,6 +3,19 @@ import { Component } from "@angular/core";
 
 interface IIndividuo { nombre: string; edad: number; sexo: string };
 
+interface IUser {
+  id: number;
+  name: string;
+  surname: string;
+  lastname: string;
+  email: string;
+  username: string;
+  role: boolean;
+  threads: number;
+  replies: number
+}
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +24,7 @@ interface IIndividuo { nombre: string; edad: number; sexo: string };
 
 export class AppComponent {
   title: string = 'phosphorum';
-  datos: any="";
+  datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
   urlimagen: string = "https://estaticos-cdn.sport.es/clip/885c9147-8b6a-4bc9-8937-aa27780bfabd_media-libre-aspect-ratio_default_0.jpg";
   w: string = "400";
   personas: string[] = ['Antoni', 'Luis', 'Maria', 'Pedro', 'Juan', 'Jose', 'Ana', 'Luisa'];
@@ -19,6 +32,7 @@ export class AppComponent {
   cuatro: number = 4;
   mitexto: string = "Mi texto";
   condition: boolean = true;
+  id: number = 1;
   poblacion: IIndividuo[] = [
     {
       nombre: "Antonio",
@@ -77,15 +91,16 @@ export class AppComponent {
   cargar(): void {
     console.log("Cargando AJAX...");
 
-    this.http.get("http://localhost:8083/user/1").subscribe(
-      (data: any) => {
+    this.http.get("http://localhost:8083/user/" + this.id).subscribe({
+      next: (data: any) => {
         console.log(data);
         this.datos = data;
+      },
+      error: (error: any) => {
+        console.log(error);
       }
-    )
 
-
-
+    })
 
   }
 

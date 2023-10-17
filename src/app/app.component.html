@@ -56,5 +56,19 @@ Double data binding: De temp a control: <input type="text" [(ngModel)]="mitexto"
 
 <h1>AJAX</h1>
 
+USER ID: <input type="text" [(ngModel)]="id">
 <button (click)="cargar()">Cargar</button>
-<p>Nombre: {{datos.name}}</p>
+
+
+<p>Name: {{datos.name}}</p>
+<p>Surname: {{datos.surname}}</p>
+
+<hr>
+
+<app-user-unrouted-detail-admin [id]="id"></app-user-unrouted-detail-admin>
+
+<hr>
+
+
+<app-user-unrouted-detail-admin [id]="id"></app-user-unrouted-detail-admin>
+
