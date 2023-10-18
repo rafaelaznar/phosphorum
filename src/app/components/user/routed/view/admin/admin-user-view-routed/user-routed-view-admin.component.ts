@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 interface IUser {
   id: number;
@@ -21,33 +22,18 @@ interface IUser {
 
 export class UserRoutedViewAdminComponent implements OnInit {
 
-  @Input() id: number = 1;
-
-  datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
-  //id: number = 1;
+  id: number = 1;
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private oActivatedRoute: ActivatedRoute
+  ) {
+    this.id = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
+  }
 
   ngOnInit() {
   }
 
 
-  cargar(): void {
-    console.log("Cargando AJAX...");
 
-    this.http.get("http://localhost:8083/user/" + this.id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.datos = data;
-      },
-      error: (error: any) => {
-        console.log(error);
-      }
-
-    })
-
-  }
 
 }
