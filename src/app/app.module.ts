@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserRoutedViewAdminComponent } from './components/user/routed/view/admin/admin-user-view-routed/user-routed-view-admin.component';
 import { UserUnroutedDetailAdminComponent } from './components/user/routed/view/admin/admin-user-detail-unrouted/user-unrouted-detail-admin.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
+import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HomeRoutedComponent } from './components/shared/home-routed/home-routed
     AppComponent,
     HomeRoutedComponent,
     UserRoutedViewAdminComponent,
-    UserUnroutedDetailAdminComponent
+    UserUnroutedDetailAdminComponent,
+    MenuUnroutedComponent
   ],
   imports: [
     BrowserModule,

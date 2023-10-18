@@ -1,8 +1,9 @@
 <h3>Componente hijo</h3>
 USER ID: <input type="text" [(ngModel)]="id">
-<button (click)="cargar()">Cargar</button>
-
-<p>Name: {{datos.name}}</p>
-<p>Surname: {{datos.surname}}</p>
-<p>Last name: {{datos.lastname}}</p>
-<p>Email: {{datos.email}}</p>
+<h2 *ngIf="id==0">ERROR</h2>
+<div *ngIf="id>0">
+    <p>Name: {{datos.name}}</p>
+    <p>Surname: {{datos.surname}}</p>
+    <p>Last name: {{datos.lastname}}</p>
+    <p>Email: {{datos.email}}</p>
+</div>
