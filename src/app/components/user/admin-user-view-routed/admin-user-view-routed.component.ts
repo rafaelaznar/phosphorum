@@ -15,12 +15,12 @@ interface IUser {
 }
 
 @Component({
-  selector: 'app-user-routed-view-admin',
-  templateUrl: './user-routed-view-admin.component.html',
-  styleUrls: ['./user-routed-view-admin.component.css']
+  selector: 'app-admin-user-view-routed',
+  templateUrl: './admin-user-view-routed.component.html',
+  styleUrls: ['./admin-user-view-routed.component.css']
 })
 
-export class UserRoutedViewAdminComponent implements OnInit {
+export class AdminUserViewRoutedComponent implements OnInit {
 
   id: number = 1;
 

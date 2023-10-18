@@ -14,11 +14,11 @@ interface IUser {
 }
 
 @Component({
-  selector: 'app-user-unrouted-detail-admin',
-  templateUrl: './user-unrouted-detail-admin.component.html',
-  styleUrls: ['./user-unrouted-detail-admin.component.css']
+  selector: 'app-admin-user-detail-unrouted',
+  templateUrl: './admin-user-detail-unrouted.component.html',
+  styleUrls: ['./admin-user-detail-unrouted.component.css']
 })
-export class UserUnroutedDetailAdminComponent implements OnInit {
+export class AdminUserDetailUnroutedComponent implements OnInit {
 
  
   @Input() id: number = 1;

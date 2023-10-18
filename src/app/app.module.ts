@@ -6,19 +6,19 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { UserRoutedViewAdminComponent } from './components/user/routed/view/admin/admin-user-view-routed/user-routed-view-admin.component';
-import { UserUnroutedDetailAdminComponent } from './components/user/routed/view/admin/admin-user-detail-unrouted/user-unrouted-detail-admin.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
+import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
+import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeRoutedComponent,
-    UserRoutedViewAdminComponent,
-    UserUnroutedDetailAdminComponent,
-    MenuUnroutedComponent
+    MenuUnroutedComponent,
+    AdminUserDetailUnroutedComponent,
+    AdminUserViewRoutedComponent
   ],
   imports: [
     BrowserModule,
