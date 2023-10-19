@@ -1,3 +1,13 @@
+<h3>Showing {{datos.numberOfElements}} of total {{datos.totalElements}} registers</h3>
+
+<select [(ngModel)]="size" (change)="onChangeRPP()">
+  <option value="10">10</option>
+  <option value="50">50</option>
+  <option value="100">100</option>
+</select>
+
+
+
 <table>
   <tr>
     <th>ID</th>
@@ -16,7 +26,7 @@
     <td>{{u.email}}</td>
     <td>{{u.username}}</td>
     <td>
-      <span *ngIf="u.role==true">Admin</span>  
+      <span *ngIf="u.role==true">Admin</span>
       <span *ngIf="u.role==false">User</span>
     </td>
   </tr>

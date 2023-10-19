@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminUserPlistUnroutedComponent implements OnInit {
 
   datos: any = [];
+  size: number = 10;
 
   constructor(
     private oHttpClient: HttpClient
@@ -18,19 +19,21 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage(): void {    
-    this.oHttpClient.get("http://localhost:8083/user").subscribe({
+  getPage(): void {
+    this.oHttpClient.get("http://localhost:8083/user" + "?size=" + this.size).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.datos = data;
       },
       error: (error: any) => {
-        this.datos=null;
+        this.datos = null;
         console.log(error);
       }
 
     })
+  }
 
+  onChangeRPP() {    
+    this.getPage();
   }
 
 
