@@ -10,6 +10,8 @@ import { HomeRoutedComponent } from './components/shared/home-routed/home-routed
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
+import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
+import { AdminThreadDetailUnroutedComponent } from './components/thread/admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-
     HomeRoutedComponent,
     MenuUnroutedComponent,
     AdminUserDetailUnroutedComponent,
-    AdminUserViewRoutedComponent
+    AdminUserViewRoutedComponent,
+    AdminThreadViewRoutedComponent,
+    AdminThreadDetailUnroutedComponent
   ],
   imports: [
     BrowserModule,

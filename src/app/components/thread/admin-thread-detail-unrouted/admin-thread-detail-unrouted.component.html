@@ -1,0 +1,21 @@
+<h2 *ngIf="id==0">ERROR</h2>
+<div *ngIf="id>0">
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>{{datos.id}}</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>{{datos.title}}</td>
+    </tr>
+    <tr>
+      <td>user</td>
+      <td> <a [routerLink]="['/admin','user','view',datos.user.id]">{{datos.user.name}} {{datos.user.surname}}</a> </td>
+    </tr>
+  </table>
+</div>

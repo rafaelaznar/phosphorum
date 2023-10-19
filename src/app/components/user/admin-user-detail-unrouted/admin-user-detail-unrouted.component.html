@@ -1,9 +1,37 @@
-<h3>Componente hijo</h3>
-USER ID: <input type="text" [(ngModel)]="id">
 <h2 *ngIf="id==0">ERROR</h2>
 <div *ngIf="id>0">
-    <p>Name: {{datos.name}}</p>
-    <p>Surname: {{datos.surname}}</p>
-    <p>Last name: {{datos.lastname}}</p>
-    <p>Email: {{datos.email}}</p>
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>{{datos.id}}</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>{{datos.name}}</td>
+        </tr>
+        <tr>
+            <td>surname</td>
+            <td>{{datos.surname}}</td>
+        </tr>
+        <tr>
+            <td>lastname</td>
+            <td>{{datos.lastname}}</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>{{datos.email}}</td>
+        </tr>
+        <tr>
+            <td>username</td>
+            <td>{{datos.username}}</td>
+        </tr>
+        <tr>
+            <td>role</td>
+            <td>{{datos.role}}</td>
+        </tr>
+    </table>
 </div>

@@ -27,7 +27,7 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   
 
   constructor(
-    private http: HttpClient
+    private oHttpClient: HttpClient
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {    
-    this.http.get("http://localhost:8083/user/" + this.id).subscribe({
+    this.oHttpClient.get("http://localhost:8083/user/" + this.id).subscribe({
       next: (data: any) => {
         console.log(data);
         this.datos = data;
