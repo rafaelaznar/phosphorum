@@ -18,6 +18,7 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-plist-unrouted/admin-user-plist-unrouted.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PaginatorModule } from 'primeng/paginator';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    PaginatorModule
+    PaginatorModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

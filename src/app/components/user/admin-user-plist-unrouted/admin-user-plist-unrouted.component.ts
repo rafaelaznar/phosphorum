@@ -23,12 +23,24 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   rows: number = 10;
   page: number = 0;
 
+
+  cols!: any[];
+
   constructor(
     private oHttpClient: HttpClient
   ) { }
 
   ngOnInit() {
     this.getPage();
+    this.cols = [
+      { field: 'id', header: 'ID' },
+      { field: 'name', header: 'Name' },
+      { field: 'surname', header: 'Surname' },
+      { field: 'lastname', header: 'Last Name' },
+      { field: 'email', header: 'Email' },
+      { field: 'username', header: 'Username' },
+      { field: 'rol', header: 'Rol' },
+    ];
   }
 
   getPage(): void {

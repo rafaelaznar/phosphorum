@@ -1,8 +1,43 @@
 <h3>Showing {{datos.numberOfElements}} of total {{datos.totalElements}} registers</h3>
 
 <div class="card flex justify-content-center">
-  <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120"
+    [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
 </div>
+
+
+
+<div class="card">
+  <p-table [value]="datos.content" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Role</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-u>
+      <tr>
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td>{{u.surname}}</td>
+        <td>{{u.lastname}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.username}}</td>
+        <td>
+          <span *ngIf="u.role==true">Admin</span>
+          <span *ngIf="u.role==false">User</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
 
 <table>
   <tr>
