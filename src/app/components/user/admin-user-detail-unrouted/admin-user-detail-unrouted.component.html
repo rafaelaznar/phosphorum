@@ -31,7 +31,10 @@
         </tr>
         <tr>
             <td>role</td>
-            <td>{{datos.role}}</td>
+            <td>
+                <span *ngIf="datos.role==true">Admin</span>  
+                <span *ngIf="datos.role==false">User</span>
+            </td>
         </tr>
     </table>
 </div>
