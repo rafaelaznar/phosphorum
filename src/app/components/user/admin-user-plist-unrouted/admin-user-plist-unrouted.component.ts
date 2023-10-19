@@ -1,14 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-
-interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
-}
-
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   templateUrl: './admin-user-plist-unrouted.component.html',
@@ -17,14 +9,11 @@ interface PageEvent {
 export class AdminUserPlistUnroutedComponent implements OnInit {
 
   datos: any = [];
-
-
   first: number = 0;
   rows: number = 10;
   page: number = 0;
-
-
-  cols!: any[];
+  orderField: string = "id";
+  orderDirection: string = "asc";
 
   constructor(
     private oHttpClient: HttpClient
@@ -32,19 +21,10 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
-    this.cols = [
-      { field: 'id', header: 'ID' },
-      { field: 'name', header: 'Name' },
-      { field: 'surname', header: 'Surname' },
-      { field: 'lastname', header: 'Last Name' },
-      { field: 'email', header: 'Email' },
-      { field: 'username', header: 'Username' },
-      { field: 'rol', header: 'Rol' },
-    ];
   }
 
   getPage(): void {
-    this.oHttpClient.get("http://localhost:8083/user" + "?size=" + this.rows + "&page=" + this.page).subscribe({
+    this.oHttpClient.get("http://localhost:8083/user" + "?size=" + this.rows + "&page=" + this.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
       next: (data: any) => {
         this.datos = data;
       },
@@ -52,7 +32,6 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.datos = null;
         console.log(error);
       }
-
     })
   }
 
@@ -63,6 +42,15 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
+  doOrder(fieldorder: string) {
+    this.orderField = fieldorder;
+    if (this.orderDirection == "asc") {
+      this.orderDirection = "desc";
+    } else {
+      this.orderDirection = "asc";
+    }
+    this.getPage();
+  }
 
 
 }
