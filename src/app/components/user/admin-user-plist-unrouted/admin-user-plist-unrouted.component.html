@@ -1,13 +1,8 @@
 <h3>Showing {{datos.numberOfElements}} of total {{datos.totalElements}} registers</h3>
 
-<select [(ngModel)]="size" (change)="onChangeRPP()">
-  <option value="10">10</option>
-  <option value="50">50</option>
-  <option value="100">100</option>
-</select>
-
-
-
+<div class="card flex justify-content-center">
+  <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+</div>
 
 <table>
   <tr>

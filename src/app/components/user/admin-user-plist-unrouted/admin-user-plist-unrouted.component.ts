@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
+
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   templateUrl: './admin-user-plist-unrouted.component.html',
@@ -9,7 +17,11 @@ import { Component, OnInit } from '@angular/core';
 export class AdminUserPlistUnroutedComponent implements OnInit {
 
   datos: any = [];
-  size: number = 10;
+
+
+  first: number = 0;
+  rows: number = 10;
+  page: number = 0;
 
   constructor(
     private oHttpClient: HttpClient
@@ -20,7 +32,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get("http://localhost:8083/user" + "?size=" + this.size).subscribe({
+    this.oHttpClient.get("http://localhost:8083/user" + "?size=" + this.rows + "&page=" + this.page).subscribe({
       next: (data: any) => {
         this.datos = data;
       },
@@ -32,7 +44,10 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     })
   }
 
-  onChangeRPP() {    
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.page = event.page;
     this.getPage();
   }
 
