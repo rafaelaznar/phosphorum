@@ -12,6 +12,8 @@ import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-d
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
 import { AdminThreadDetailUnroutedComponent } from './components/thread/admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
+import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
+import { AdminReplyDetailUnroutedComponent } from './components/reply/admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { AdminThreadDetailUnroutedComponent } from './components/thread/admin-th
     AdminUserDetailUnroutedComponent,
     AdminUserViewRoutedComponent,
     AdminThreadViewRoutedComponent,
-    AdminThreadDetailUnroutedComponent
+    AdminThreadDetailUnroutedComponent,
+    AdminReplyViewRoutedComponent,
+    AdminReplyDetailUnroutedComponent
   ],
   imports: [
     BrowserModule,
