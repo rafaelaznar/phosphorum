@@ -11,8 +11,8 @@ export class AdminReplyDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oReply: IReply;
-  status: HttpErrorResponse = null;
+  oReply: IReply = {} as IReply;
+  status: HttpErrorResponse | null = null;
 
   constructor(
     private oHttpClient: HttpClient

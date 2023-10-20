@@ -15,15 +15,14 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
-  oPaginatorState: PaginatorState | undefined;
-  status: HttpErrorResponse = null;
+  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  status: HttpErrorResponse | null = null;
 
   constructor(
     private oHttpClient: HttpClient
   ) { }
 
   ngOnInit() {
-    this.oPaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
     this.getPage();
   }
 

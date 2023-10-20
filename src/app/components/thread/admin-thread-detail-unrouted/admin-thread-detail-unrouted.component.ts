@@ -10,9 +10,9 @@ import { IThread } from 'src/app/model/model.interfaces';
 export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
-  
-  oThread: IThread;
-  status: HttpErrorResponse = null;
+
+  oThread: IThread = {} as IThread;
+  status: HttpErrorResponse | null = null;
 
   constructor(
     private oHttpClient: HttpClient
@@ -24,7 +24,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   getOne(): void {
     this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
-      next: (data: IThread) => {        
+      next: (data: IThread) => {
         this.oThread = data;
       },
       error: (error: HttpErrorResponse) => {

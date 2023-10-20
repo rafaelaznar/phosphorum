@@ -11,12 +11,13 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oUser: IUser;
-  status: HttpErrorResponse = null;
+  oUser: IUser = {} as IUser;
+  status: HttpErrorResponse | null = null;
 
   constructor(
     private oHttpClient: HttpClient
-  ) { }
+  ) {       
+  }
 
   ngOnInit() {
     this.getOne();

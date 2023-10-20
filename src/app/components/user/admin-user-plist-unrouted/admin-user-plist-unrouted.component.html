@@ -1,9 +1,10 @@
 <h2 *ngIf="status!=null">ERROR: {{status.message}}</h2>
 <div *ngIf="status==null">
-  <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} registers</h3>
+  <h2>Users</h2>
+  <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h3>
 
   <div class="card flex justify-content-center">
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first" [rows]="oPaginatorState.rows"
+    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 
