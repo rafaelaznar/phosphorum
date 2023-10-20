@@ -1,5 +1,5 @@
-<h2 *ngIf="id==0">ERROR</h2>
-<div *ngIf="id>0">
+<h2 *ngIf="status!=null">ERROR: {{status.message}}</h2>
+<div *ngIf="status==null">
   <table>
     <tr>
       <th>Property</th>
@@ -7,15 +7,15 @@
     </tr>
     <tr>
       <td>id</td>
-      <td>{{datos.id}}</td>
+      <td>{{oThread.id}}</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>{{datos.title}}</td>
+      <td>{{oThread.title}}</td>
     </tr>
     <tr>
       <td>user</td>
-      <td> <a [routerLink]="['/admin','user','view',datos.user.id]">{{datos.user.name}} {{datos.user.surname}}</a> </td>
+      <td> <a [routerLink]="['/admin','user','view',oThread.user.id]">{{oThread.user.name}} {{oThread.user.surname}}</a> </td>
     </tr>
   </table>
 </div>

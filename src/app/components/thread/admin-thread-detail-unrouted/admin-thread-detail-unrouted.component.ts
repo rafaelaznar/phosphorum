@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { IThread } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-thread-detail-unrouted',
@@ -8,9 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AdminThreadDetailUnroutedComponent implements OnInit {
 
-
   @Input() id: number = 1;
-  datos: any = null;
+  
+  oThread: IThread;
+  status: HttpErrorResponse = null;
 
   constructor(
     private oHttpClient: HttpClient
@@ -21,14 +23,12 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {
-    this.oHttpClient.get("http://localhost:8083/thread/" + this.id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.datos = data;
+    this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
+      next: (data: IThread) => {        
+        this.oThread = data;
       },
-      error: (error: any) => {
-        this.id = 0;
-        console.log(error);
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
       }
 
     })
