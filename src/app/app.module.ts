@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
@@ -24,11 +22,7 @@ import { MessageService } from 'primeng/api';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
-import { UserFormComponent } from './user-form/user-form.component';
-
-
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -40,18 +34,21 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
-    AdminUserDetailUnroutedComponent,
+    //--
+    AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
+    AdminUserNewRoutedComponent,
+    AdminUserEditRoutedComponent,
+    //--
+    AdminUserPlistUnroutedComponent,
+    AdminUserDetailUnroutedComponent,    
+    AdminUserFormUnroutedComponent,
+    //--
     AdminThreadViewRoutedComponent,
     AdminThreadDetailUnroutedComponent,
     AdminReplyViewRoutedComponent,
     AdminReplyDetailUnroutedComponent,
-    AdminUserPlistRoutedComponent,
-    AdminUserPlistUnroutedComponent,
-    AdminUserNewRoutedComponent,
-    AdminUserFormUnroutedComponent,
-    AdminUserEditRoutedComponent,
-    UserFormComponent,
+
 
   ],
   imports: [
