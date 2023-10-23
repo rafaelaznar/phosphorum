@@ -1,22 +1,33 @@
-<div *ngIf="status!=null">
+<div *ngIf="status != null">
   <div class="d-flex justify-content-center my-3">
     <div class="alert alert-danger" role="alert">
-      ERROR: {{status!.message}}
+      ERROR: {{ status!.message }}
     </div>
   </div>
 </div>
 
-<div *ngIf="status==null">
+<div *ngIf="status == null">
   <div class="d-flex justify-content-end mb-3">
-    <h6>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h6>
+    <h6>
+      Showing {{ oPage.numberOfElements }} of total
+      {{ oPage.totalElements }} users.
+    </h6>
   </div>
   <div class="flex justify-content-center mb-3">
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    <p-paginator
+      (onPageChange)="onPageChang($event)"
+      [first]="oPaginatorState.first!"
+      [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage.totalElements"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    ></p-paginator>
   </div>
 
   <div class="flex justify-content-center mb-3">
-    <p-table [value]="oPage.content" styleClass="p-datatable-striped p-datatable-sm">
+    <p-table
+      [value]="oPage.content"
+      styleClass="p-datatable-striped p-datatable-sm"
+    >
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th>ID</th>
@@ -31,24 +42,43 @@
       </ng-template>
       <ng-template pTemplate="body" let-u>
         <tr>
-          <td>{{u.id}}</td>
-          <td>{{u.name}}</td>
-          <td>{{u.surname}}</td>
-          <td>{{u.lastname}}</td>
-          <td>{{u.email}}</td>
-          <td>{{u.username}}</td>
+          <td>{{ u.id }}</td>
+          <td>{{ u.name }}</td>
+          <td>{{ u.surname }}</td>
+          <td>{{ u.lastname }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.username }}</td>
           <td>
-            <span *ngIf="u.role==true">Admin</span>
-            <span *ngIf="u.role==false">User</span>
+            <span *ngIf="u.role == true">Admin</span>
+            <span *ngIf="u.role == false">User</span>
           </td>
           <td>
-            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-              <button class="btn btn-primary" [routerLink]="['/admin','user','view',u.id]"><i
-                  class="pi pi-eye"></i></button>
-              <button class="btn btn-primary" (click)="goToView(u)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="btn btn-warning" [routerLink]="['/admin','user','edit',u.id]"><i
-                  class="pi pi-pencil"></i></button>
-              <button class="btn btn-danger"><i class="pi pi-trash"></i></button>
+            <div
+              class="btn-group btn-group-sm"
+              role="group"
+              aria-label="Basic example"
+            >
+              <button
+                class="btn btn-primary"
+                [routerLink]="['/admin', 'user', 'view', u.id]"
+              >
+                <i class="pi pi-eye"></i>
+              </button>
+              <button class="btn btn-primary" (click)="goToView(u)">
+                <i class="pi pi-arrow-circle-up"></i>
+              </button>
+              <button
+                class="btn btn-warning"
+                [routerLink]="['/admin', 'user', 'edit', u.id]"
+              >
+                <i class="pi pi-pencil"></i>
+              </button>
+              <button class="btn btn-danger">
+                <i
+                  class="pi pi-trash"
+                  (click)="openDeleteConfirmationDialog(u.id)"
+                ></i>
+              </button>
             </div>
           </td>
         </tr>

@@ -28,6 +28,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     AdminThreadDetailUnroutedComponent,
     AdminReplyViewRoutedComponent,
     AdminReplyDetailUnroutedComponent,
+    ConfirmDialogComponent,
 
 
   ],
@@ -67,7 +70,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatCardModule,
     MatInputModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [
     MessageService,
