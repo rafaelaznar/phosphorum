@@ -19,6 +19,8 @@ import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-pl
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,13 @@ import { TableModule } from 'primeng/table';
     HttpClientModule,
     BrowserAnimationsModule,
     PaginatorModule,
-    TableModule
+    TableModule,
+    DynamicDialogModule
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IUser } from 'src/app/model/model.interfaces';
 
 @Component({
@@ -15,11 +16,19 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
 
   constructor(
-    private oHttpClient: HttpClient
-  ) {       
+    private oHttpClient: HttpClient,
+    @Optional() public ref:DynamicDialogRef,
+    @Optional() public config:DynamicDialogConfig
+  ) {     
+    if (config){
+      if (config.data){
+        this.id = config.data.id;
+      }
+    }    
   }
 
   ngOnInit() {
+    console.log(this.id);
     this.getOne();
   }
 

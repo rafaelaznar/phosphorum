@@ -1,7 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IUser, IUserPage } from 'src/app/model/model.interfaces';
+import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 
 
 @Component({
@@ -19,7 +22,9 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
 
   constructor(
-    private oHttpClient: HttpClient
+    private oHttpClient: HttpClient,
+    public dialogService: DialogService,
+    public messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -56,11 +61,19 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
+  ref: DynamicDialogRef | undefined;
 
-  goToView(u:IUser){
-
+  goToView(u: IUser) {
+    this.ref = this.dialogService.open(AdminUserDetailUnroutedComponent, {
+      data: {
+        id: u.id
+      },
+      header: 'View of user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false
+    });
   }
-
-
 
 }
