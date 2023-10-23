@@ -32,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { MatInputModule } from '@angular/material/input';
     AdminUserFormUnroutedComponent,
     AdminUserEditRoutedComponent,
     UserFormComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -68,7 +69,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    FormsModule
+    MatRadioModule,
+    MatFormFieldModule
   ],
   providers: [
     MessageService,

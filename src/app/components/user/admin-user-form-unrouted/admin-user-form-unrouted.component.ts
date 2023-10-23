@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { IUser } from 'src/app/model/model.interfaces';
+import { IUser, formOperation } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-user-form-unrouted',
@@ -10,9 +10,8 @@ import { IUser } from 'src/app/model/model.interfaces';
 })
 export class AdminUserFormUnroutedComponent implements OnInit {
 
-
   @Input() id: number = 1;
-  @Input() strOperation: string = ""; //new or edit
+  @Input() operation: formOperation = 'NEW'; //new or edit
 
   userForm!: FormGroup;
   oUser: IUser = {} as IUser;
@@ -20,25 +19,35 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private oHttpClient: HttpClient) {
     //this.userForm = null;
-    if (this.strOperation == "edit") {
+    this.userForm = this.fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      lastname: [''],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
+      role: ['']
+    });
+  }
+
+  ngOnInit() {
+    if (this.operation == 'EDIT') {
       this.oHttpClient.get<IUser>("http://localhost:8083/user/" + this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
-
           this.userForm = this.fb.group({
             id: [this.oUser.id],
             name: [this.oUser.name, Validators.required],
             surname: [this.oUser.surname, Validators.required],
             lastname: [this.oUser.lastname],
             email: [this.oUser.email, [Validators.required, Validators.email]],
-            username: [this.oUser.username, Validators.required]
+            username: [this.oUser.username, Validators.required],
+            role: [this.oUser.role]
           });
-
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
         }
-
       })
 
     } else {
@@ -49,12 +58,10 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         lastname: [''],
         email: ['', [Validators.required, Validators.email]],
         username: ['', Validators.required],
-        password: ['', Validators.required]
+        role: ['']
       });
     }
-  }
 
-  ngOnInit() {
   }
 
   onSubmit() {

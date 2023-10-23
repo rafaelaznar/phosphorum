@@ -1,39 +1,62 @@
-<div class="row">
-  <div class="col-12">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput formControlName="name" placeholder="Name" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput formControlName="surname" placeholder="Surname" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput formControlName="lastname" placeholder="Lastname" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput formControlName="email" placeholder="Email" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput formControlName="username" placeholder="Username" required>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput type="password" formControlName="password" placeholder="Password" required>
-        </mat-form-field>
-      </div>
-      <div class="text-center">
-        <button mat-raised-button color="primary" type="submit">Create User</button>
-      </div>
-    </form>
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field *ngIf="operation=='EDIT'">
+            <mat-label>ID:</mat-label>
+            <input matInput formControlName="id" placeholder="ID" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Name:</mat-label>
+            <input matInput formControlName="name" placeholder="Name" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Surname:</mat-label>
+            <input matInput formControlName="surname" placeholder="Surname" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Lastname:</mat-label>
+            <input matInput formControlName="lastname" placeholder="Lastname">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Email:</mat-label>
+            <input matInput formControlName="email" placeholder="Email" required>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Username:</mat-label>
+            <input matInput formControlName="username" placeholder="Username" required>
+          </mat-form-field>
+        </div>
+
+        <mat-radio-group aria-label="Type of user" formControlName="role">
+          <mat-radio-button [value]="true">Admin</mat-radio-button>
+          <mat-radio-button [value]="false">User</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="text-center mt-5">
+          <button mat-raised-button color="primary" type="submit">Create User</button>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>

@@ -1,4 +1,11 @@
-<h2 *ngIf="status!=null">ERROR: {{status.message}}</h2>
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      ERROR: {{status!.message}}
+    </div>
+  </div>
+</div>
+
 <div *ngIf="status==null">
   <div class="d-flex justify-content-end mb-3">
     <h6>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h6>
@@ -9,7 +16,7 @@
   </div>
 
   <div class="flex justify-content-center mb-3">
-    <p-table [value]="oPage.content" [tableStyle]="{ 'min-width': '50rem' }" [styleClass]="'p-datatable-sm'">
+    <p-table [value]="oPage.content" styleClass="p-datatable-striped p-datatable-sm">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th>ID</th>
@@ -35,7 +42,7 @@
             <span *ngIf="u.role==false">User</span>
           </td>
           <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" [routerLink]="['/admin','user','view',u.id]"><i
                   class="pi pi-eye"></i></button>
               <button class="btn btn-primary" (click)="goToView(u)"><i class="pi pi-arrow-circle-up"></i></button>
