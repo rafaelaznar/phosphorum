@@ -5,7 +5,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -24,7 +25,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   constructor(
     private oHttpClient: HttpClient,
     public dialogService: DialogService,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -76,4 +78,37 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     });
   }
 
+  // Este método manejará el borrado de usuarios
+  deleteUser(userId: number) {
+    // Realiza una solicitud de borrado al servidor
+    this.oHttpClient.delete(`http://localhost:8083/user/${userId}`)
+      .subscribe({
+        next: () => {
+          // Borrado exitoso
+          console.log(`Usuario con ID ${userId} borrado correctamente.`);
+          
+          // Luego de borrar el usuario, puedes actualizar la lista de usuarios volviendo a llamar a getPage()
+          this.getPage();
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error(`Error al borrar el usuario con ID ${userId}.`, error);
+          // Manejo de errores, muestra notificaciones o toma acciones apropiadas
+        }
+      });
+  }
+
+  openDeleteConfirmationDialog(userId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirmar Borrado',
+        message: '¿Estás seguro de que deseas borrar este usuario? Esta acción no se puede deshacer.'
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteUser(userId);
+      }
+    });
+  }
 }
