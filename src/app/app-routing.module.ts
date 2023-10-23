@@ -5,6 +5,8 @@ import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
+import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
+import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -12,7 +14,14 @@ const routes: Routes = [
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },
   { path: 'admin/thread/view/:id', component: AdminThreadViewRoutedComponent },
   { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },
-  { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent }
+  { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
+  { path: 'admin/thread/plist', component: AdminUserPlistRoutedComponent },
+  { path: 'admin/reply/plist', component: AdminUserPlistRoutedComponent },
+
+  { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
+  { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+
+
 ];
 
 @NgModule({

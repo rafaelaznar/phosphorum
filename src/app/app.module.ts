@@ -21,6 +21,9 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
+import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
+import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { MessageService } from 'primeng/api';
     AdminReplyViewRoutedComponent,
     AdminReplyDetailUnroutedComponent,
     AdminUserPlistRoutedComponent,
-    AdminUserPlistUnroutedComponent
+    AdminUserPlistUnroutedComponent,
+    AdminUserNewRoutedComponent,
+    AdminUserFormUnroutedComponent,
+    AdminUserEditRoutedComponent
   ],
   imports: [
     BrowserModule,
