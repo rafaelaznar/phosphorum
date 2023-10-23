@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
-import { IUserPage } from 'src/app/model/model.interfaces';
+import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 
 
 @Component({
@@ -55,5 +55,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     }
     this.getPage();
   }
+
+
+  goToView(u:IUser){
+
+  }
+
+
 
 }
