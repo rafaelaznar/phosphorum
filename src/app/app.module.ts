@@ -24,6 +24,15 @@ import { MessageService } from 'primeng/api';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
+import { UserFormComponent } from './user-form/user-form.component';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +49,9 @@ import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-
     AdminUserPlistUnroutedComponent,
     AdminUserNewRoutedComponent,
     AdminUserFormUnroutedComponent,
-    AdminUserEditRoutedComponent
+    AdminUserEditRoutedComponent,
+    UserFormComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -50,7 +61,14 @@ import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-
     BrowserAnimationsModule,
     PaginatorModule,
     TableModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [
     MessageService,
