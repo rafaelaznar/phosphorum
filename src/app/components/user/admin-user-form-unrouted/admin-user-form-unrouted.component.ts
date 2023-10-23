@@ -14,7 +14,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() strOperation: string = ""; //new or edit
 
-  userForm?: FormGroup;
+  userForm!: FormGroup;
   oUser: IUser = {} as IUser;
   status: HttpErrorResponse | null = null;
 
