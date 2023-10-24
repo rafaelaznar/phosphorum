@@ -17,15 +17,19 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   oUser: IUser = {} as IUser;
   status: HttpErrorResponse | null = null;
 
-  constructor(private fb: FormBuilder, private oHttpClient: HttpClient) {
-    this.userForm = this.fb.group({
-      id: [''],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      lastname: [''],
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
-      role: ['']
+  constructor(private oFormBuilder: FormBuilder, private oHttpClient: HttpClient) {
+    this.initializeForm(this.oUser);
+  }
+
+  initializeForm(oUser: IUser) {
+    this.userForm = this.oFormBuilder.group({
+      id: [oUser.id],
+      name: [oUser.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      surname: [oUser.surname, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      lastname: [oUser.lastname, Validators.maxLength(255)],
+      email: [oUser.email, [Validators.required, Validators.email]],
+      username: [oUser.username, [Validators.required, Validators.minLength(6), Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$')]],
+      role: [oUser.role, Validators.required]
     });
   }
 
@@ -34,40 +38,26 @@ export class AdminUserFormUnroutedComponent implements OnInit {
       this.oHttpClient.get<IUser>("http://localhost:8083/user/" + this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
-          this.userForm = this.fb.group({
-            id: [this.oUser.id],
-            name: [this.oUser.name, Validators.required],
-            surname: [this.oUser.surname, Validators.required],
-            lastname: [this.oUser.lastname],
-            email: [this.oUser.email, [Validators.required, Validators.email]],
-            username: [this.oUser.username, Validators.required],
-            role: [this.oUser.role]
-          });
+          this.initializeForm(this.oUser);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
         }
       })
-
     } else {
-      this.userForm = this.fb.group({
-        id: [''],
-        name: ['', Validators.required],
-        surname: ['', Validators.required],
-        lastname: [''],
-        email: ['', [Validators.required, Validators.email]],
-        username: ['', Validators.required],
-        role: ['']
-      });
+      this.initializeForm(this.oUser);
     }
+  }
 
+  public hasError = (controlName: string, errorName: string) => {
+    return this.userForm.controls[controlName].hasError(errorName);
   }
 
   onSubmit() {
-    //if (this.userForm.valid) {
-    // Aquí puedes enviar los datos del usuario al servidor o realizar otras acciones necesarias.
-    //  console.log(this.userForm.value);
-    //}
+    if (this.userForm.valid) {
+      // Aquí puedes enviar los datos del usuario al servidor o realizar otras acciones necesarias.
+      console.log(this.userForm.value);
+    }
   }
 
 }
