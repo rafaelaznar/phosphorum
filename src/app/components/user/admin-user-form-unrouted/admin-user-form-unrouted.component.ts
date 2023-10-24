@@ -18,7 +18,6 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
 
   constructor(private fb: FormBuilder, private oHttpClient: HttpClient) {
-    //this.userForm = null;
     this.userForm = this.fb.group({
       id: [''],
       name: ['', Validators.required],
