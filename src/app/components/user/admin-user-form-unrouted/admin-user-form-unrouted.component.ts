@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { IUser, formOperation } from 'src/app/model/model.interfaces';
 
 @Component({
@@ -17,7 +18,11 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   oUser: IUser = {} as IUser;
   status: HttpErrorResponse | null = null;
 
-  constructor(private oFormBuilder: FormBuilder, private oHttpClient: HttpClient) {
+  constructor(
+    private oFormBuilder: FormBuilder,
+    private oHttpClient: HttpClient,
+    private oRouter: Router
+  ) {
     this.initializeForm(this.oUser);
   }
 
@@ -55,7 +60,37 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.valid) {
-      // Aquí puedes enviar los datos del usuario al servidor o realizar otras acciones necesarias.
+      if (this.operation == 'NEW') {
+        this.oHttpClient.post<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+          next: (data: IUser) => {
+            this.oUser = data;
+            this.initializeForm(this.oUser);
+            // avisar al usuario que se ha creado correctamente
+            alert("Usuario creado correctamente")
+
+            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
+          },
+          error: (error: HttpErrorResponse) => {
+            this.status = error;
+          }
+        })
+
+      } else {
+        this.oHttpClient.put<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+          next: (data: IUser) => {
+            this.oUser = data;
+            this.initializeForm(this.oUser);
+            // avisar al usuario que se ha actualizado correctamente
+            alert("Usuario actualizado correctamente")
+
+
+
+          },
+          error: (error: HttpErrorResponse) => {
+            this.status = error;
+          }
+        })
+      }
       console.log(this.userForm.value);
     }
   }
