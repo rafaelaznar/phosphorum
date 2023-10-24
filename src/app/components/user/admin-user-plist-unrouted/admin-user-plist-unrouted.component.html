@@ -45,10 +45,10 @@
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" [routerLink]="['/admin','user','view',u.id]"><i
                   class="pi pi-eye"></i></button>
-              <button class="btn btn-primary" (click)="goToView(u)"><i class="pi pi-arrow-circle-up"></i></button>
+              <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
               <button class="btn btn-warning" [routerLink]="['/admin','user','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
-              <button class="btn btn-danger"><i class="pi pi-trash"></i></button>
+              <button class="btn btn-danger" (click)="doRemove(u)"><i class="pi pi-trash"></i></button>
             </div>
           </td>
         </tr>
@@ -56,3 +56,19 @@
     </p-table>
   </div>
 </div>
+
+<p-confirmDialog #cd [style]="{ width: '30vw' }">
+  <ng-template pTemplate="header">
+    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> User removal</h5>
+  </ng-template>
+  <ng-template pTemplate="message">
+    <div class="container d-flex align-items-center justify-content-center">
+      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p>¿Are you sure to remove user?</p>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>

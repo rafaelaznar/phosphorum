@@ -5,17 +5,20 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PaginatorModule } from 'primeng/paginator';
-import { TableModule } from 'primeng/table';
+//--
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBar } from '@angular/material/snack-bar';
 //--
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 //--
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
@@ -57,16 +60,20 @@ import { AdminUserFormUnroutedComponent } from './components/user/admin-user-for
     BrowserAnimationsModule,
     PaginatorModule,
     TableModule,
+    ConfirmDialogModule,
     //--
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+
   ],
   providers: [
     MessageService,
-    DialogService
+    DialogService,
+    ConfirmationService,
+    MatSnackBar,
   ],
   bootstrap: [AppComponent]
 })

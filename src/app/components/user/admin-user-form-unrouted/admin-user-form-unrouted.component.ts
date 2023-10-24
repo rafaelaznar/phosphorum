@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IUser, formOperation } from 'src/app/model/model.interfaces';
 
@@ -21,7 +22,8 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   constructor(
     private oFormBuilder: FormBuilder,
     private oHttpClient: HttpClient,
-    private oRouter: Router
+    private oRouter: Router,
+    private oMatSnackBar: MatSnackBar
   ) {
     this.initializeForm(this.oUser);
   }
@@ -47,6 +49,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
+          this.oMatSnackBar.open("Error reading user from server.", '', { duration: 1200 });
         }
       })
     } else {
@@ -66,12 +69,12 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             // avisar al usuario que se ha creado correctamente
-            alert("Usuario creado correctamente")
-
+            this.oMatSnackBar.open("User has been created.", '', { duration: 1200 });
             this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
+            this.oMatSnackBar.open("Can't create user.", '', { duration: 1200 });
           }
         })
 
@@ -81,17 +84,15 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             // avisar al usuario que se ha actualizado correctamente
-            alert("Usuario actualizado correctamente")
-
-
-
+            this.oMatSnackBar.open("User has been updated.", '', { duration: 1200 });
+            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
+            this.oMatSnackBar.open("Can't update user.", '', { duration: 1200 });
           }
         })
-      }
-      console.log(this.userForm.value);
+      }      
     }
   }
 
