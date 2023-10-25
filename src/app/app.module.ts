@@ -31,6 +31,7 @@ import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-pl
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
 //--
+import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { AdminUserFormUnroutedComponent } from './components/user/admin-user-for
     AdminUserDetailUnroutedComponent,
     AdminUserFormUnroutedComponent,
     //--
+    AdminReplyFormUnroutedComponent
   ],
   imports: [
     BrowserModule,
