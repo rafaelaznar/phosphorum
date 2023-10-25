@@ -13,6 +13,7 @@ import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-p
 import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
 import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
 //--
+import { AdminReplyEditRoutedComponent } from './components/reply/admin-reply-edit-routed/admin-reply-edit-routed.component';
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
@@ -20,10 +21,12 @@ const routes: Routes = [
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },  
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+  { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
   { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },
   { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
   { path: 'admin/tread/plist', component: AdminThreadPlistRoutedComponent },
   { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent}
+
 
 
 ];
