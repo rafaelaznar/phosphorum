@@ -39,6 +39,7 @@ import { AdminThreadFormUnroutedComponent } from './components/thread/admin-thre
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
 //--
+import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new
     AdminThreadPlistUnroutedComponent,
     AdminReplyNewRoutedComponent,
     //--
-    AdminThreadDetailUnroutedComponent
+    AdminReplyFormUnroutedComponent,
+    AdminThreadDetailUnroutedComponent,
     AdminReplyPlistUnroutedComponent,
     AdminReplyDetailUnroutedComponent,
     AdminThreadPlistRoutedComponent,
