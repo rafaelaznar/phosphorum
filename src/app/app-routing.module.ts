@@ -19,8 +19,9 @@ const routes: Routes = [
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },  
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
-  { path: 'admin/tread/plist', component: AdminThreadPlistRoutedComponent }
+  { path: 'admin/tread/plist', component: AdminThreadPlistRoutedComponent },
   { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent}
+
 
 
 ];
