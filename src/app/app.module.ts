@@ -30,6 +30,7 @@ import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-
 import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-plist-unrouted/admin-user-plist-unrouted.component';
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
+import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
 import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
 import { AdminThreadPlistUnroutedComponent } from './components/thread/admin-thread-plist-unrouted/admin-thread-plist-unrouted.component';
 import { AdminThreadDetailUnroutedComponent } from './components/thread/admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
@@ -58,6 +59,7 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
     AdminThreadPlistUnroutedComponent,
     AdminReplyNewRoutedComponent,
     //--
+    AdminThreadNewRoutedComponent
     AdminReplyPlistRoutedComponent,
     AdminReplyFormUnroutedComponent,
     AdminThreadDetailUnroutedComponent,

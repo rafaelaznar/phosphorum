@@ -8,6 +8,7 @@ import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
+import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
 import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
 import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
 import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
@@ -19,9 +20,11 @@ const routes: Routes = [
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },  
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+  { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },
   { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
   { path: 'admin/tread/plist', component: AdminThreadPlistRoutedComponent },
   { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent}
+
 
 ];
 
