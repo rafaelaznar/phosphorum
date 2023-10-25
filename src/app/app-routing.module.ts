@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //--
@@ -8,6 +9,7 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 //--
+import { AdminThreadDetailUnroutedComponent } from './components/thread/admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },  
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+  { path: 'admin/thread/view/:id', component: AdminThreadDetailUnroutedComponent}
 
 ];
 
