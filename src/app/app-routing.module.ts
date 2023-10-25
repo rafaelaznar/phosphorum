@@ -8,6 +8,8 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
+import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
+
 //--
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
   { path: 'admin/tread/plist', component: AdminThreadPlistRoutedComponent }
+  { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent}
+
 
 ];
 
