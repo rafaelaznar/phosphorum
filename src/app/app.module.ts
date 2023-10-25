@@ -30,6 +30,7 @@ import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-
 import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-plist-unrouted/admin-user-plist-unrouted.component';
 import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
+import { AdminReplyDetailUnroutedComponent } from './components/reply/admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AdminUserFormUnroutedComponent } from './components/user/admin-user-for
     AdminUserDetailUnroutedComponent,
     AdminUserFormUnroutedComponent,
     //--
+    AdminReplyDetailUnroutedComponent
   ],
   imports: [
     BrowserModule,
