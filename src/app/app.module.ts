@@ -41,8 +41,10 @@ import { AdminThreadPlistRoutedComponent } from './components/thread/admin-threa
 import { AdminThreadFormUnroutedComponent } from './components/thread/admin-thread-form-unrouted/admin-thread-form-unrouted.component';
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new-routed/admin-reply-new-routed.component';
-//--
 import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
+import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
+import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread-edit-routed/admin-thread-edit-routed.component';
+//--
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,23 +55,25 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
     AdminUserViewRoutedComponent,
     AdminUserNewRoutedComponent,
     AdminUserEditRoutedComponent,
-    //--
     AdminUserPlistUnroutedComponent,
     AdminUserDetailUnroutedComponent,
     AdminUserFormUnroutedComponent,
-    AdminReplyEditRoutedComponent,
-    AdminThreadPlistUnroutedComponent,
-    AdminReplyNewRoutedComponent,
     //--
-    AdminThreadNewRoutedComponent
-    AdminReplyPlistRoutedComponent,
-    AdminReplyFormUnroutedComponent,
+    AdminThreadPlistRoutedComponent,
+    AdminThreadViewRoutedComponent,
+    AdminThreadNewRoutedComponent,
+    AdminThreadEditRoutedComponent,
+    AdminThreadPlistUnroutedComponent,
     AdminThreadDetailUnroutedComponent,
+    AdminThreadFormUnroutedComponent,
+    //--
+    AdminReplyPlistRoutedComponent,
+    AdminReplyViewRoutedComponent,
+    AdminReplyNewRoutedComponent,
+    AdminReplyEditRoutedComponent,
     AdminReplyPlistUnroutedComponent,
     AdminReplyDetailUnroutedComponent,
-    AdminThreadPlistRoutedComponent,
-    AdminThreadFormUnroutedComponent,
-    AdminReplyViewRoutedComponent,
+    AdminReplyFormUnroutedComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,16 +6,16 @@ import { Router } from '@angular/router';
 import { IThread, formOperation } from 'src/app/model/model.interfaces';
 
 @Component({
-  selector: 'app-admin-thread-form',
-  templateUrl: './admin-thread-form.component.html',
-  styleUrls: ['./admin-thread-form.component.css']
+  selector: 'app-admin-thread-form-unrouted',
+  templateUrl: './admin-thread-form-unrouted.component.html',
+  styleUrls: ['./admin-thread-form-unrouted.component.css']
 })
 export class AdminThreadFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   threadForm!: FormGroup;
-  oThread: IThread = {} as IThread;
+  oThread: IThread = {"user":{}} as IThread;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -31,8 +31,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
     this.threadForm = this.formBuilder.group({
       id: [oThread.id],
       title: [oThread.title, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
-     id_user: [oThread.user.id]
-
+      id_user: [oThread.user.id]
     });
   }
 
@@ -45,13 +44,14 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading user from server.", '', { duration: 1200 });
+          this.oMatSnackBar.open("Error reading thread from server.", '', { duration: 1200 });
         }
       })
     } else {
       this.initializeForm(this.oThread);
     }
   }
+
   public hasError = (controlName: string, errorName: string) => {
     return this.threadForm.controls[controlName].hasError(errorName);
   }

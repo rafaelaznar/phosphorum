@@ -11,7 +11,6 @@ import { IUser, formOperation } from 'src/app/model/model.interfaces';
   styleUrls: ['./admin-user-form-unrouted.component.css']
 })
 export class AdminUserFormUnroutedComponent implements OnInit {
-
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
 

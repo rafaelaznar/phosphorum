@@ -20,11 +20,11 @@
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
-          <th>ID</th>
+          <th (click)="doOrder('id')">ID</th>
           <th (click)="doOrder('title')">Title</th>
           <th (click)="doOrder('user')">User</th>
-
-
+          <th>Number of replies</th>
+          <th>Tools</th>
         </tr>
       </thead>
       <tbody>
@@ -66,7 +66,7 @@
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
-      <app-admin-user-detail-unrouted [id]="oThreadToRemove!.id"></app-admin-thread-detail-unrouted>
+      <app-admin-thread-detail-unrouted [id]="oThreadToRemove!.id"></app-admin-thread-detail-unrouted>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
