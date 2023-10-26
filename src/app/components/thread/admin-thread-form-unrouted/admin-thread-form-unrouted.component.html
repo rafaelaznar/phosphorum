@@ -29,11 +29,13 @@
         </div>
         <div formGroupName="user">
           <div class="form-group">
-            <mat-form-field>
+            <mat-form-field [style.width.px]=100>
               <mat-label>USER:</mat-label>
-              <input matInput formControlName="id" placeholder="USER" required>
-              <mat-hint align="end">(can't change this number)</mat-hint>
+              <input matInput formControlName="id" placeholder="USER" required readonly>
             </mat-form-field>
+            <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
+              Find a user</button>
+            {{oThread.user.name}} {{oThread.user.surname}}
           </div>
         </div>
         <div class="text-center mt-5">

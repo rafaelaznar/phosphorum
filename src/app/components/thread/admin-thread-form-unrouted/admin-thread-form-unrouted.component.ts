@@ -3,7 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IThread, formOperation } from 'src/app/model/model.interfaces';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
+import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-thread-form-unrouted',
@@ -18,11 +20,14 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   oThread: IThread = { user: {} } as IThread;
   status: HttpErrorResponse | null = null;
 
+  oDynamicDialogRef: DynamicDialogRef | undefined;
+
   constructor(
     private formBuilder: FormBuilder,
     private oHttpClient: HttpClient,
     private router: Router,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    public oDialogService: DialogService
   ) {
     this.initializeForm(this.oThread);
   }
@@ -89,4 +94,24 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
       }
     }
   }
+
+  onShowUsersSelection() {
+    this.oDynamicDialogRef = this.oDialogService.open(AdminUserSelectionUnroutedComponent, {
+      header: 'Select a User',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
+      if (oUser) {
+        console.log(oUser);
+        this.oThread.user = oUser;
+        this.threadForm.controls['user'].patchValue({ id: oUser.id })    //controls['id'].setValue(oUser.id);
+        //this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name });
+      }
+    });
+  }
+
 }

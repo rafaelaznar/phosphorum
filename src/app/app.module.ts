@@ -44,6 +44,7 @@ import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new
 import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
 import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread-edit-routed/admin-thread-edit-routed.component';
+import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread
     AdminUserPlistUnroutedComponent,
     AdminUserDetailUnroutedComponent,
     AdminUserFormUnroutedComponent,
+    AdminUserSelectionUnroutedComponent,
     //--
     AdminThreadPlistRoutedComponent,
     AdminThreadViewRoutedComponent,
