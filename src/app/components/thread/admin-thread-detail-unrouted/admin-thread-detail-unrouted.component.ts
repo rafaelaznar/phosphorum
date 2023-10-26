@@ -13,19 +13,19 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oThread: IThread = {} as IThread;
+  oThread: IThread = { user: {} } as IThread;
   status: HttpErrorResponse | null = null;
 
   constructor(
     private oHttpClient: HttpClient,
-    @Optional() public ref:DynamicDialogRef,
-    @Optional() public config:DynamicDialogConfig
-  ) { 
-    if (config){
-      if (config.data){
+    @Optional() public ref: DynamicDialogRef,
+    @Optional() public config: DynamicDialogConfig
+  ) {
+    if (config) {
+      if (config.data) {
         this.id = config.data.id;
       }
-    }    
+    }
   }
 
   ngOnInit() {

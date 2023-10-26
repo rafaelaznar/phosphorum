@@ -27,12 +27,14 @@
             <mat-error *ngIf="hasError('title', 'maxlength')">Limit exceed</mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>USER:</mat-label>
-            <input matInput formControlName="id_user" placeholder="USER" required>
-            <mat-hint align="end">(can't change this number)</mat-hint>
-          </mat-form-field>
+        <div formGroupName="user">
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>USER:</mat-label>
+              <input matInput formControlName="id" placeholder="USER" required>
+              <mat-hint align="end">(can't change this number)</mat-hint>
+            </mat-form-field>
+          </div>
         </div>
         <div class="text-center mt-5">
           <button mat-raised-button color="primary" type="submit">Save Thread</button>

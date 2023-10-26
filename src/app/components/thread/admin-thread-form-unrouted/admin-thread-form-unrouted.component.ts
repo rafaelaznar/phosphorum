@@ -15,7 +15,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   threadForm!: FormGroup;
-  oThread: IThread = {"user":{}} as IThread;
+  oThread: IThread = { user: {} } as IThread;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -31,7 +31,9 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
     this.threadForm = this.formBuilder.group({
       id: [oThread.id],
       title: [oThread.title, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
-      id_user: [oThread.user.id]
+      user: this.formBuilder.group({
+        id: [oThread.user.id]
+      })
     });
   }
 
@@ -61,10 +63,10 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
       if (this.operation === 'NEW') {
         this.oHttpClient.post<IThread>('http://localhost:8083/thread', this.threadForm.value).subscribe({
           next: (data: IThread) => {
-            this.oThread = data;
-            this.initializeForm(this.oThread);
+            this.oThread = { "user": {} } as IThread;
+            this.initializeForm(this.oThread); //el id se genera en el servidor
             this.oMatSnackBar.open('Thread has been created.', '', { duration: 1200 });
-            this.router.navigate(['/admin', 'thread', 'view', this.oThread.id]);
+            this.router.navigate(['/admin', 'thread', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
