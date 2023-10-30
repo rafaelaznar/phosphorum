@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IUser, formOperation } from 'src/app/model/model.interfaces';
+import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 @Component({
   selector: 'app-admin-user-form-unrouted',
@@ -20,7 +21,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   constructor(
     private oFormBuilder: FormBuilder,
-    private oHttpClient: HttpClient,
+    private oUserAjaxService: UserAjaxService,
     private oRouter: Router,
     private oMatSnackBar: MatSnackBar
   ) {
@@ -41,7 +42,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.oHttpClient.get<IUser>("http://localhost:8083/user/" + this.id).subscribe({
+      this.oUserAjaxService.getOne(this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
           this.initializeForm(this.oUser);
@@ -63,7 +64,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       if (this.operation == 'NEW') {
-        this.oHttpClient.post<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+        this.oUserAjaxService.newOne(this.userForm.value).subscribe({
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);
@@ -78,7 +79,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         })
 
       } else {
-        this.oHttpClient.put<IUser>("http://localhost:8083/user", this.userForm.value).subscribe({
+        this.oUserAjaxService.updateOne(this.userForm.value).subscribe({
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);
@@ -91,7 +92,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oMatSnackBar.open("Can't update user.", '', { duration: 1200 });
           }
         })
-      }      
+      }
     }
   }
 

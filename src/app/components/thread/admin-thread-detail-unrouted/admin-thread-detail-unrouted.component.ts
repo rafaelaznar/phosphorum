@@ -1,14 +1,15 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IThread } from 'src/app/model/model.interfaces';
-
+import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 @Component({
   selector: 'app-admin-thread-detail-unrouted',
   templateUrl: './admin-thread-detail-unrouted.component.html',
   styleUrls: ['./admin-thread-detail-unrouted.component.css']
 })
+
 export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
@@ -17,7 +18,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
 
   constructor(
-    private oHttpClient: HttpClient,
+    private oThreadAjaxService: ThreadAjaxService,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
@@ -33,7 +34,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {
-    this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
+    this.oThreadAjaxService.getOne(this.id).subscribe({
       next: (data: IThread) => {
         this.oThread = data;
       },

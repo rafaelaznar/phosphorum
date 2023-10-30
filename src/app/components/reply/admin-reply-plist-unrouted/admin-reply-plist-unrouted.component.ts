@@ -1,11 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IReply, IReplyPage} from 'src/app/model/model.interfaces';
+import { IReply, IReplyPage } from 'src/app/model/model.interfaces';
 import { AdminReplyDetailUnroutedComponent } from '../admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-plist-unrouted',
@@ -23,8 +24,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   oReplyToRemove: IReply | null = null;
 
   constructor(
-    private oHttpClient: HttpClient,
-    public oDialogService: DialogService,    
+    private oReplyAjaxService: ReplyAjaxService,
+    public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
@@ -34,7 +35,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IReplyPage>("http://localhost:8083/reply" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
       next: (data: IReplyPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -83,7 +84,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.oCconfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8083/reply/" + this.oReplyToRemove?.id).subscribe({
+        this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

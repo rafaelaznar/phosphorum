@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser, IUserPage } from '../model/model.interfaces';
+import { API_URL } from 'src/environment/environment';
 
 @Injectable()
 export class UserAjaxService {
 
-    sUrl: string = "http://localhost:8083/user";
+    sUrl: string = API_URL + "/user";
 
     constructor(
         private oHttpClient: HttpClient
@@ -25,12 +26,17 @@ export class UserAjaxService {
     removeOne(id: number | undefined): Observable<number> {
         if (id) {
             return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
-        } else {            
+        } else {
             return new Observable<number>();
         }
     }
 
-    //new
+    newOne(oUser: IUser): Observable<IUser> {
+        return this.oHttpClient.post<IUser>(this.sUrl, oUser);
+    }
 
-    //edit
+    updateOne(oUser: IUser): Observable<IUser> {
+        return this.oHttpClient.put<IUser>(this.sUrl, oUser);
+    }
+
 }

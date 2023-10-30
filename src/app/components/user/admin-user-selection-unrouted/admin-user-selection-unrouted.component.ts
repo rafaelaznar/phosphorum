@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IUser, IUserPage } from 'src/app/model/model.interfaces';
+import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 @Component({
   selector: 'app-admin-user-selection-unrouted',
@@ -20,7 +21,7 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
   oUserToRemove: IUser | null = null;
 
   constructor(
-    private oHttpClient: HttpClient,
+    private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
     public oDynamicDialogRef: DynamicDialogRef
   ) { }
@@ -30,7 +31,7 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IUserPage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({    
       next: (data: IUserPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

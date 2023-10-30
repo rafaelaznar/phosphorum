@@ -1,15 +1,17 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IReply, formOperation } from 'src/app/model/model.interfaces';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-form-unrouted',
   templateUrl: './admin-reply-form-unrouted.component.html',
   styleUrls: ['./admin-reply-form-unrouted.component.css']
 })
+
 export class AdminReplyFormUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
@@ -21,7 +23,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
+    private oReplyAjaxService: ReplyAjaxService,
     private router: Router,
     private matSnackBar: MatSnackBar
   ) {
@@ -40,7 +42,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   ngOnInit() {
     if (this.operation == 'EDIT') {
-      this.httpClient.get<IReply>("http://localhost:8083/reply/" + this.id).subscribe({
+      this.oReplyAjaxService.getOne(this.id).subscribe({
         next: (data: IReply) => {
           this.reply = data;
           this.initializeForm(this.reply);
@@ -62,7 +64,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.replyForm.valid) {
       if (this.operation == 'NEW') {
-        this.httpClient.post<IReply>("http://localhost:8083/reply", this.replyForm.value).subscribe({
+        this.oReplyAjaxService.newOne(this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.reply = data;
             this.initializeForm(this.reply);
@@ -75,7 +77,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           }
         });
       } else {
-        this.httpClient.put<IReply>("http://localhost:8083/reply", this.replyForm.value).subscribe({
+        this.oReplyAjaxService.updateOne(this.replyForm.value).subscribe({
           next: (data: IReply) => {
             this.reply = data;
             this.initializeForm(this.reply);
