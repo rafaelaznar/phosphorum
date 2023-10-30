@@ -31,8 +31,8 @@
       <tbody>
         <tr *ngFor="let r of oPage.content" class="align-middle">
           <td class="text-end"><strong>{{r.id}}</strong></td>
-          <td>{{r.title}}</td>
-          <td>{{r.body}}</td>
+          <td>{{r.title| trimming:25}}</td>
+          <td>{{r.body| trimming:50}}</td>
           <td>({{r.user.id}}) {{r.user.name}} {{r.user.surname}}</td>
           <td>({{r.thread.id}}) {{r.thread.title.substring(0, 20)}}</td>
           <td class="text-center">

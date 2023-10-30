@@ -6,6 +6,7 @@ import { PaginatorState } from 'primeng/paginator';
 import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -23,8 +24,9 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   oUserToRemove: IUser | null = null;
 
   constructor(
+    private oUserAjaxService: UserAjaxService,
     private oHttpClient: HttpClient,
-    public oDialogService: DialogService,    
+    public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
@@ -34,7 +36,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IUserPage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
       next: (data: IUserPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -83,7 +85,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oCconfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The user has been removed.", '', { duration: 1200 });
-        this.oHttpClient.delete("http://localhost:8083/user/" + this.oUserToRemove?.id).subscribe({
+        this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },

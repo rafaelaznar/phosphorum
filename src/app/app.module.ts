@@ -45,9 +45,12 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
 import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread-edit-routed/admin-thread-edit-routed.component';
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
+import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
+import { UserAjaxService } from './service/user.ajax.service.service';
 //--
 @NgModule({
   declarations: [
+    TrimPipe,
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
@@ -104,6 +107,7 @@ import { AdminUserSelectionUnroutedComponent } from './components/user/admin-use
     DialogService,
     ConfirmationService,
     MatSnackBar,
+    UserAjaxService
   ],
   bootstrap: [AppComponent]
 })
