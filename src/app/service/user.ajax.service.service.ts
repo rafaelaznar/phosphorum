@@ -29,4 +29,8 @@ export class UserAjaxService {
             return new Observable<number>();
         }
     }
+
+    //new
+
+    //edit
 }

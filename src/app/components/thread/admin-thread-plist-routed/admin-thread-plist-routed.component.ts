@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-thread-plist-routed',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminThreadPlistRoutedComponent implements OnInit {
 
-  constructor() { }
+  id_user: number;
+
+  constructor(
+    private oActivatedRoute: ActivatedRoute
+  ) {
+    //pte 
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
+  }
 
   ngOnInit() {
   }

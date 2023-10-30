@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -13,6 +13,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./admin-thread-plist-unrouted.component.css']
 })
 export class AdminThreadPlistUnroutedComponent implements OnInit {
+
+  @Input() id_user: number = 1;
+
   oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
@@ -21,7 +24,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   oThreadToRemove: IThread | null = null;
   constructor(
     private oHttpClient: HttpClient,
-    public oDialogService: DialogService,    
+    public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
@@ -31,7 +34,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IThreadPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oHttpClient.get<IThreadPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection + "&id_user=" + this.id_user).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
