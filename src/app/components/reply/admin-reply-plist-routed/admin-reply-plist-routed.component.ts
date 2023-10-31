@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-reply-plist-routed',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminReplyPlistRoutedComponent implements OnInit {
 
-  constructor() { }
+  id_user: number;
+  id_thread: number;
+
+  constructor(
+    private oActivatedRoute: ActivatedRoute
+  ) {
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("iduser") ?? "0");
+    this.id_thread = parseInt(this.oActivatedRoute.snapshot.paramMap.get("idthread") ?? "0");
+  }
 
   ngOnInit() {
   }

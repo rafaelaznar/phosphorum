@@ -21,8 +21,8 @@ export class ThreadAjaxService {
         if (!size) size = 10;
         if (!page) page = 0;
         let strUrlUser = "";
-        if (id_user) {
-            strUrlUser = "&id_user=" + id_user;
+        if (id_user > 0) {
+            strUrlUser = "&user=" + id_user;
         }
         return this.oHttpClient.get<IThreadPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser);
     }

@@ -49,7 +49,8 @@
             <span *ngIf="u.threads==0">0</span>
           </td>
           <td class="text-center">
-            {{u.replies}}
+            <a [routerLink]="['/admin','reply','plist','byuser',u.id]" *ngIf="u.replies>0">{{u.replies}}</a>
+            <span *ngIf="u.replies==0">0</span>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

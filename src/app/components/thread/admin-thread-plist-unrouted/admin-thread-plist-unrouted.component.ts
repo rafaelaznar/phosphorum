@@ -13,9 +13,10 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
   templateUrl: './admin-thread-plist-unrouted.component.html',
   styleUrls: ['./admin-thread-plist-unrouted.component.css']
 })
+
 export class AdminThreadPlistUnroutedComponent implements OnInit {
 
-  @Input() id_user: number = 1;
+  @Input() id_user: number = 0; //filter by user
 
   oPage: any = [];
   orderField: string = "id";

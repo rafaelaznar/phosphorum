@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -15,6 +15,9 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 })
 
 export class AdminReplyPlistUnroutedComponent implements OnInit {
+
+  @Input() id_user: number = 0; //filter by user
+  @Input() id_thread: number = 0; //filter by thread
 
   oPage: any = [];
   orderField: string = "id";
@@ -35,7 +38,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
+    this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user, this.id_thread).subscribe({
       next: (data: IReplyPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

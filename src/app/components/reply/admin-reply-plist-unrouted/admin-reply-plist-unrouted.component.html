@@ -7,8 +7,9 @@
 </div>
 
 <div *ngIf="status==null">
-  <div class="d-flex justify-content-end mb-3">
+  <div class="d-flex justify-content-between mb-3">  
     <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} replies</h3>
+    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}})</h3>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"

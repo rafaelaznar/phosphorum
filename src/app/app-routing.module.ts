@@ -33,6 +33,8 @@ const routes: Routes = [
   { path: 'admin/thread/edit/:id', component: AdminThreadEditRoutedComponent },  
   //--
   { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
+  { path: 'admin/reply/plist/byuser/:iduser', component: AdminReplyPlistRoutedComponent },  
+  { path: 'admin/reply/plist/bythread/:idthread', component: AdminReplyPlistRoutedComponent },  
   { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },    
   { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent},  
   { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
