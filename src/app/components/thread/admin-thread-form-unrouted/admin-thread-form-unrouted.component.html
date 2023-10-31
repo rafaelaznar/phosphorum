@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit">Save Thread</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!threadForm.valid">Save Thread</button>
         </div>
       </form>
     </div>
