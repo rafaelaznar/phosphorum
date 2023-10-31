@@ -26,7 +26,7 @@ export class ReplyAjaxService {
         }
         let strUrlThread = "";
         if (id_thread > 0) {
-            strUrlThread = "&user=" + id_thread;
+            strUrlThread = "&thread=" + id_thread;
         }
 
         return this.oHttpClient.get<IReplyPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser + strUrlThread);
