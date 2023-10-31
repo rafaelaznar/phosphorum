@@ -13,8 +13,7 @@ export class AdminThreadPlistRoutedComponent implements OnInit {
   constructor(
     private oActivatedRoute: ActivatedRoute
   ) {
-    //pte 
-    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "null");
   }
 
   ngOnInit() {

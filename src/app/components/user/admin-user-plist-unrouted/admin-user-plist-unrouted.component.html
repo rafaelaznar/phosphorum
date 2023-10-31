@@ -45,7 +45,8 @@
             <span *ngIf="u.role==false">User</span>
           </td>
           <td class="text-center">
-            <a [routerLink]="['/admin','thread','plist','byuser',u.id]">{{u.threads}}</a>
+            <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.threads>0">{{u.threads}}</a>
+            <span *ngIf="u.threads==0">0</span>
           </td>
           <td class="text-center">
             {{u.replies}}
