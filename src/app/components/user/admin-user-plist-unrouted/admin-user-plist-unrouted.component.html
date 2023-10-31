@@ -8,7 +8,7 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-end mb-3">
-    <h6>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h6>
+    <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h3>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
