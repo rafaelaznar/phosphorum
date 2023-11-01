@@ -43,4 +43,8 @@ export class ThreadAjaxService {
         return this.oHttpClient.put<IThread>(this.sUrl, oThread);
     }
 
+    generateRandom(amount: number): Observable<number> {
+        return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
+    }
+
 }

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
@@ -18,18 +19,15 @@ export class AdminUserPlistRoutedComponent implements OnInit {
 
   ngOnInit() { }
 
-  doGenerateRandomUsers(amount: number) {
-    this.bLoading = true;
-    console.log('doGenerateRandomUsers', amount);
-    this.oUserAjaxService.generateRandomUsers(amount).subscribe({
-      next: (oResponse) => {
-        console.log('generateRandomUsers', oResponse);
+  doGenerateRandom(amount: number) {
+    this.bLoading = true;    
+    this.oUserAjaxService.generateRandom(amount).subscribe({
+      next: (oResponse: number) => {
         this.oMatSnackBar.open("Now there are " + oResponse + " users", '', { duration: 2000 });
         this.bLoading = false;
       },
-      error: (oError) => {
-        console.error('generateRandomUsers', oError);
-        this.oMatSnackBar.open("Error generating users", '', { duration: 2000 });
+      error: (oError: HttpErrorResponse) => {
+        this.oMatSnackBar.open("Error generating users: " + oError.message, '', { duration: 2000 });
         this.bLoading = false;
       },
     })

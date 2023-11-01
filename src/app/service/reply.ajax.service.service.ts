@@ -48,4 +48,8 @@ export class ReplyAjaxService {
         return this.oHttpClient.put<IReply>(this.sUrl, oThread);
     }
 
+    generateRandom(amount: number): Observable<number> {
+        return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
+    }
+
 }
