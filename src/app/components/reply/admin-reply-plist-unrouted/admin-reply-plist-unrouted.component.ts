@@ -86,7 +86,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.oReplyToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 1200 });
+        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -94,12 +94,12 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
           error: (error: HttpErrorResponse) => {
             this.oPage.error = error;
             this.status = error;
-            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
+            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 1200 });
+        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
       }
     });
   }

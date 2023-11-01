@@ -53,7 +53,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading thread from server.", '', { duration: 1200 });
+          this.oMatSnackBar.open("Error reading thread from server.", '', { duration: 2000 });
         }
       })
     } else {
@@ -72,12 +72,12 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = { "user": {} } as IThread;
             this.initializeForm(this.oThread); //el id se genera en el servidor
-            this.oMatSnackBar.open('Thread has been created.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Thread has been created.', '', { duration: 2000 });
             this.router.navigate(['/admin', 'thread', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to create thread.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Failed to create thread.', '', { duration: 2000 });
           }
         });
       } else {
@@ -85,12 +85,12 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = data;
             this.initializeForm(this.oThread);
-            this.oMatSnackBar.open('Thread has been updated.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Thread has been updated.', '', { duration: 2000 });
             this.router.navigate(['/admin', 'thread', 'view', this.oThread.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to update thread.', '', { duration: 1200 });
+            this.oMatSnackBar.open('Failed to update thread.', '', { duration: 2000 });
           }
         });
       }

@@ -84,7 +84,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     this.oThreadToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The thread has been removed.", '', { duration: 1200 });
+        this.oMatSnackBar.open("The thread has been removed.", '', { duration: 2000 });
         this.oThreadAjaxService.removeOne(this.oThreadToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -92,12 +92,12 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
           error: (error: HttpErrorResponse) => {
             this.oPage.error = error;
             this.status = error;
-            this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 1200 });
+            this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 1200 });
+        this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
       }
     });
   }

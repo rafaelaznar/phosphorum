@@ -59,7 +59,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.matSnackBar.open("Error reading reply from server.", '', { duration: 1200 });
+          this.matSnackBar.open("Error reading reply from server.", '', { duration: 2000 });
         }
       });
     } else {
@@ -78,12 +78,12 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = { "user": {}, "thread": {} } as IReply;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been created.", '', { duration: 1200 });
+            this.matSnackBar.open("Reply has been created.", '', { duration: 2000 });
             this.router.navigate(['/admin', 'reply', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't create reply.", '', { duration: 1200 });
+            this.matSnackBar.open("Can't create reply.", '', { duration: 2000 });
           }
         });
       } else {
@@ -91,12 +91,12 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been updated.", '', { duration: 1200 });
+            this.matSnackBar.open("Reply has been updated.", '', { duration: 2000 });
             this.router.navigate(['/admin', 'reply', 'view', this.oReply.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't update reply.", '', { duration: 1200 });
+            this.matSnackBar.open("Can't update reply.", '', { duration: 2000 });
           }
         });
       }
