@@ -8,7 +8,8 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
-    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}})</h3>
+    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}}) <a type="button" class="btn btn-danger btn-sm"
+      *ngIf="id_user>0" [routerLink]="['/admin','thread','plist']">reset filter</a></h3>
     <h3 *ngIf="!(id_user>0)">No active filter</h3>
     <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} threads.</h3>
   </div>
