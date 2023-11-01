@@ -50,6 +50,7 @@ import { UserAjaxService } from './service/user.ajax.service.service';
 import { ThreadAjaxService } from './service/thread.ajax.service.service';
 import { ReplyAjaxService } from './service/reply.ajax.service.service';
 import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin
     AdminReplyPlistUnroutedComponent,
     AdminReplyDetailUnroutedComponent,
     AdminReplyFormUnroutedComponent,
+    FooterUnroutedComponent,
   ],
   imports: [
     BrowserModule,
