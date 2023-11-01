@@ -36,8 +36,15 @@
           <td class="text-end"><strong>{{r.id}}</strong></td>
           <td>{{r.title| trimming:25}}</td>
           <td>{{r.body| trimming:50}}</td>
-          <td>({{r.user.id}}) {{r.user.name}} {{r.user.surname}}</td>
-          <td>({{r.thread.id}}) {{r.thread.title.substring(0, 20)}}</td>
+          <td>
+            <a [routerLink]="['/admin','reply','plist','byuser',r.user.id]">({{r.user.id}}) {{r.user.name}}
+              {{r.user.surname}}</a>
+          </td>
+          <td>
+            <a [routerLink]="['/admin','reply','plist','bythread',r.thread.id]">({{r.thread.id}})
+              {{r.thread.title}}
+            </a>            
+          </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <button class="btn btn-primary" [routerLink]="['/admin','reply','view',r.id]"><i

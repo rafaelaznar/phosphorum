@@ -40,8 +40,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
-        this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
+        this.oPaginatorState.pageCount = data.totalPages;        
       },
       error: (error: HttpErrorResponse) => {
         this.oPage.error = error;

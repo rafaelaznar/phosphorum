@@ -33,12 +33,13 @@
         <tr *ngFor="let t of oPage.content" class="align-middle">
           <td class="text-end"><strong>{{t.id}}</strong></td>
           <td>{{t.title}}</td>
-          <td>{{t.user.name}}</td>
-
+          <td>
+            <a [routerLink]="['/admin','thread','plist','byuser',t.user.id]">({{t.user.id}}) {{t.user.name}}
+              {{t.user.surname}}</a>
+          </td>
           <td class="text-center">
             <a [routerLink]="['/admin','reply','plist','bythread',t.id]" *ngIf="t.replies>0">{{t.replies}}</a>
             <span *ngIf="t.replies==0">0</span>
-
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
