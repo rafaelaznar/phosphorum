@@ -14,25 +14,26 @@
                 <th>Value</th>
             </tr>
             <tr>
-                <td>id</td>
+                <th>id</th>
                 <td>{{oReply.id}}</td>
             </tr>
             <tr>
-                <td>title</td>
+                <th>title</th>
                 <td>{{oReply.title}}</td>
             </tr>
             <tr>
-                <td>body</td>
+                <th>body</th>
                 <td>{{oReply.body}}</td>
             </tr>
             <tr>
-                <td>user</td>
-                <td> <a [routerLink]="['/admin','user','view',oReply.user.id]">{{oReply.user.name}} {{oReply.user.surname}}</a></td>
+                <th>user</th>
+                <td> <a [routerLink]="['/admin','user','view',oReply.user.id]">{{oReply.user.name}}
+                        {{oReply.user.surname}}</a></td>
             </tr>
             <tr>
-                <td>thread</td>
+                <th>thread</th>
                 <td> <a [routerLink]="['/admin','thread','view',oReply.thread.id]">{{oReply.thread.title}}</a> </td>
-              </tr>
+            </tr>
         </tbody>
     </table>
 </div>

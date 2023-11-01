@@ -14,34 +14,50 @@
                 <th>Value</th>
             </tr>
             <tr>
-                <td>id</td>
+                <th>id</th>
                 <td>{{oUser.id}}</td>
             </tr>
             <tr>
-                <td>name</td>
+                <th>name</th>
                 <td>{{oUser.name}}</td>
             </tr>
             <tr>
-                <td>surname</td>
+                <th>surname</th>
                 <td>{{oUser.surname}}</td>
             </tr>
             <tr>
-                <td>lastname</td>
+                <th>lastname</th>
                 <td>{{oUser.lastname}}</td>
             </tr>
             <tr>
-                <td>email</td>
+                <th>email</th>
                 <td>{{oUser.email}}</td>
             </tr>
             <tr>
-                <td>username</td>
+                <th>username</th>
                 <td>{{oUser.username}}</td>
             </tr>
             <tr>
-                <td>role</td>
+                <th>role</th>
                 <td>
                     <span *ngIf="oUser.role==true">Admin</span>
                     <span *ngIf="oUser.role==false">User</span>
+                </td>
+            </tr>
+            <tr>
+                <th>threads</th>
+                <td>
+                    <a [routerLink]="['/admin','thread','plist','byuser',oUser.id]"
+                        *ngIf="oUser.threads>0">{{oUser.threads}}</a>
+                    <span *ngIf="oUser.threads==0">0</span>
+                </td>
+            </tr>
+            <tr>
+                <th>replies</th>
+                <td>
+                    <a [routerLink]="['/admin','reply','plist','byuser',oUser.id]"
+                        *ngIf="oUser.replies>0">{{oUser.replies}}</a>
+                    <span *ngIf="oUser.replies==0">0</span>
                 </td>
             </tr>
         </tbody>

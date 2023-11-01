@@ -39,7 +39,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
       id: [oThread.id],
       title: [oThread.title, [Validators.required, Validators.minLength(1), Validators.maxLength(2048)]],
       user: this.formBuilder.group({
-        id: [oThread.user.id]
+        id: [oThread.user.id, Validators.required]
       })
     });
   }
@@ -108,10 +108,8 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
       if (oUser) {
-        console.log(oUser);
         this.oThread.user = oUser;
-        this.threadForm.controls['user'].patchValue({ id: oUser.id })    //controls['id'].setValue(oUser.id);
-        //this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name });
+        this.threadForm.controls['user'].patchValue({ id: oUser.id })
       }
     });
   }

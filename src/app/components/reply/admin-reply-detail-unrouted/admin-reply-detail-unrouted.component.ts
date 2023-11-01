@@ -14,7 +14,7 @@ export class AdminReplyDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oReply: IReply = {} as IReply;
+  oReply: IReply = { user: {}, thread: {} } as IReply;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -30,7 +30,6 @@ export class AdminReplyDetailUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.id);
     this.getOne();
   }
 

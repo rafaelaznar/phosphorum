@@ -49,6 +49,7 @@ import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
 import { UserAjaxService } from './service/user.ajax.service.service';
 import { ThreadAjaxService } from './service/thread.ajax.service.service';
 import { ReplyAjaxService } from './service/reply.ajax.service.service';
+import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ReplyAjaxService } from './service/reply.ajax.service.service';
     AdminThreadPlistUnroutedComponent,
     AdminThreadDetailUnroutedComponent,
     AdminThreadFormUnroutedComponent,
+    AdminThreadSelectionUnroutedComponent,
     //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,

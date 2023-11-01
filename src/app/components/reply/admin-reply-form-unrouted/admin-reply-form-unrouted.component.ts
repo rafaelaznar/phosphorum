@@ -3,8 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IReply, formOperation } from 'src/app/model/model.interfaces';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IReply, IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
+import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
+import { AdminThreadSelectionUnroutedComponent } from '../../thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-reply-form-unrouted',
@@ -18,25 +21,32 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; // new or edit
 
   replyForm!: FormGroup;
-  reply: IReply = {} as IReply;
+  oReply: IReply = { user: {}, thread: {} } as IReply;
   status: HttpErrorResponse | null = null;
+
+  oDynamicDialogRef: DynamicDialogRef | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private oReplyAjaxService: ReplyAjaxService,
     private router: Router,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    public oDialogService: DialogService
   ) {
-    this.initializeForm(this.reply);
+    this.initializeForm(this.oReply);
   }
 
-  initializeForm(reply: IReply) {
+  initializeForm(oReply: IReply) {
     this.replyForm = this.formBuilder.group({
-      id: [reply.id],
-      title: [reply.title, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      body: [reply.body, [Validators.required, Validators.maxLength(1000)]],
-      user: [reply.user, [Validators.required]],
-      thread: [reply.thread, [Validators.required]]
+      id: [oReply.id],
+      title: [oReply.title, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      body: [oReply.body, [Validators.required, Validators.maxLength(1000)]],
+      user: this.formBuilder.group({
+        id: [oReply.user.id, Validators.required]
+      }),
+      thread: this.formBuilder.group({
+        id: [oReply.thread.id, Validators.required]
+      })
     });
   }
 
@@ -44,8 +54,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oReplyAjaxService.getOne(this.id).subscribe({
         next: (data: IReply) => {
-          this.reply = data;
-          this.initializeForm(this.reply);
+          this.oReply = data;
+          this.initializeForm(this.oReply);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
@@ -53,7 +63,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
         }
       });
     } else {
-      this.initializeForm(this.reply);
+      this.initializeForm(this.oReply);
     }
   }
 
@@ -66,10 +76,10 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oReplyAjaxService.newOne(this.replyForm.value).subscribe({
           next: (data: IReply) => {
-            this.reply = data;
-            this.initializeForm(this.reply);
+            this.oReply = { "user": {}, "thread": {} } as IReply;
+            this.initializeForm(this.oReply);
             this.matSnackBar.open("Reply has been created.", '', { duration: 1200 });
-            this.router.navigate(['/admin', 'reply', 'view', this.reply]);
+            this.router.navigate(['/admin', 'reply', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -79,10 +89,10 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       } else {
         this.oReplyAjaxService.updateOne(this.replyForm.value).subscribe({
           next: (data: IReply) => {
-            this.reply = data;
-            this.initializeForm(this.reply);
+            this.oReply = data;
+            this.initializeForm(this.oReply);
             this.matSnackBar.open("Reply has been updated.", '', { duration: 1200 });
-            this.router.navigate(['/admin', 'reply', 'view', this.reply.id]);
+            this.router.navigate(['/admin', 'reply', 'view', this.oReply.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -92,4 +102,40 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       }
     }
   }
+
+  onShowUsersSelection() {
+    this.oDynamicDialogRef = this.oDialogService.open(AdminUserSelectionUnroutedComponent, {
+      header: 'Select a User',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
+      if (oUser) {
+        this.oReply.user = oUser;
+        this.replyForm.controls['user'].patchValue({ id: oUser.id })
+      }
+    });
+  }
+
+  onShowThreadsSelection() {
+    this.oDynamicDialogRef = this.oDialogService.open(AdminThreadSelectionUnroutedComponent, {
+      header: 'Select a Thread',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oThread: IThread) => {
+      if (oThread) {
+        this.oReply.thread = oThread;
+        this.replyForm.controls['thread'].patchValue({ id: oThread.id })
+      }
+    });
+  }
+
+
 }
