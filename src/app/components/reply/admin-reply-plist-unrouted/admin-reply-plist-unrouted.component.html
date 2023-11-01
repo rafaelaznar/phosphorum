@@ -8,10 +8,11 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
-    <h3 *ngIf="id_thread>0">Filtered by thread ({{id_thread}}) <a type="button" class="btn btn-danger btn-sm"
-        *ngIf="id_thread>0" [routerLink]="['/admin','reply','plist']">reset filter</a></h3>
-    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}}) <a type="button" class="btn btn-danger btn-sm"
-      *ngIf="id_user>0" [routerLink]="['/admin','reply','plist']">reset filter</a></h3>
+    <h3 *ngIf="id_thread>0">Filtered by thread ({{id_thread}} - {{oThread?.title | trimming}}) <a type="button"
+        class="btn btn-danger btn-sm" *ngIf="id_thread>0" [routerLink]="['/admin','reply','plist']">reset filter</a>
+    </h3>
+    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}} - {{oUser?.name}} {{oUser?.surname}}) <a type="button"
+        class="btn btn-danger btn-sm" *ngIf="id_user>0" [routerLink]="['/admin','reply','plist']">reset filter</a></h3>
     <h3 *ngIf="!(id_user>0)&&!(id_thread>0)">No active filter</h3>
     <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} replies</h3>
   </div>

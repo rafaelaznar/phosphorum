@@ -3,10 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IReply, IReplyPage } from 'src/app/model/model.interfaces';
+import { IReply, IReplyPage, IThread, IUser } from 'src/app/model/model.interfaces';
 import { AdminReplyDetailUnroutedComponent } from '../admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
+import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-plist-unrouted',
@@ -20,6 +22,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   @Input() id_thread: number = 0; //filter by thread
 
   oPage: any = [];
+  oUser: IUser | null = null; // data of user if id_user is set for filter
+  oThread: IThread | null = null; // data of thread if id_thread is set for filter
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -27,6 +31,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   oReplyToRemove: IReply | null = null;
 
   constructor(
+    private oUserAjaxService: UserAjaxService,
+    private oThreadAjaxService: ThreadAjaxService,
     private oReplyAjaxService: ReplyAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
@@ -35,6 +41,12 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    if (this.id_user > 0) {
+      this.getUser();
+    }
+    if (this.id_thread > 0) {
+      this.getThread();
+    }
   }
 
   getPage(): void {
@@ -103,5 +115,30 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
       }
     });
   }
+
+  getUser(): void {
+    this.oUserAjaxService.getOne(this.id_user).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+
+    })
+  }
+
+  getThread(): void {
+    this.oThreadAjaxService.getOne(this.id_thread).subscribe({
+      next: (data: IThread) => {
+        this.oThread = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+
+    })
+  }
+
 
 }
