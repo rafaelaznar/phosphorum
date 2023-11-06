@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUnroutedComponent implements OnInit {
 
-  constructor() { }
+  strUserName: string = "";
+
+  constructor(private oSessionService: SessionAjaxService) { 
+
+    if (this.oSessionService.isSessionActive()){
+      this.strUserName=this.oSessionService.getUsername();
+    }
+
+
+  }
 
   ngOnInit() {
   }

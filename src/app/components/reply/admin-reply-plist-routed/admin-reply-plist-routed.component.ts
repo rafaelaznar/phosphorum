@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   selector: 'app-admin-reply-plist-routed',
@@ -17,7 +17,7 @@ export class AdminReplyPlistRoutedComponent implements OnInit {
 
   constructor(
     private oActivatedRoute: ActivatedRoute,
-    private oReplyAjaxService: ThreadAjaxService,
+    private oReplyAjaxService: ReplyAjaxService,
     private oMatSnackBar: MatSnackBar
   ) {
     this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("iduser") ?? "0");

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <div class="d-flex justify-content-center mb-3">
+        <h1 class="my-5">Login Form</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="login-form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Nombre de usuario" formControlName="username">
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">El nombre de usuario es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="Contraseña" formControlName="password">
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">La contraseña es requerida</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 6
+        caracteres</mat-error>
+    </mat-form-field>
+
+    <button class="mx-1" mat-raised-button type="submit" color="primary">Iniciar sesión</button>
+    <button class="mx-1" mat-raised-button type="button" color="warn" (click)="onReset()">Reset</button>
+  </form>
+</div>

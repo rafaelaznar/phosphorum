@@ -18,13 +18,21 @@
                     <a class="nav-link" routerLink="/admin/thread/plist">Threads</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/admin/reply/plist"href="#">Replies</a>
+                    <a class="nav-link" routerLink="/admin/reply/plist" href="#">Replies</a>
                 </li>
 
             </ul>
-            <span class="navbar-text">
-                Información de sesión
+            <span class="navbar-text mx-1" *ngIF="strUserName">
+                Logged as {{strUserName}}
             </span>
+            <span class="navbar-text mx-1" *ngIF="!strUserName">
+                Not logged in
+            </span>
+
+            <span class="navbar-text mx-1">
+                <a class="nav-link" routerLink="/login" href="#">Login</a>
+            </span>
+
         </div>
     </div>
 </nav>

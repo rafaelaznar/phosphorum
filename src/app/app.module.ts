@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //--
 import { ReactiveFormsModule } from '@angular/forms';
@@ -51,6 +51,9 @@ import { ThreadAjaxService } from './service/thread.ajax.service.service';
 import { ReplyAjaxService } from './service/reply.ajax.service.service';
 import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { SessionAjaxService } from './service/session.ajax.service.ts.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 //--
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { FooterUnroutedComponent } from './components/shared/footer-unrouted/foo
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
+    LoginRoutedComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
@@ -115,7 +119,10 @@ import { FooterUnroutedComponent } from './components/shared/footer-unrouted/foo
     MatSnackBar,
     UserAjaxService,
     ThreadAjaxService,
-    ReplyAjaxService
+    ReplyAjaxService,
+    SessionAjaxService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })
