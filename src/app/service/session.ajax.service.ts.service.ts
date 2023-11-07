@@ -71,7 +71,7 @@ export class SessionAjaxService {
         }
     }
 
-    on(event: SessionEvent): Observable<SessionEvent> {
+    on(): Observable<SessionEvent> {
         return this.subjectSession.asObservable();
     }
 
