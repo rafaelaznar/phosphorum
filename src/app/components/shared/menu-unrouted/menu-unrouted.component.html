@@ -22,15 +22,18 @@
                 </li>
 
             </ul>
-            <span class="navbar-text mx-1" *ngIF="strUserName">
+
+            <span class="navbar-text mx-1" *ngIf="strUserName">
                 Logged as {{strUserName}}
             </span>
-            <span class="navbar-text mx-1" *ngIF="!strUserName">
+            <span class="navbar-text mx-1" *ngIf="!strUserName">
                 Not logged in
             </span>
-
             <span class="navbar-text mx-1">
-                <a class="nav-link" routerLink="/login" href="#">Login</a>
+                <a class="nav-link" routerLink="/login" href="#" *ngIf="!strUserName">Login</a>
+            </span>
+            <span class="navbar-text mx-1">
+                <a class="nav-link" routerLink="/logout" href="#" *ngIf="strUserName">Logout</a>
             </span>
 
         </div>

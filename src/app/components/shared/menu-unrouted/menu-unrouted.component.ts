@@ -10,16 +10,28 @@ export class MenuUnroutedComponent implements OnInit {
 
   strUserName: string = "";
 
-  constructor(private oSessionService: SessionAjaxService) { 
-
-    if (this.oSessionService.isSessionActive()){
-      this.strUserName=this.oSessionService.getUsername();
-    }
-
+  constructor(
+    private oSessionService: SessionAjaxService
+  ) {
 
   }
 
   ngOnInit() {
+    this.oSessionService.on({ type: 'login' }).subscribe({
+      next: (data: any) => {
+        if (data.type == 'login') {
+          this.strUserName = this.oSessionService.getUsername();
+        }
+      }
+    });
+    this.oSessionService.on({ type: 'logout' }).subscribe({
+      next: (data: any) => {
+        if (data.type == 'logout') {
+          this.strUserName = "";
+        }
+      }
+    });
   }
-
 }
+
+

@@ -18,12 +18,14 @@ import { AdminThreadEditRoutedComponent } from './components/thread/admin-thread
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
   { path: 'login', component: LoginRoutedComponent },
+  { path: 'logout', component: LogoutRoutedComponent },
   //--
   { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    

@@ -54,6 +54,7 @@ import { FooterUnroutedComponent } from './components/shared/footer-unrouted/foo
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { SessionAjaxService } from './service/session.ajax.service.ts.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 //--
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     HomeRoutedComponent,
     MenuUnroutedComponent,
     LoginRoutedComponent,
+    LogoutRoutedComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
