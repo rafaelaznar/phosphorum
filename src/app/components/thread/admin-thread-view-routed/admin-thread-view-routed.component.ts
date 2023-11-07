@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-interface IThread {
-  id: number;
-  name: string;
-  id_user: number;
-}
-
 @Component({
   selector: 'app-admin-thread-view-routed',
   templateUrl: './admin-thread-view-routed.component.html',

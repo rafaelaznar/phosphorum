@@ -1,18 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-interface IUser {
-  id: number;
-  name: string;
-  surname: string;
-  lastname: string;
-  email: string;
-  username: string;
-  role: boolean;
-  threads: number;
-  replies: number
-}
 
 @Component({
   selector: 'app-admin-user-view-routed',
@@ -32,8 +19,5 @@ export class AdminUserViewRoutedComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
 
 }
