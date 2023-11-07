@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionEvent } from 'src/app/model/model.interfaces';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class MenuUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.oSessionService.on().subscribe({
-      next: (data: any) => {
+      next: (data: SessionEvent) => {
         if (data.type == 'login') {
           this.strUserName = this.oSessionService.getUsername();
         }

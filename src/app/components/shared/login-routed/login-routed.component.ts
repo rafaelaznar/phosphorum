@@ -34,7 +34,7 @@ export class LoginRoutedComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.oSessionService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
-        next: (data: any) => {
+        next: (data: string) => {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
           this.oMatSnackBar.open("Loggin successfull.", '', { duration: 2000 });
