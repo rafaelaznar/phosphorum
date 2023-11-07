@@ -15,7 +15,7 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
 
   @Input() id_user: number = 0; //filter by user
 
-  oPage: any = [];
+  oPage: IThreadPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -40,7 +40,6 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
         console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
         this.status = error;
       }
     })

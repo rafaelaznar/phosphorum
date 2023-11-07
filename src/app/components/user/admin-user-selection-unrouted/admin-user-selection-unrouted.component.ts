@@ -13,7 +13,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 export class AdminUserSelectionUnroutedComponent implements OnInit {
 
-  oPage: any = [];
+  oPage: IUserPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -38,7 +38,6 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
         console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
         this.status = error;
       }
     })

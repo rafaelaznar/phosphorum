@@ -19,7 +19,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
 
   @Input() id_user: number = 0; //filter by user
 
-  oPage: any = [];
+  oPage: IThreadPage | undefined;
   oUser: IUser | null = null; // data of user if id_user is set for filter
   orderField: string = "id";
   orderDirection: string = "asc";
@@ -50,7 +50,6 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
         this.status = error;
       }
     })
@@ -95,7 +94,6 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
-            this.oPage.error = error;
             this.status = error;
             this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
           }

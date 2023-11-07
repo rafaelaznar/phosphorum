@@ -1,7 +1,7 @@
 <div *ngIf="status!=null">
   <div class="d-flex justify-content-center my-3">
     <div class="alert alert-danger" role="alert">
-      ERROR: {{status!.message}}
+      {{status!.error.message}} - {{status!.message}}
     </div>
   </div>
 </div>
@@ -9,11 +9,11 @@
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
     <h3>No active filter</h3>
-    <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} users.</h3>
+    <h3>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h3>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      [totalRecords]="oPage?.totalElements || 0"></p-paginator>
   </div>
 
 
@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of oPage.content" class="align-middle">
+        <tr *ngFor="let u of oPage?.content" class="align-middle">
           <td class="text-end"><strong>{{u.id}}</strong></td>
           <td>{{u.name}}</td>
           <td>{{u.surname}}</td>

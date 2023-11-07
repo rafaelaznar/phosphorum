@@ -21,7 +21,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   @Input() id_user: number = 0; //filter by user
   @Input() id_thread: number = 0; //filter by thread
 
-  oPage: any = [];
+  oPage: IReplyPage | undefined;
   oUser: IUser | null = null; // data of user if id_user is set for filter
   oThread: IThread | null = null; // data of thread if id_thread is set for filter
   orderField: string = "id";
@@ -57,7 +57,6 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
         console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
         this.status = error;
       }
     })
@@ -104,7 +103,6 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
-            this.oPage.error = error;
             this.status = error;
             this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
           }

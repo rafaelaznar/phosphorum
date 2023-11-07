@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -16,7 +16,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 export class AdminUserPlistUnroutedComponent implements OnInit {
 
-  oPage: any = [];
+  oPage: IUserPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
@@ -25,7 +25,6 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
   constructor(
     private oUserAjaxService: UserAjaxService,
-    private oHttpClient: HttpClient,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
@@ -43,7 +42,6 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
-        this.oPage.error = error;
         this.status = error;
       }
     })
@@ -90,7 +88,6 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
-            this.oPage.error = error;
             this.status = error;
             this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
           }

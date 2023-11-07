@@ -34,8 +34,6 @@ export interface IPage<T> {
     strFilteredTitle: string;
     strFilteredMessage: string;
     nRecords: number;
-
-    error: HttpErrorResponse;
 }
 
 export interface IEntity {

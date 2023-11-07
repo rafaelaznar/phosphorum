@@ -1,7 +1,7 @@
 <div *ngIf="status!=null">
   <div class="d-flex justify-content-center my-3">
     <div class="alert alert-danger" role="alert">
-      ERROR: {{status!.message}}
+      {{status!.error.message}} - {{status!.message}}
     </div>
   </div>
 </div>
@@ -14,11 +14,11 @@
     <h3 *ngIf="id_user>0">Filtered by user ({{id_user}} - {{oUser?.name}} {{oUser?.surname}}) <a type="button"
         class="btn btn-danger btn-sm" *ngIf="id_user>0" [routerLink]="['/admin','reply','plist']">reset filter</a></h3>
     <h3 *ngIf="!(id_user>0)&&!(id_thread>0)">No active filter</h3>
-    <h3>Showing {{oPage.numberOfElements}} of total {{oPage.totalElements}} replies</h3>
+    <h3>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h3>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage.totalElements" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 
 
@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of oPage.content" class="align-middle">
+        <tr *ngFor="let r of oPage?.content" class="align-middle">
           <td class="text-end"><strong>{{r.id}}</strong></td>
           <td>{{r.title| trimming:25}}</td>
           <td>{{r.body| trimming:50}}</td>
