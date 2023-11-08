@@ -55,6 +55,8 @@ import { LoginRoutedComponent } from './components/shared/login-routed/login-rou
 import { SessionAjaxService } from './service/session.ajax.service.ts.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { UserThreadPlistUnroutedComponent } from './components/thread/user-thread-plist-unrouted/user-thread-plist-unrouted.component';
+import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 //--
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
+    FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
     //--
@@ -83,6 +86,9 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
     AdminThreadFormUnroutedComponent,
     AdminThreadSelectionUnroutedComponent,
     //--
+    UserThreadPlistUnroutedComponent,
+    UserReplyPlistUnroutedComponent,
+    //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,
     AdminReplyNewRoutedComponent,
@@ -90,7 +96,7 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
     AdminReplyPlistUnroutedComponent,
     AdminReplyDetailUnroutedComponent,
     AdminReplyFormUnroutedComponent,
-    FooterUnroutedComponent,
+    //--    
   ],
   imports: [
     BrowserModule,

@@ -19,15 +19,15 @@ h1 {
 
 .threads {
     padding: 5px;
-    background-color: paleturquoise;
+    /* background-color: paleturquoise;*/
 }
 
 .replies {
     padding: 5px;
-    background-color: seashell;
+    /*background-color: mediumpurple;*/
 }
 
 .info {
     padding: 5px;
-    background-color: lightsteelblue;
+    /*background-color: lightsteelblue;*/
 }
