@@ -1,0 +1,33 @@
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    max-width: 100% !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    letter-spacing: 60px;
+    word-spacing: 190px;
+
+    font-size: 60px;
+}
+
+.threads {
+    padding: 5px;
+    background-color: paleturquoise;
+}
+
+.replies {
+    padding: 5px;
+    background-color: seashell;
+}
+
+.info {
+    padding: 5px;
+    background-color: lightsteelblue;
+}

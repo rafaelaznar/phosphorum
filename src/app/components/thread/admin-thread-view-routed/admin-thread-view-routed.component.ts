@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './admin-thread-view-routed.component.html',
   styleUrls: ['./admin-thread-view-routed.component.css']
 })
+
 export class AdminThreadViewRoutedComponent implements OnInit {
 
   id: number = 1;
