@@ -8,3 +8,17 @@ a {
     font-weight: bold;
 }
 
+.active a{
+    color: white !important;
+}
+
+.featured a{
+    background-color: darkgray !important;
+}
+
+.badge {    
+    color: white;
+
+    font-size: 12px;
+    
+}

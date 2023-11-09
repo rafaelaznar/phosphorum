@@ -8,6 +8,7 @@ import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrou
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 
 @Component({
   providers: [ConfirmationService],
@@ -19,19 +20,22 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 export class UserThreadPlistUnroutedComponent implements OnInit {
 
   @Input() id_user: number = 0; //filter by user
-  @Output() thread_selection= new EventEmitter<IThread>();
+  @Output() thread_selection = new EventEmitter<IThread>();
+
+  activeThread: IThread | null = null;
 
   oPage: IThreadPage | undefined;
   oUser: IUser | null = null; // data of user if id_user is set for filter
   orderField: string = "id";
   orderDirection: string = "desc";
-  oPaginatorState: PaginatorState = { first: 0, rows: 20, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 50, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oThreadToRemove: IThread | null = null;
   ref: DynamicDialogRef | undefined;
 
   constructor(
     private oUserAjaxService: UserAjaxService,
+    public oSessionService: SessionAjaxService,
     private oThreadAjaxService: ThreadAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
@@ -49,6 +53,10 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
     this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
+        if (this.oPage.content.length > 0) {
+          this.activeThread = this.oPage.content[0];
+          this.thread_selection.emit(this.activeThread);
+        }
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {
@@ -121,6 +129,7 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
 
   doShowReplies(oThread: IThread) {
     this.thread_selection.emit(oThread);
+    this.activeThread = oThread;
     return false;
   }
 

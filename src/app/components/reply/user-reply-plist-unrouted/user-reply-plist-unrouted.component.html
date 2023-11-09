@@ -12,7 +12,7 @@
   </div>
   <div class="flex justify-content-center m-1">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]=""></p-paginator>
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="" [showPageLinks]="false"></p-paginator>
   </div>
 
   <div class="m-1">
