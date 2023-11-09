@@ -22,6 +22,9 @@
           <p>{{r.title}} <span class="badge text-bg-info">{{r.user.username}}</span>
           </p>
           <p>{{r.body}}</p>
+
+          <p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger "
+            *ngIf="r.user.username==oSessionService.getUsername()" (click)="doRemove(r)"></p-button>
         </div>
 
       </li>
@@ -31,18 +34,18 @@
 </div>
 
 
-<p-confirmDialog #cd [style]="{ width: '30vw' }">
+<p-confirmDialog #cd2 [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
     <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Reply removal</h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
-      <app-admin-reply-detail-unrouted [id]="oReplyToRemove!.id"></app-admin-reply-detail-unrouted>
+      <app-user-reply-detail-unrouted [id]="oReplyToRemove!.id"></app-user-reply-detail-unrouted>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
     <p>¿Are you sure to remove reply?</p>
-    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
-    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd2.reject()"></button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd2.accept()"></button>
   </ng-template>
 </p-confirmDialog>

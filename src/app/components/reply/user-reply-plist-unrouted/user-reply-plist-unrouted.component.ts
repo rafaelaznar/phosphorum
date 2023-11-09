@@ -9,8 +9,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
+
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-user-reply-plist-unrouted',
   templateUrl: './user-reply-plist-unrouted.component.html',
   styleUrls: ['./user-reply-plist-unrouted.component.css']
@@ -30,7 +33,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   get id_user(): number {
     return this.id_user_filter;
   }
-  
+
   @Input()
   set id_thread(value: number) {
     if (value) {
@@ -58,10 +61,11 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
 
   constructor(
     private oUserAjaxService: UserAjaxService,
+    public oSessionService: SessionAjaxService,
     private oThreadAjaxService: ThreadAjaxService,
     private oReplyAjaxService: ReplyAjaxService,
     public oDialogService: DialogService,
-    private oCconfirmationService: ConfirmationService,
+    private oConfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar
   ) { }
 
@@ -94,15 +98,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  doOrder(fieldorder: string) {
-    this.orderField = fieldorder;
-    if (this.orderDirection == "asc") {
-      this.orderDirection = "desc";
-    } else {
-      this.orderDirection = "asc";
-    }
-    this.getPage();
-  }
+  
 
   ref: DynamicDialogRef | undefined;
 
@@ -121,7 +117,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
 
   doRemove(u: IReply) {
     this.oReplyToRemove = u;
-    this.oCconfirmationService.confirm({
+    this.oConfirmationService.confirm({
       accept: () => {
         this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({

@@ -58,6 +58,7 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { UserThreadPlistUnroutedComponent } from './components/thread/user-thread-plist-unrouted/user-thread-plist-unrouted.component';
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { CryptoService } from './service/crypto.service';
+import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 
 //--
 @NgModule({
@@ -90,6 +91,7 @@ import { CryptoService } from './service/crypto.service';
     //--
     UserThreadPlistUnroutedComponent,
     UserReplyPlistUnroutedComponent,
+    UserReplyDetailUnroutedComponent,
     //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,

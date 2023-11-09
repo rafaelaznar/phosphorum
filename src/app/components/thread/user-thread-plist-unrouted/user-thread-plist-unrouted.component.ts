@@ -10,6 +10,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-user-thread-plist-unrouted',
   templateUrl: './user-thread-plist-unrouted.component.html',
   styleUrls: ['./user-thread-plist-unrouted.component.css']
