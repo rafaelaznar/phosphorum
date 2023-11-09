@@ -19,12 +19,15 @@
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let r of oPage?.content">
         <div class="ms-2 me-auto">
-          <p>{{r.title}} <span class="badge text-bg-info">{{r.user.username}}</span>
+          <p>{{r.title}}
+            <span class="badge text-bg-info"
+              *ngIf="r.user.username!=oSessionService.getUsername()">{{r.user.username}}</span>
+            <span class="badge text-bg-danger"
+              *ngIf="r.user.username==oSessionService.getUsername()">{{r.user.username}}</span>
           </p>
           <p>{{r.body}}</p>
-
-          <p-button icon="pi pi-times" [rounded]="true" [text]="true" [raised]="true" severity="danger "
-            *ngIf="r.user.username==oSessionService.getUsername()" (click)="doRemove(r)"></p-button>
+          <button type="button" class="btn  btn-sm btn-outline-danger" (click)="doRemove(r)"
+            *ngIf="r.user.username==oSessionService.getUsername()">Remove</button>
         </div>
 
       </li>
