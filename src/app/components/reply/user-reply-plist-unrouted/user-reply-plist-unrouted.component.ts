@@ -18,8 +18,34 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 export class UserReplyPlistUnroutedComponent implements OnInit {
 
-  @Input() id_user: number = 0; //filter by user
-  @Input() id_thread: number = 0; //filter by thread
+  @Input()
+  set id_user(value: number) {
+    if (value) {
+      this.id_user_filter = value;
+    } else {
+      this.id_user_filter = 0;
+    }
+    this.getPage();
+  }
+  get id_user(): number {
+    return this.id_user_filter;
+  }
+  
+  @Input()
+  set id_thread(value: number) {
+    if (value) {
+      this.id_thread_filter = value;
+    } else {
+      this.id_thread_filter = 0;
+    }
+    this.getPage();
+  }
+  get id_thread(): number {
+    return this.id_thread_filter;
+  }
+
+  id_thread_filter: number = 0; //filter by thread
+  id_user_filter: number = 0; //filter by thread
 
   oPage: IReplyPage | undefined;
   oUser: IUser | null = null; // data of user if id_user is set for filter
@@ -50,7 +76,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user, this.id_thread).subscribe({
+    this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user_filter, this.id_thread_filter).subscribe({
       next: (data: IReplyPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

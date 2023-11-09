@@ -8,10 +8,10 @@
     </div>
     <div class="row g-0 align-items-start">
       <div class="col-xxl-4 col-xl-4 col-lg-4 threads">
-        <app-user-thread-plist-unrouted></app-user-thread-plist-unrouted>
+        <app-user-thread-plist-unrouted  (thread_selection)="onThreadChange($event)"></app-user-thread-plist-unrouted>
       </div>
       <div class="col-xxl-6 col-xl-6 col-lg-6 replies">
-        <app-user-reply-plist-unrouted></app-user-reply-plist-unrouted>
+        <app-user-reply-plist-unrouted [id_thread]="idThread" ></app-user-reply-plist-unrouted>
       </div>
       <div class="col-xxl-2 col-xl-2 col-lg-2 info">
         <div class="card">

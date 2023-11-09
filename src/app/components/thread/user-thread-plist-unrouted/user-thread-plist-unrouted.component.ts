@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -18,6 +18,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 export class UserThreadPlistUnroutedComponent implements OnInit {
 
   @Input() id_user: number = 0; //filter by user
+  @Output() thread_selection= new EventEmitter<IThread>();
 
   oPage: IThreadPage | undefined;
   oUser: IUser | null = null; // data of user if id_user is set for filter
@@ -117,8 +118,8 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
     })
   }
 
-  doShowReplies(t: IThread) {
-    console.log("doShowReplies",t);
+  doShowReplies(oThread: IThread) {
+    this.thread_selection.emit(oThread);
     return false;
   }
 

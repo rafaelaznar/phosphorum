@@ -1,19 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { IThread } from 'src/app/model/model.interfaces';
 
-interface IIndividuo { nombre: string; edad: number; sexo: string };
 
-interface IUser {
-  id: number;
-  name: string;
-  surname: string;
-  lastname: string;
-  email: string;
-  username: string;
-  role: boolean;
-  threads: number;
-  replies: number
-}
+
 
 @Component({
   selector: 'app-home-routed',
@@ -23,6 +12,8 @@ interface IUser {
 
 export class HomeRoutedComponent implements OnInit {
 
+  idThread: number = 17;
+  
 
   constructor(
 
@@ -31,6 +22,9 @@ export class HomeRoutedComponent implements OnInit {
   ngOnInit() {
   }
 
+  onThreadChange(oThread: IThread) {
+    this.idThread = oThread.id;
+  }
 
 }
 
