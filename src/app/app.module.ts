@@ -59,6 +59,7 @@ import { UserThreadPlistUnroutedComponent } from './components/thread/user-threa
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { CryptoService } from './service/crypto.service';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
+import { UserThreadFeaturedUnroutedComponent } from './components/thread/user-thread-featured-unrouted/user-thread-featured-unrouted.component';
 
 //--
 @NgModule({
@@ -88,6 +89,7 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     AdminThreadDetailUnroutedComponent,
     AdminThreadFormUnroutedComponent,
     AdminThreadSelectionUnroutedComponent,
+    UserThreadFeaturedUnroutedComponent,
     //--
     UserThreadPlistUnroutedComponent,
     UserReplyPlistUnroutedComponent,
