@@ -19,10 +19,11 @@
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let r of oPage?.content">
         <div class="ms-2 me-auto">
-          <p>{{r.title}}
+          <p>
+            <b> {{r.title}}</b>
             <span class="badge text-bg-info"
               *ngIf="r.user.username!=oSessionService.getUsername()">{{r.user.username}}</span>
-            <span class="badge text-bg-danger"
+            <span class="badge text-bg-warning"
               *ngIf="r.user.username==oSessionService.getUsername()">{{r.user.username}}</span>
           </p>
           <p>{{r.body}}</p>
