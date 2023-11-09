@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CryptoService } from 'src/app/service/crypto.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginRoutedComponent implements OnInit {
     private oSessionService: SessionAjaxService,
     private oMatSnackBar: MatSnackBar,
     private oRouter: Router,
+    private oCryptoService: CryptoService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -33,7 +35,7 @@ export class LoginRoutedComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.oSessionService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
+      this.oSessionService.login(this.loginForm.value.username, this.oCryptoService.getSHA256(this.loginForm.value.password)).subscribe({
         next: (data: string) => {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
@@ -55,14 +57,14 @@ export class LoginRoutedComponent implements OnInit {
   loginAdmin() {
     this.loginForm.setValue({
       username: 'pedropicapiedra',
-      password: 'e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e'
+      password: 'foxforum'
     })
   }
 
   loginUser() {
     this.loginForm.setValue({
       username: 'pablomarmol',
-      password: 'e2cac5c5f7e52ab03441bb70e89726ddbd1f6e5b683dde05fb65e0720290179e'
+      password: 'foxforum'
     })
   }
 

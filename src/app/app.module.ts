@@ -57,6 +57,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { UserThreadPlistUnroutedComponent } from './components/thread/user-thread-plist-unrouted/user-thread-plist-unrouted.component';
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
+import { CryptoService } from './service/crypto.service';
+
 //--
 @NgModule({
   declarations: [
@@ -118,7 +120,7 @@ import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-p
     MatInputModule,
     MatRadioModule,
     MatFormFieldModule,
-
+    //--
   ],
   providers: [
     MessageService,
@@ -129,6 +131,7 @@ import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-p
     ThreadAjaxService,
     ReplyAjaxService,
     SessionAjaxService,
+    CryptoService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 
   ],
