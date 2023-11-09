@@ -47,7 +47,7 @@ export class UserThreadFeaturedUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, "", this.orderDirection, 0).subscribe({
+    this.oThreadAjaxService.getPageByRepliesNumberDesc(this.oPaginatorState.rows, this.oPaginatorState.page, "", this.orderDirection, 0).subscribe({
       next: (data: IThreadPage) => {
         this.oPage = data;
         if (this.oPage.content.length > 0) {
