@@ -112,6 +112,8 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
       next: (data: IThreadPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
+        this.activeThread = this.oPage.content[0];
+        this.thread_selection.emit(this.activeThread);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
