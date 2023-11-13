@@ -47,14 +47,14 @@ export class ThreadAjaxService {
         return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
     }
 
-    getPageByRepliesNumberDesc(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id_user: number): Observable<IThreadPage> {
+    getPageByRepliesNumberDesc(size: number | undefined, page: number | undefined, id_user: number): Observable<IThreadPage> {
         if (!size) size = 10;
         if (!page) page = 0;
         let strUrlUser = "";
         if (id_user > 0) {
             strUrlUser = "&user=" + id_user;
         }
-        return this.oHttpClient.get<IThreadPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser);
+        return this.oHttpClient.get<IThreadPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page + strUrlUser);
     }
 
 
