@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 })
 export class AdminReplyPlistRoutedComponent implements OnInit {
 
+  forceReload: Subject<boolean> = new Subject<boolean>();
   id_user: number;
   id_thread: number;
   bLoading: boolean = false;
@@ -35,6 +37,20 @@ export class AdminReplyPlistRoutedComponent implements OnInit {
       },
       error: (oError: HttpErrorResponse) => {
         this.oMatSnackBar.open("Error generating replies: " + oError.message, '', { duration: 2000 });
+        this.bLoading = false;
+      },
+    })
+  }
+
+  doEmpty() {
+    this.oReplyAjaxService.empty().subscribe({
+      next: (oResponse: number) => {
+        this.oMatSnackBar.open("Now there are " + oResponse + " replies", '', { duration: 2000 });
+        this.bLoading = false;
+        this.forceReload.next(true);
+      },
+      error: (oError: HttpErrorResponse) => {
+        this.oMatSnackBar.open("Error emptying replies: " + oError.message, '', { duration: 2000 });
         this.bLoading = false;
       },
     })

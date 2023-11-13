@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-reply-plist-unrouted',
@@ -18,6 +19,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 export class AdminReplyPlistUnroutedComponent implements OnInit {
 
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id_user: number = 0; //filter by user
   @Input() id_thread: number = 0; //filter by thread
 
@@ -47,6 +49,13 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     if (this.id_thread > 0) {
       this.getThread();
     }
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {
