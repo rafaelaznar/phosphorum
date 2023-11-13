@@ -54,7 +54,7 @@ export class ThreadAjaxService {
         if (id_user > 0) {
             strUrlUser = "&user=" + id_user;
         }
-        return this.oHttpClient.get<IThreadPage>(this.sUrl + "byRepliesNumberDesc?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser);
+        return this.oHttpClient.get<IThreadPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser);
     }
 
 

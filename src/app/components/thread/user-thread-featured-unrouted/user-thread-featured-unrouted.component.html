@@ -17,22 +17,10 @@
 
   <div class=" d-flex">
     <ul class="list-group">
+      <li class="list-group-item" *ngFor="let t of oPage?.content" (click)="doShowReplies(t)"
+        [ngClass]="{active: t.id==activeThread?.id}">
+        {{t.title}}({{t.user.username}})(replies: {{t.replies}})
 
-      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let t of oPage?.content"
-        (click)="doShowReplies(t)" [ngClass]="{active: t.id==activeThread?.id}">
-
-        <div class="ms-2 me-auto">
-          <a href="">{{t.title}}</a>
-        </div>
-        <div class="ms-1">
-          <span class="badge bg-light">
-          <span class="badge text-bg-warning"
-            *ngIf="t.user.username==oSessionService.getUsername()">{{t.user.username}}</span>
-          <span class="badge text-bg-info"
-            *ngIf="t.user.username!=oSessionService.getUsername()">{{t.user.username}}</span>
-          <span class="badge bg-secondary rounded-pill">{{t.replies}}</span>
-        </span>
-        </div>
       </li>
     </ul>
 
