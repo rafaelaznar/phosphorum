@@ -1,9 +1,19 @@
-#navbarText a {
+a {
     text-decoration: none;
-
     color: blue;
 }
 
-#navbarText a:hover {
+a:hover {
     color: red;
 }
+
+.nav-item .active {
+    background-color: darkslateblue;
+    border-radius: 4px;
+    color: aliceblue;
+}
+
+.nav-item .active a {    
+    color: aliceblue !important;
+}
+

@@ -5,6 +5,7 @@ import { IUser, SessionEvent } from 'src/app/model/model.interfaces';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unrouted/user-user-detail-unrouted.component';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -15,12 +16,21 @@ export class MenuUnroutedComponent implements OnInit {
 
   strUserName: string = "";
   oSessionUser: IUser | null = null;
+  strUrl: string = "";
 
   constructor(
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
-    private oUserAjaxService: UserAjaxService
+    private oUserAjaxService: UserAjaxService,
+    private oRouter: Router
   ) {
+    
+    this.oRouter.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.strUrl = ev.url;
+      }
+    })
+    
     this.strUserName = oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
