@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
-import { IToken, SessionEvent } from '../model/model.interfaces';
-
-
+import { IToken, IUser, SessionEvent } from '../model/model.interfaces';
+import { UserAjaxService } from './user.ajax.service.service';
 
 @Injectable()
 export class SessionAjaxService {
@@ -14,7 +13,8 @@ export class SessionAjaxService {
     subjectSession = new Subject<SessionEvent>();
 
     constructor(
-        private oHttpClient: HttpClient
+        private oHttpClient: HttpClient,
+        private oUserAjaxService: UserAjaxService
     ) { }
 
     private parseJwt(token: string): IToken {
@@ -44,7 +44,7 @@ export class SessionAjaxService {
         localStorage.removeItem('token');
     }
 
-    isSessionActive(): Boolean {        
+    isSessionActive(): Boolean {
         let strToken: string | null = localStorage.getItem('token');
         if (strToken) {
             let oDecodedToken: IToken = this.parseJwt(strToken);
@@ -55,7 +55,7 @@ export class SessionAjaxService {
             }
         } else {
             return false;
-        }        
+        }
     }
 
     getUsername(): string {
@@ -78,6 +78,5 @@ export class SessionAjaxService {
     emit(event: SessionEvent) {
         this.subjectSession.next(event);
     }
-
 
 }
