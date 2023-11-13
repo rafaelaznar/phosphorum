@@ -22,6 +22,7 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
   @Input() id_user: number = 0; //filter by user
   @Output() thread_selection = new EventEmitter<IThread>();
 
+  activeOrder: boolean = true; //true=new false=popular always desc
   activeThread: IThread | null = null;
 
   oPage: IThreadPage | undefined;
@@ -37,13 +38,14 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
     private oUserAjaxService: UserAjaxService,
     public oSessionService: SessionAjaxService,
     private oThreadAjaxService: ThreadAjaxService,
-    public oDialogService: DialogService,
-    private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this.getPage();
+    if (this.activeOrder) {
+      this.getPage();
+    } else {
+      this.getPageByRepliesNumberDesc();
+    }
     if (this.id_user > 0) {
       this.getUser();
     }
@@ -68,52 +70,14 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
-    this.getPage();
-  }
-
-  doOrder(fieldorder: string) {
-    this.orderField = fieldorder;
-    if (this.orderDirection == "asc") {
-      this.orderDirection = "desc";
+    if (this.activeOrder) {
+      this.getPage();
     } else {
-      this.orderDirection = "asc";
+      this.getPageByRepliesNumberDesc();
     }
-    this.getPage();
   }
 
-  doView(u: IThread) {
-    this.ref = this.oDialogService.open(AdminThreadDetailUnroutedComponent, {
-      data: {
-        id: u.id
-      },
-      header: 'View of thread',
-      width: '50%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: false
-    });
-  }
 
-  doRemove(u: IThread) {
-    this.oThreadToRemove = u;
-    this.oCconfirmationService.confirm({
-      accept: () => {
-        this.oMatSnackBar.open("The thread has been removed.", '', { duration: 2000 });
-        this.oThreadAjaxService.removeOne(this.oThreadToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-            this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
-          }
-        });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
-      }
-    });
-  }
 
   getUser(): void {
     this.oUserAjaxService.getOne(this.id_user).subscribe({
@@ -131,6 +95,28 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
     this.thread_selection.emit(oThread);
     this.activeThread = oThread;
     return false;
+  }
+
+  onOrderChange(event: any) {
+    this.activeOrder = !this.activeOrder;
+    this.orderDirection = "desc";
+    if (this.activeOrder) {
+      this.getPage();
+    } else {
+      this.getPageByRepliesNumberDesc();
+    }
+  }
+
+  getPageByRepliesNumberDesc(): void {
+    this.oThreadAjaxService.getPageByRepliesNumberDesc(this.oPaginatorState.rows, this.oPaginatorState.page, 0).subscribe({
+      next: (data: IThreadPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    })
   }
 
 }
