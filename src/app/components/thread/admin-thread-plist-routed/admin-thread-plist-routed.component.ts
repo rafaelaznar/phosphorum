@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 })
 export class AdminThreadPlistRoutedComponent implements OnInit {
 
+  forceReload: Subject<boolean> = new Subject<boolean>();
   id_user: number;
   bLoading: boolean = false;
 
@@ -33,6 +35,20 @@ export class AdminThreadPlistRoutedComponent implements OnInit {
       },
       error: (oError: HttpErrorResponse) => {
         this.oMatSnackBar.open("Error generating threads: " + oError.message, '', { duration: 2000 });
+        this.bLoading = false;
+      },
+    })
+  }
+
+  doEmpty() {
+    this.oThreadAjaxService.empty().subscribe({
+      next: (oResponse: number) => {
+        this.oMatSnackBar.open("Now there are " + oResponse + " threads", '', { duration: 2000 });
+        this.bLoading = false;
+        this.forceReload.next(true);
+      },
+      error: (oError: HttpErrorResponse) => {
+        this.oMatSnackBar.open("Error emptying threads: " + oError.message, '', { duration: 2000 });
         this.bLoading = false;
       },
     })

@@ -8,6 +8,7 @@ import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrou
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-thread-plist-unrouted',
@@ -17,6 +18,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
 export class AdminThreadPlistUnroutedComponent implements OnInit {
 
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id_user: number = 0; //filter by user
 
   oPage: IThreadPage | undefined;
@@ -41,6 +43,13 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     if (this.id_user > 0) {
       this.getUser();
     }
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {

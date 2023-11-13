@@ -57,5 +57,8 @@ export class ThreadAjaxService {
         return this.oHttpClient.get<IThreadPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page + strUrlUser);
     }
 
+    empty(): Observable<number> {
+        return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+    }
 
 }
