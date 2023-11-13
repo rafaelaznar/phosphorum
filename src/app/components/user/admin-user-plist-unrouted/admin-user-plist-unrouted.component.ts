@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -7,6 +7,7 @@ import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -15,6 +16,8 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 })
 
 export class AdminUserPlistUnroutedComponent implements OnInit {
+
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
 
   oPage: IUserPage | undefined;
   orderField: string = "id";
@@ -32,6 +35,13 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    });
   }
 
   getPage(): void {

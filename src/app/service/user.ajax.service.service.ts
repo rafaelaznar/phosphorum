@@ -49,4 +49,8 @@ export class UserAjaxService {
         return this.oHttpClient.get<IUserPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page);
     }
 
+    empty(): Observable<number> {
+        return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+    }
+
 }
