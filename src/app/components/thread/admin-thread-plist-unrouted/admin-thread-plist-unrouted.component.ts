@@ -11,6 +11,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-admin-thread-plist-unrouted',
   templateUrl: './admin-thread-plist-unrouted.component.html',
   styleUrls: ['./admin-thread-plist-unrouted.component.css']

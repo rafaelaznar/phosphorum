@@ -12,6 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-admin-reply-plist-unrouted',
   templateUrl: './admin-reply-plist-unrouted.component.html',
   styleUrls: ['./admin-reply-plist-unrouted.component.css']

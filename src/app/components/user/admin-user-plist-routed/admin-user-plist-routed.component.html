@@ -17,9 +17,11 @@
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(10)">+10</a>
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(100)">+100</a>
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(1000)">+1000</a>
-                <a class="btn btn-danger mx-1" (click)="doEmpty()">Empty</a>
+                <a class="btn btn-danger mx-1" (click)="doEmpty($event)">Empty</a>
             </div>
         </div>
         <app-admin-user-plist-unrouted [forceReload]="forceReload" *ngIf="!bLoading"></app-admin-user-plist-unrouted>
     </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>

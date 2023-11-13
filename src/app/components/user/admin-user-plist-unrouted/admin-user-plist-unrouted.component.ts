@@ -10,6 +10,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { Subject } from 'rxjs';
 
 @Component({
+  providers: [ConfirmationService],
   selector: 'app-admin-user-plist-unrouted',
   templateUrl: './admin-user-plist-unrouted.component.html',
   styleUrls: ['./admin-user-plist-unrouted.component.css']

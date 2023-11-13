@@ -12,7 +12,7 @@ import { IThread } from 'src/app/model/model.interfaces';
 
 export class HomeRoutedComponent implements OnInit {
 
-  idThread: number = 17;
+  idThread: number = 0;
   
 
   constructor(

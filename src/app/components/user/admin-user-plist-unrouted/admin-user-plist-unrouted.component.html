@@ -42,8 +42,8 @@
           <td>{{u.email}}</td>
           <td>{{u.username}}</td>
           <td class="text-center">
-            <span *ngIf="u.role==true">Admin</span>
-            <span *ngIf="u.role==false">User</span>
+            <span *ngIf="u.role==true">User</span>
+            <span *ngIf="u.role==false">Admin</span>
           </td>
           <td class="text-center">
             <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.threads>0">{{u.threads}}</a>
