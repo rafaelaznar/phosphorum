@@ -44,6 +44,7 @@ import { AdminUserDetailUnroutedComponent } from './components/user/admin-user-d
 import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { UserUserFeaturedUnroutedComponent } from './components/user/user-user-featured-unrouted/user-user-featured-unrouted.component';
+import { UserUserDetailUnroutedComponent } from './components/user/user-user-detail-unrouted/user-user-detail-unrouted.component';
 //
 import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
@@ -65,6 +66,7 @@ import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new
 import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
+
 //--
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     AdminUserFormUnroutedComponent,
     AdminUserSelectionUnroutedComponent,
     UserUserFeaturedUnroutedComponent,
+    UserUserDetailUnroutedComponent,
     //--
     AdminThreadPlistRoutedComponent,
     AdminThreadViewRoutedComponent,

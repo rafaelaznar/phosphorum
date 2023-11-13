@@ -88,10 +88,9 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  ref: DynamicDialogRef | undefined;
-
   doView(u: IReply) {
-    this.ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
+    let ref: DynamicDialogRef | undefined;
+    ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
       data: {
         id: u.id
       },
