@@ -24,7 +24,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
   es = CALENDAR_ES;
 
   replyForm!: FormGroup;
-  oReply: IReply = { user: {}, thread: {} } as IReply;
+  oReply: IReply = { creation: new Date(Date.now()), user: {}, thread: {} } as IReply;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
