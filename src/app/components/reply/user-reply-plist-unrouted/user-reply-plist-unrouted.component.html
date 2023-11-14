@@ -19,13 +19,14 @@
     <ul class="list-group">
       <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let r of oPage?.content">
         <div class="ms-2 me-auto">
-          <p>
-            <b> {{r.title}}</b>
-            <span class="badge text-bg-info"
-              *ngIf="r.user.username!=oSessionService.getUsername()">{{r.user.username}}</span>
-            <span class="badge text-bg-warning"
-              *ngIf="r.user.username==oSessionService.getUsername()">{{r.user.username}}</span>
-          </p>
+          <div class="d-flex justify-content-between my-3">            
+            <div class="badge text-bg-info"
+              *ngIf="r.user.username!=oSessionService.getUsername()">{{r.user.username}}</div>
+            <div class="badge text-bg-warning"
+              *ngIf="r.user.username==oSessionService.getUsername()">{{r.user.username}}</div>
+            <span class="badge text-bg-secondary">{{r.creation | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </div>
+          <div class="my-3"><h2>{{r.title}}</h2></div>
           <p>{{r.body}}</p>
           <button type="button" class="btn  btn-sm btn-outline-danger" (click)="doRemove(r)"
             *ngIf="r.user.username==oSessionService.getUsername()">Remove</button>
@@ -40,7 +41,7 @@
 
 <p-confirmDialog #cd2 [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Reply removal</h5>
+    <h5> Reply removal</h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">

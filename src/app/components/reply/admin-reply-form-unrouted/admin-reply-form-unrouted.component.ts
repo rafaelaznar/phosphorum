@@ -8,6 +8,7 @@ import { IReply, IThread, IUser, formOperation } from 'src/app/model/model.inter
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { AdminThreadSelectionUnroutedComponent } from '../../thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
+import { CALENDAR_ES } from 'src/environment/environment';
 
 @Component({
   selector: 'app-admin-reply-form-unrouted',
@@ -19,6 +20,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; // new or edit
+
+  es = CALENDAR_ES;
 
   replyForm!: FormGroup;
   oReply: IReply = { user: {}, thread: {} } as IReply;
@@ -41,6 +44,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
       id: [oReply.id],
       title: [oReply.title, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       body: [oReply.body, [Validators.required, Validators.maxLength(1000)]],
+      creation: [new Date(oReply.creation), [Validators.required]],
       user: this.formBuilder.group({
         id: [oReply.user.id, Validators.required]
       }),

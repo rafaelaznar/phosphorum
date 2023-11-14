@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { CalendarModule } from 'primeng/calendar';
 //--
 import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
 //--
@@ -126,6 +127,7 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     TableModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
+    CalendarModule,
     //--
     MatButtonModule,
     MatCardModule,

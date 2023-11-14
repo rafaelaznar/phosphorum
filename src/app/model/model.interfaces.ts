@@ -66,6 +66,7 @@ export interface IThreadPage extends IPage<IThread> {
 export interface IReply extends IEntity {
     title: string,
     body: string,
+    creation: Date,
     user: IUser,
     thread: IThread
 }
