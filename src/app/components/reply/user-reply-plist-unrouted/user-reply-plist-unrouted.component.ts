@@ -160,5 +160,8 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     })
   }
 
+  postNewReply(): void {
+  }
+
 
 }

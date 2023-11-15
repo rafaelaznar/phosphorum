@@ -7,10 +7,12 @@
 </div>
 
 <div *ngIf="status==null">
-  <div class="d-flex justify-content-center">
-    <h4>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h4>
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new thread</button>    
+    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
+    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new reply</button>
   </div>
-  <div class="flex justify-content-center m-1">
+  <div class="d-flex justify-content-center m-1">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="" [showPageLinks]="false"></p-paginator>
   </div>

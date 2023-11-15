@@ -20,6 +20,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 //--
 import { TrimPipe } from './pipes/trim.pipe.ts.pipe';
 //--
@@ -100,7 +102,7 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     AdminThreadFormUnroutedComponent,
     AdminThreadSelectionUnroutedComponent,
     UserThreadFeaturedUnroutedComponent,
-    UserThreadPlistUnroutedComponent,            
+    UserThreadPlistUnroutedComponent,
     //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,
@@ -136,6 +138,8 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     MatInputModule,
     MatRadioModule,
     MatFormFieldModule,
+    MatToolbarModule,
+    MatIconModule,
     //--
   ],
   providers: [

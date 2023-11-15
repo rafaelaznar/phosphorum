@@ -11,13 +11,13 @@
 
     <input type="radio" class="btn-check btn-sm" name="options-outlined" id="success-outlined" autocomplete="off"
        (change)="onOrderChange($event)" [checked]="activeOrder">
-    <label class="btn btn-outline-success" for="success-outlined">new</label>
+    <label class="btn btn-outline-success" for="success-outlined">by new</label>
 
-    <h4>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} threads.</h4>
+    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} threads.</h5>
 
     <input type="radio" class="btn-check btn-sm" name="options-outlined" id="danger-outlined" autocomplete="off"
        (change)="onOrderChange($event)" [checked]="!activeOrder">
-    <label class="btn btn-outline-danger" for="danger-outlined">popular</label>
+    <label class="btn btn-outline-danger" for="danger-outlined">by popular</label>
 
   </div>
 
