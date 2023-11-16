@@ -45,7 +45,27 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
   ngOnInit() {
     this.reload.subscribe(response => {
       if (response) {
-        this.getPage();
+        if (this.activeOrder) {
+          this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
+            next: (data: IThreadPage) => {
+              this.oPage = data;
+              this.oPaginatorState.pageCount = data.totalPages;
+            },
+            error: (error: HttpErrorResponse) => {
+              this.status = error;
+            }
+          })
+        } else {
+          this.oThreadAjaxService.getPageByRepliesNumberDesc(this.oPaginatorState.rows, this.oPaginatorState.page, 0).subscribe({
+            next: (data: IThreadPage) => {
+              this.oPage = data;
+              this.oPaginatorState.pageCount = data.totalPages;
+            },
+            error: (error: HttpErrorResponse) => {
+              this.status = error;
+            }
+          })
+        }
       }
     });
     if (this.activeOrder) {
