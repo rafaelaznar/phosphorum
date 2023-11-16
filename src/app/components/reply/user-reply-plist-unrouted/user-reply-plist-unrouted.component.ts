@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -47,6 +47,8 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   get id_thread(): number {
     return this.id_thread_filter;
   }
+
+  @Output() reply_change = new EventEmitter<Boolean>();
 
   id_thread_filter: number = 0; //filter by thread
   id_user_filter: number = 0; //filter by thread
@@ -99,8 +101,6 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-
-
   ref: DynamicDialogRef | undefined;
 
   doView(u: IReply) {
@@ -124,6 +124,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
+            this.reply_change.emit(true);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -177,6 +178,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
 
       this.ref.onClose.subscribe((nReply: number) => {
         this.getPage();
+        this.reply_change.emit(true);
       });
     }
   }

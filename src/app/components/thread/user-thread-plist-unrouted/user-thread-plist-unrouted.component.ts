@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
+import { Subject } from 'rxjs';
 
 @Component({
   providers: [ConfirmationService],
@@ -20,6 +21,7 @@ import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.serv
 export class UserThreadPlistUnroutedComponent implements OnInit {
 
   @Input() id_user: number = 0; //filter by user
+  @Input() reload: Subject<boolean> = new Subject<boolean>();
   @Output() thread_selection = new EventEmitter<IThread>();
 
   activeOrder: boolean = true; //true=new false=popular always desc
@@ -41,6 +43,11 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.reload.subscribe(response => {
+      if (response) {
+        this.getPage();
+      }
+    });
     if (this.activeOrder) {
       this.getPage();
     } else {

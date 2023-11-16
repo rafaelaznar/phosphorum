@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { IThread } from 'src/app/model/model.interfaces';
 
 
@@ -13,11 +14,9 @@ import { IThread } from 'src/app/model/model.interfaces';
 export class HomeRoutedComponent implements OnInit {
 
   idThread: number = 0;
-  
+  reloadThreads: Subject<boolean> = new Subject<boolean>();
 
-  constructor(
-
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -26,6 +25,9 @@ export class HomeRoutedComponent implements OnInit {
     this.idThread = oThread.id;
   }
 
+  onReplyChange(bReply: Boolean) {
+    this.reloadThreads.next(true);
+  }
 }
 
 

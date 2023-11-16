@@ -98,7 +98,7 @@ export class UserReplyFormUnroutedComponent implements OnInit {
             this.oReply = { "user": {}, "thread": {} } as IReply;
             this.initializeForm(this.oReply);
             this.matSnackBar.open("Reply has been created.", '', { duration: 2000 });
-            this.oDynamicDialogRef.close(data);
+            this.oDynamicDialogRef.close(data);            
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
