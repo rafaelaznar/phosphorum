@@ -10,6 +10,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
+import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
 
 
 @Component({
@@ -54,7 +55,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   oUser: IUser | null = null; // data of user if id_user is set for filter
   oThread: IThread | null = null; // data of thread if id_thread is set for filter
   orderField: string = "id";
-  orderDirection: string = "asc";
+  orderDirection: string = "desc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oReplyToRemove: IReply | null = null;
@@ -98,7 +99,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  
+
 
   ref: DynamicDialogRef | undefined;
 
@@ -161,6 +162,23 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   }
 
   postNewReply(): void {
+    if (this.id_thread_filter > 0 && this.oSessionService.isSessionActive()) {
+
+      this.ref = this.oDialogService.open(UserReplyFormUnroutedComponent, {
+        data: {
+          id_thread: this.id_thread_filter,
+        },
+        header: 'Post a new reply',
+        width: '70%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false
+      });
+
+      this.ref.onClose.subscribe((nReply: number) => {
+        this.getPage();
+      });
+    }
   }
 
 

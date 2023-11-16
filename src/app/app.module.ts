@@ -70,6 +70,7 @@ import { AdminReplyNewRoutedComponent } from './components/reply/admin-reply-new
 import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-form-unrouted/admin-reply-form-unrouted.component';
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
+import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 
 //--
 @NgModule({
@@ -113,6 +114,7 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
     AdminReplyFormUnroutedComponent,
     UserReplyPlistUnroutedComponent,
     UserReplyDetailUnroutedComponent,
+    UserReplyFormUnroutedComponent,
     //--    
   ],
   imports: [

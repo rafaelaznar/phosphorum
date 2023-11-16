@@ -29,11 +29,11 @@ export class SessionAjaxService {
 
     login(sUsername: string, sPassword: string): Observable<string> {
         //const sUser: string = JSON.stringify({ username: sUsername, password: sPassword });
-        return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });
+        return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
     }
 
     setToken(sToken: string): void {
-        localStorage.setItem('token', sToken);
+        localStorage.setItem('token', sToken);        
     }
 
     getToken(): string | null {
@@ -41,19 +41,19 @@ export class SessionAjaxService {
     }
 
     logout(): void {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token');        
     }
 
     isSessionActive(): Boolean {
         let strToken: string | null = localStorage.getItem('token');
         if (strToken) {
             let oDecodedToken: IToken = this.parseJwt(strToken);
-            if (Date.now() >= oDecodedToken.exp * 1000) {
-                return false;
-            } else {
+            if (Date.now() >= oDecodedToken.exp * 1000) {                
+                return false;                
+            } else {                
                 return true;
             }
-        } else {
+        } else {        
             return false;
         }
     }
@@ -77,6 +77,14 @@ export class SessionAjaxService {
 
     emit(event: SessionEvent) {
         this.subjectSession.next(event);
+    }
+
+    getSessionUser(): Observable<IUser> | null {
+        if (this.isSessionActive()) {
+            return this.oUserAjaxService.getByUsername(this.getUsername())
+        } else {
+            return null;
+        }
     }
 
 }
