@@ -13,7 +13,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 export class UserUserFeaturedUnroutedComponent implements OnInit {
 
   oPage: IUserPage | undefined;
-  oPaginatorState: PaginatorState = { first: 0, rows: 20, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 100, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null;
 
