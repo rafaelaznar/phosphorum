@@ -9,15 +9,15 @@
                         routerLink="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user/plist')"
+                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')"
                         routerLink="/admin/user/plist" *ngIf="strUserName && oSessionUser?.role==false">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread/plist')"
+                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread')"
                         routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">Threads</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply/plist')"
+                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
                         routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">Replies</a>
                 </li>
 
