@@ -11,6 +11,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
+import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
 
 
 @Component({
@@ -184,4 +185,25 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   }
 
 
+
+  postNewThread(): void {
+    if (this.id_thread_filter > 0 && this.oSessionService.isSessionActive()) {
+
+      this.ref = this.oDialogService.open(UserThreadFormUnroutedComponent, {
+        data: {
+          id_thread: this.id_thread_filter,
+        },
+        header: 'Post a new thread',
+        width: '70%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false
+      });
+
+      this.ref.onClose.subscribe((nThread: number) => {
+        this.getPage();
+        this.reply_change.emit(true);
+      });
+    }
+  }
 }

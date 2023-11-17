@@ -60,6 +60,7 @@ import { AdminThreadFormUnroutedComponent } from './components/thread/admin-thre
 import { UserThreadPlistUnroutedComponent } from './components/thread/user-thread-plist-unrouted/user-thread-plist-unrouted.component';
 import { AdminThreadSelectionUnroutedComponent } from './components/thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 import { UserThreadFeaturedUnroutedComponent } from './components/thread/user-thread-featured-unrouted/user-thread-featured-unrouted.component';
+import { UserThreadFormUnroutedComponent } from './components/thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
 //
 import { AdminReplyPlistUnroutedComponent } from './components/reply/admin-reply-plist-unrouted/admin-reply-plist-unrouted.component';
 import { AdminReplyDetailUnroutedComponent } from './components/reply/admin-reply-detail-unrouted/admin-reply-detail-unrouted.component';
@@ -71,6 +72,7 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
+
 
 //--
 @NgModule({
@@ -104,6 +106,7 @@ import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-fo
     AdminThreadSelectionUnroutedComponent,
     UserThreadFeaturedUnroutedComponent,
     UserThreadPlistUnroutedComponent,
+    UserThreadFormUnroutedComponent,
     //--
     AdminReplyPlistRoutedComponent,
     AdminReplyViewRoutedComponent,

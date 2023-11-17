@@ -8,7 +8,7 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between">
-    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()"
+    <button type="button" class="btn btn-outline-primary" (click)="postNewThread()"
       *ngIf="oSessionService.isSessionActive()">Post new thread</button>
     <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
     <button type="button" class="btn btn-outline-primary" (click)="postNewReply()"
