@@ -7,12 +7,13 @@
 </div>
 
 <div *ngIf="status==null">
-  <div class="d-flex justify-content-between">
-    <button type="button" class="btn btn-outline-primary" (click)="postNewThread()"
-      *ngIf="oSessionService.isSessionActive()">Post new thread</button>
+  <div class="d-flex justify-content-center" *ngIf="!oSessionService.isSessionActive()">
     <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
-    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()"
-      *ngIf="oSessionService.isSessionActive()">Post new reply</button>
+  </div>
+  <div class="d-flex justify-content-between" *ngIf="oSessionService.isSessionActive()">
+    <button type="button" class="btn btn-outline-primary" (click)="postNewThread()">Post new thread</button>
+    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
+    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new reply</button>
   </div>
   <div class="d-flex justify-content-center m-1">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
@@ -23,8 +24,14 @@
     <ul class="list-group">
       <!-- if ni oPage.content then show no content -->
       <li class="list-group-item" *ngIf="oPage?.content?.length==0">
-        <div class="d-flex justify-content-center my-3">
-          <h2 class="m-5">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h2>
+        <div class="d-flex justify-content-center align-items-center my-3 p-5">
+          <div class="alert alert-danger" role="alert">
+
+            <mat-icon style="transform: scale(2);" aria-hidden="false" aria-label="No replies found"
+              fontIcon="sentiment_dissatisfied"></mat-icon>
+          </div>
+
+          <h4 class="px-3">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h4>
         </div>
       </li>
       <li class="list-group-item" *ngFor="let r of oPage?.content">
