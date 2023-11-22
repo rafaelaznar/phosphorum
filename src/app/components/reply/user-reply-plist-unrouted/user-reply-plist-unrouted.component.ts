@@ -40,6 +40,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   set id_thread(value: number) {
     if (value) {
       this.id_thread_filter = value;
+      this.getThread();
     } else {
       this.id_thread_filter = 0;
     }
@@ -183,8 +184,6 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
       });
     }
   }
-
-
 
   postNewThread(): void {
     if (this.id_thread_filter > 0 && this.oSessionService.isSessionActive()) {
