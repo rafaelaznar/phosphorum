@@ -24,7 +24,7 @@
       <!-- if ni oPage.content then show no content -->
       <li class="list-group-item" *ngIf="oPage?.content?.length==0">
         <div class="d-flex justify-content-center my-3">
-          <h2 class="m-5">No replies found for {{oThread?.title}} thread</h2>
+          <h2 class="m-5">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h2>
         </div>
       </li>
       <li class="list-group-item" *ngFor="let r of oPage?.content">
