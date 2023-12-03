@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "home": "Home",
+    "users": "Users",
+    "threads": "Threads",
+    "replies": "Replies",
+    "login": "Login",
+    "logout": "Logout",
+    "not-logged": "Not logged in"
+  }
+}

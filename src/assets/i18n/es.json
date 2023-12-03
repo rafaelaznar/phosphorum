@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "home": "Home",
+    "users": "Usuarios",
+    "threads": "Hilos",
+    "replies": "Respuestas",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "not-logged": "Sesión no iniciada"
+  }
+}
