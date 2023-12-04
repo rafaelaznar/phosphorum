@@ -20,6 +20,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 //--
@@ -138,6 +139,7 @@ import { TranslocoRootModule } from './transloco-root.module';
     ConfirmPopupModule,
     CalendarModule,
     TooltipModule,
+    DropdownModule,
     //--
     MatButtonModule,
     MatCardModule,

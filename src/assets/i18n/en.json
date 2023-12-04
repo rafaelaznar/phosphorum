@@ -17,5 +17,11 @@
     "reset": "Reset",
     "as-admin": "Login as Admin",
     "as-user": "Login as User"
+  },
+  "logout": {
+    "logout": "Logout",
+    "question": "Do you really want to log out?",
+    "yes": "Yes",
+    "no": "No"
   }
 }

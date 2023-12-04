@@ -21,16 +21,32 @@
                       routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.replies" | transloco }}</a>
               </li>
                   <li>
-                    <a class="dropdown-item" href="#" (click)="changeLanguage('en')">
+                    <a class="dropdown-item" (click)="clickTranslate('en')">
                       <img src="../../../../assets/images/icons/icon_uk_flag.png" alt="English" class="language-flag"> English
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#" (click)="changeLanguage('es')">
+                    <a class="dropdown-item" (click)="clickTranslate('es')">
                       <img src="../../../../assets/images/icons/icon_sp_flag.png" alt="Español" class="language-flag"> Español
                     </a>
                   </li>
           </ul>
+          <!-- 
+            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name">
+            <ng-template pTemplate="selectedItem">
+                <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
+                    <img width="28px" [src]="'../../../../assets/images/icons/icon_uk_flag.png'+selectedLanguage.resource"/>
+                    <div>{{ selectedLanguage.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-language pTemplate="item">
+                <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
+                    <img width="28px" [src]="'../../../../assets/images/icons/icon_uk_flag.png'+language.resource"/>
+                    <div>{{ language.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+          -->
 
           <span class="navbar-text mx-1" *ngIf="strUserName">
               <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>

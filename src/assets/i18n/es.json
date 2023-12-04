@@ -17,5 +17,11 @@
     "reset": "Reset",
     "as-admin": "Iniciar sesión como Administrador",
     "as-user": "Iniciar sesión como Usuario"
+  },
+  "logout": {
+    "logout": "Cerrar sesión",
+    "question": "¿Estás seguro de que quieres cerrar la sesión?",
+    "yes": "Sí",
+    "no": "No"
   }
 }

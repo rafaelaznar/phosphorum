@@ -18,6 +18,7 @@ export class MenuUnroutedComponent implements OnInit {
   strUserName: string = "";
   oSessionUser: IUser | null = null;
   strUrl: string = "";
+  lang = this.oTranslocoService.getActiveLang();
 
   constructor(
     private oSessionService: SessionAjaxService,
@@ -63,6 +64,10 @@ export class MenuUnroutedComponent implements OnInit {
         }
       }
     });
+
+    this.oTranslocoService.langChanges$.subscribe((response) => {
+      this.lang = response;
+    });
   }
 
   doSessionUserView($event: Event) {
@@ -83,8 +88,8 @@ export class MenuUnroutedComponent implements OnInit {
     //$event.preventDefault
   }
 
-  changeLanguage(lang: string): void {
-    this.oTranslocoService.setActiveLang(lang);
+  clickTranslate(language: string): void {
+    this.oTranslocoService.setActiveLang(language);
   }
 
 }
