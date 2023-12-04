@@ -1,72 +1,52 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/home">Phosphorum 2023</a>
-    <div class="navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strUrl == '/home' || strUrl == '/'"
-            aria-current="page"
-            routerLink="/home"
-            >{{ "menu.home" | transloco }}</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strUrl.startsWith('/admin/user')"
-            routerLink="/admin/user/plist"
-            *ngIf="strUserName && oSessionUser?.role == false"
-            >{{ "menu.users" | transloco }}</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strUrl.startsWith('/admin/thread')"
-            routerLink="/admin/thread/plist"
-            *ngIf="strUserName && oSessionUser?.role == false"
-            >{{ "menu.threads" | transloco }}</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strUrl.startsWith('/admin/reply')"
-            routerLink="/admin/reply/plist"
-            *ngIf="strUserName && oSessionUser?.role == false"
-            >{{ "menu.replies" | transloco }}</a
-          >
-        </li>
-      </ul>
+      <a class="navbar-brand" href="/home">Phosphorum 2023</a>
+      <div class="navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-      <span class="navbar-text mx-1" *ngIf="strUserName">
-        <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{
-          strUserName
-        }}</a>
-      </span>
-      <span class="navbar-text mx-1" *ngIf="!strUserName"> Not logged in </span>
-      <span class="navbar-text mx-1">
-        <a
-          class="nav-link"
-          routerLink="/login"
-          href="#"
-          *ngIf="!strUserName"
-          [class.active]="strUrl.startsWith('/login')"
-          >{{ "menu.login" | transloco }}</a
-        >
-      </span>
-      <span class="navbar-text mx-1">
-        <a
-          class="nav-link"
-          routerLink="/logout"
-          href="#"
-          *ngIf="strUserName"
-          [class.active]="strUrl.startsWith('/logout')"
-          >{{ "menu.logout" | transloco }}</a
-        >
-      </span>
-    </div>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl=='/home'||strUrl=='/'" aria-current="page"
+                      routerLink="/home">{{ "menu.home" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')"
+                      routerLink="/admin/user/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.users" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread')"
+                      routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.threads" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
+                      routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.replies" | transloco }}</a>
+              </li>
+                  <li>
+                    <a class="dropdown-item" href="#" (click)="changeLanguage('en')">
+                      <img src="../../../../assets/images/icons/icon_uk_flag.png" alt="English" class="language-flag"> English
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" (click)="changeLanguage('es')">
+                      <img src="../../../../assets/images/icons/icon_sp_flag.png" alt="Español" class="language-flag"> Español
+                    </a>
+                  </li>
+          </ul>
+
+          <span class="navbar-text mx-1" *ngIf="strUserName">
+              <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
+          </span>
+          <span class="navbar-text mx-1" *ngIf="!strUserName">
+            {{ "menu.not-logged" | transloco }}
+          </span>
+          <span class="navbar-text mx-1">
+              <a class="nav-link" routerLink="/login" href="#" *ngIf="!strUserName"
+                  [class.active]="strUrl.startsWith('/login')">{{ "menu.login" | transloco }}</a>
+          </span>
+          <span class="navbar-text mx-1">
+              <a class="nav-link" routerLink="/logout" href="#" *ngIf="strUserName"
+                  [class.active]="strUrl.startsWith('/logout')">{{ "menu.logout" | transloco }}</a>
+          </span>
+
+      </div>
   </div>
 </nav>

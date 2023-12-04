@@ -7,5 +7,15 @@
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "not-logged": "Sesión no iniciada"
+  },
+  "login": {
+    "form": "Formulario de Inicio de sesión",
+    "username-required": "El username es requerido",
+    "password-required": "La contraseña es requerida",
+    "password-minlength": "la contraseña tiene que tener al menos 6 caracteres",
+    "login": "Iniciar sesión",
+    "reset": "Reset",
+    "as-admin": "Iniciar sesión como Administrador",
+    "as-user": "Iniciar sesión como Usuario"
   }
 }

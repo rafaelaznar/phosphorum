@@ -6,6 +6,7 @@ import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.serv
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unrouted/user-user-detail-unrouted.component';
 import { NavigationEnd, Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -22,7 +23,8 @@ export class MenuUnroutedComponent implements OnInit {
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
     private oUserAjaxService: UserAjaxService,
-    private oRouter: Router
+    private oRouter: Router,
+    private oTranslocoService: TranslocoService
   ) {
     
     this.oRouter.events.subscribe((ev) => {
@@ -79,6 +81,10 @@ export class MenuUnroutedComponent implements OnInit {
     }
     return false;
     //$event.preventDefault
+  }
+
+  changeLanguage(lang: string): void {
+    this.oTranslocoService.setActiveLang(lang);
   }
 
 }
