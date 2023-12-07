@@ -23,5 +23,9 @@
     "question": "Do you really want to log out?",
     "yes": "Yes",
     "no": "No"
+  },
+  "table": {
+    "property": "Property",
+    "value": "Value"
   }
 }

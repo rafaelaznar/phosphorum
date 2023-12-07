@@ -23,5 +23,9 @@
     "question": "¿Estás seguro de que quieres cerrar la sesión?",
     "yes": "Sí",
     "no": "No"
+  },
+  "table": {
+    "property": "Propiedad",
+    "value": "Valor"
   }
 }
