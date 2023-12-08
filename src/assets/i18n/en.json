@@ -1,4 +1,8 @@
 {
+  "home": {
+    "subtitle": "light your thoughts",
+    "featured-users": "Featured Users"
+  },
   "menu": {
     "home": "Home",
     "users": "Users",

@@ -1,4 +1,8 @@
 {
+  "home": {
+    "subtitle": "ilumina tus pensamientos",
+    "featured-users": "Usuarios Destacados"
+  },
   "menu": {
     "home": "Home",
     "users": "Usuarios",
