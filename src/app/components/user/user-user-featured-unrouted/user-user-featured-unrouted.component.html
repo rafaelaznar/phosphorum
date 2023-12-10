@@ -10,7 +10,7 @@
   <div class=" d-flex">
     <ol>
       <li *ngFor="let u of oPage?.content">
-        {{u.username}}: {{u.replies}} replies
+        {{u.username}}: {{u.replies}} {{ "user.replies" | transloco }}
       </li>
     </ol>
   </div>

@@ -12,14 +12,14 @@
       <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <mat-form-field *ngIf="operation=='EDIT'">
-            <mat-label>ID:</mat-label>
+            <mat-label>{{ "user.id" | transloco }}:</mat-label>
             <input matInput formControlName="id" placeholder="ID" required readonly>
             <mat-hint align="end">(can't change this number)</mat-hint>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
-            <mat-label>Name:</mat-label>
+            <mat-label>{{ "user.name" | transloco }}:</mat-label>
             <input matInput formControlName="name" placeholder="Name" required>
             <mat-hint align="end">(3 to 255 characters long)</mat-hint>
             <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
-            <mat-label>Surname:</mat-label>
+            <mat-label>{{ "user.surname" | transloco }}:</mat-label>
             <input matInput formControlName="surname" placeholder="Surname" required>
             <mat-hint align="end">(3 to 255 characters long)</mat-hint>
             <mat-error *ngIf="hasError('surname', 'required')">Surname is required</mat-error>
@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
-            <mat-label>Lastname:</mat-label>
+            <mat-label>{{ "user.lastname" | transloco }}:</mat-label>
             <input matInput formControlName="lastname" placeholder="Lastname">
             <mat-hint align="end">(max. 255 characters long)</mat-hint>
             <mat-error *ngIf="hasError('lastname', 'maxlength')">Limit exceed</mat-error>
@@ -47,14 +47,14 @@
         </div>
         <div class="form-group">
           <mat-form-field>
-            <mat-label>Email:</mat-label>
+            <mat-label>{{ "user.email" | transloco }}:</mat-label>
             <input matInput formControlName="email" placeholder="Email" required>
             <mat-error *ngIf="hasError('email', 'email')">Email is not valid</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field>
-            <mat-label>Username:</mat-label>
+            <mat-label>{{ "user.username" | transloco }}:</mat-label>
             <input matInput formControlName="username" placeholder="Username" required>
             <mat-hint align="end">(6 to 15 alphanumeric)</mat-hint>
             <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
@@ -65,8 +65,8 @@
         </div>
 
         <mat-radio-group aria-label="Type of user" formControlName="role" required>
-          <mat-radio-button [value]="true">Admin</mat-radio-button>
-          <mat-radio-button [value]="false">User</mat-radio-button>
+          <mat-radio-button [value]="true">{{ "user.role.admin" | transloco }}</mat-radio-button>
+          <mat-radio-button [value]="false">{{ "user.role.user" | transloco }}</mat-radio-button>
           <mat-error *ngIf="hasError('role', 'required')">User Type is required</mat-error>
         </mat-radio-group>
 

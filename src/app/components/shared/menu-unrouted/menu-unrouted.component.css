@@ -17,3 +17,8 @@ a:hover {
     color: aliceblue !important;
 }
 
+.language-flag {
+    width: 25px;
+    height: 25px;
+}
+

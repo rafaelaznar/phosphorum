@@ -24,12 +24,46 @@
   },
   "logout": {
     "logout": "Cerrar sesión",
-    "question": "¿Estás seguro de que quieres cerrar la sesión?",
-    "yes": "Sí",
-    "no": "No"
+    "question": "¿Estás seguro de que quieres cerrar la sesión?"
   },
   "table": {
     "property": "Propiedad",
     "value": "Valor"
-  }
+  },
+  "footer": {
+    "by": "por",
+    "licensed": "Licenciado bajo MIT"
+  }, 
+  "plist": {
+    "processing": "Procesando... espera, por favor",
+    "empty": "Vaciar",
+    "no-filter": "Sin filtro activo",
+    "showing": "Mostrando",
+    "of-total": "de un total de",
+    "tools": "Herramientas", 
+    "users": "usuarios"
+  },
+  "user": {
+    "id": "ID",
+    "name": "Nombre",
+    "surname" :"1º Apellido",
+    "lastname": "2º Apellido",
+    "email": "Correo",
+    "username": "Username",
+    "role": {
+      "role": "Rol",
+      "admin": "Administrador",
+      "user": "Usuario"
+    },
+    "threads": "Hilos",
+    "replies": "Respuestas",
+    "edit": "Editar usuario",
+    "new": "Nuevo usuario",
+    "view": "Vista de usuario",
+    "list": "Listado de usuarios",
+    "removal": "Borrado de usuario",
+    "remove-question": "¿Estás seguro de que quieres borrar este usuario?"
+  },
+  "yes": "Sí",
+  "no": "No"
 }

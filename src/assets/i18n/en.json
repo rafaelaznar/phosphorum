@@ -24,12 +24,46 @@
   },
   "logout": {
     "logout": "Logout",
-    "question": "Do you really want to log out?",
-    "yes": "Yes",
-    "no": "No"
+    "question": "Do you really want to log out?"
   },
   "table": {
     "property": "Property",
     "value": "Value"
-  }
+  },
+  "footer": {
+    "by": "by",
+    "licensed": "MIT Licensed"
+  }, 
+  "plist": {
+    "processing": "Processing... wait, please",
+    "empty": "Empty",
+    "no-filter": "No active filter",
+    "showing": "Showing",
+    "of-total": "of total",
+    "tools": "Tools",
+    "users": "users"
+  },
+  "user": {
+    "id": "ID",
+    "name": "Name",
+    "surname" :"Surname",
+    "lastname": "Lastname",
+    "email": "Email",
+    "username": "Username",
+    "role": {
+      "role": "Role",
+      "admin": "Admin",
+      "user": "User"
+    },
+    "threads": "Threads",
+    "replies": "Replies",
+    "edit": "Edit user",
+    "new": "New user",
+    "view": "View of user",
+    "list": "List of users",
+    "removal": "User removal",
+    "remove-question": "Are you sure you want to remove this user?"
+  },
+  "yes": "Yes",
+  "no": "No"
 }
