@@ -66,6 +66,7 @@
     "is-not-valid": "is not valid",
     "characters-not-accepted": "Characters not accepted",
     "alphanumeric": "alphanumeric",
+    "valid-date": "You must set a valid date",
     "find": "Find a"
   },
   "user": {
@@ -112,6 +113,11 @@
     "lowercase": {
       "singular": "reply",
       "plural": "replies"
-    }
+    },
+    "title": "Title",
+    "creation": "Creation",
+    "body": "Body",
+    "removal": "Reply removal",
+    "remove-question": "Are you sure you want to remove this reply?"
   }
 }

@@ -66,6 +66,7 @@
     "is-not-valid": "no es valido",
     "characters-not-accepted": "Caracteres no aceptados",
     "alphanumeric": "alfanúmerico",
+    "valid-date": "Tienes que poner una fecha válida",
     "find": "Busca un"
   },
   "user": {
@@ -112,6 +113,11 @@
     "lowercase": {
       "singular": "respuesta",
       "plural": "respuestas"
-    }
+    },
+    "title": "Título",
+    "creation": "Creación",
+    "body": "Cuerpo",
+    "removal": "Borrado de respuesta",
+    "remove-question": "¿Estás seguro de que quieres borrar esta respuesta?"
   }
 }

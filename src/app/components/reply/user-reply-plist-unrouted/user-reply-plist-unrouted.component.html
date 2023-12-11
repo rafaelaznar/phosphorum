@@ -8,11 +8,11 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-center" *ngIf="!oSessionService.isSessionActive()">
-    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
+    <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h5>
   </div>
   <div class="d-flex justify-content-between" *ngIf="oSessionService.isSessionActive()">
     <button type="button" class="btn btn-outline-primary" (click)="postNewThread()">Post new thread</button>
-    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
+    <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h5>
     <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new reply</button>
   </div>
   <div class="d-flex justify-content-center m-1">
@@ -31,7 +31,7 @@
               fontIcon="sentiment_dissatisfied"></mat-icon>
           </div>
 
-          <h4 class="px-3">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h4>
+          <h4 class="px-3">No replies found for this <i style="color:red">"{{oThread?.title}}"</i> {{ "thread.lowercase.singular" | transloco }}</h4>
         </div>
       </li>
       <li class="list-group-item" *ngFor="let r of oPage?.content">
