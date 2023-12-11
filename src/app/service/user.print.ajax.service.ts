@@ -27,7 +27,7 @@ export class UserPrintAjaxService {
         //Cosas
         var doc = new jsPDF();
         doc.setFont('Courier');
-        doc.text(140, 64, `Prueba de si funciona`);
+        doc.text(50, 64, `Prueba de si funciona`);
         //doc = this.cabecera(doc, oUserToPrint);
         doc.save('prueba.pdf');
       }
