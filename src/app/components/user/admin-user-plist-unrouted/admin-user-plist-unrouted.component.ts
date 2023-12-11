@@ -8,6 +8,7 @@ import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { Subject } from 'rxjs';
+import { UserPrintAjaxService } from 'src/app/service/user.print.ajax.service';
 
 @Component({
   providers: [ConfirmationService],
@@ -31,7 +32,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oUserPrintAjaxService: UserPrintAjaxService,
   ) { }
 
   ngOnInit() {
@@ -108,6 +110,11 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
       }
     });
+  }
+
+  //Añado esto
+  onPrintUser = (id_user: number) => {
+    this.oUserPrintAjaxService.printUser(id_user);
   }
 
 }
