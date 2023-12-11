@@ -1,13 +1,24 @@
 {
+  "global": {
+    "table": {
+      "property": "Property",
+      "value": "Value"
+    },
+    "id": "Id",
+    "edit": "Edit",
+    "new": "New",
+    "save": "Save",
+    "view": "View",
+    "list": "List",
+    "yes": "Yes",
+    "no": "No"
+  },
   "home": {
     "subtitle": "light your thoughts",
     "featured-users": "Featured Users"
   },
   "menu": {
     "home": "Home",
-    "users": "Users",
-    "threads": "Threads",
-    "replies": "Replies",
     "login": "Login",
     "logout": "Logout",
     "not-logged": "Not logged in"
@@ -26,10 +37,6 @@
     "logout": "Logout",
     "question": "Do you really want to log out?"
   },
-  "table": {
-    "property": "Property",
-    "value": "Value"
-  },
   "footer": {
     "by": "by",
     "licensed": "MIT Licensed"
@@ -37,14 +44,39 @@
   "plist": {
     "processing": "Processing... wait, please",
     "empty": "Empty",
+    "filtered-by": "Filtered by",
+    "reset-filter": "reset filter",
     "no-filter": "No active filter",
     "showing": "Showing",
     "of-total": "of total",
+    "number-of": "Number of",
     "tools": "Tools",
-    "users": "users"
+    "by-new": "by new",
+    "by-popular": "by popular"
+  },
+  "form": {
+    "to": "to",
+    "characters-long": "characters long",
+    "cant-change": "can't change",
+    "this-number": "this number",
+    "is-required": "is required",
+    "more-length": "More length",
+    "max": "max.",
+    "limit-exceed": "Limit exceed",
+    "is-not-valid": "is not valid",
+    "characters-not-accepted": "Characters not accepted",
+    "alphanumeric": "alphanumeric",
+    "find": "Find a"
   },
   "user": {
-    "id": "ID",
+    "uppercase": {
+      "singular": "User",
+      "plural": "Users"
+    },
+    "lowercase": {
+      "singular": "user",
+      "plural": "users"
+    },
     "name": "Name",
     "surname" :"Surname",
     "lastname": "Lastname",
@@ -55,15 +87,31 @@
       "admin": "Admin",
       "user": "User"
     },
-    "threads": "Threads",
-    "replies": "Replies",
-    "edit": "Edit user",
-    "new": "New user",
-    "view": "View of user",
-    "list": "List of users",
+    "type": "User type",
     "removal": "User removal",
     "remove-question": "Are you sure you want to remove this user?"
   },
-  "yes": "Yes",
-  "no": "No"
+  "thread": {
+    "uppercase": {
+      "singular": "Thread",
+      "plural": "Threads"
+    },
+    "lowercase": {
+      "singular": "thread",
+      "plural": "threads"
+    },
+    "title": "Title",
+    "removal": "Thread removal",
+    "remove-question": "Are you sure you want to remove this thread?"
+  },
+  "reply": {
+    "uppercase": {
+      "singular": "Reply",
+      "plural": "Replies"
+    },
+    "lowercase": {
+      "singular": "reply",
+      "plural": "replies"
+    }
+  }
 }

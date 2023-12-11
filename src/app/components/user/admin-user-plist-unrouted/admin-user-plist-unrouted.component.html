@@ -9,11 +9,11 @@
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
     <h3>{{ "plist.no-filter" | transloco }}</h3>
-    <h3>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "plist.users" | transloco }}.</h3>
+    <h3>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "user.lowercase.plural" | transloco }}.</h3>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0"></p-paginator>
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 
 
@@ -21,15 +21,15 @@
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
-          <th (click)="doOrder('id')">{{ "user.id" | transloco }}</th>
+          <th (click)="doOrder('id')">{{ "global.id" | transloco }}</th>
           <th (click)="doOrder('name')">{{ "user.name" | transloco }}</th>
           <th (click)="doOrder('surname')">{{ "user.surname" | transloco }}</th>
           <th (click)="doOrder('lastname')">{{ "user.lastname" | transloco }}</th>
           <th (click)="doOrder('email')">{{ "user.email" | transloco }}</th>
           <th (click)="doOrder('username')">{{ "user.username" | transloco }}</th>
           <th (click)="doOrder('role')">{{ "user.role.role" | transloco }}</th>
-          <th>{{ "user.threads" | transloco }}</th>
-          <th>{{ "user.replies" | transloco }}</th>
+          <th>{{ "thread.uppercase.plural" | transloco }}</th>
+          <th>{{ "reply.uppercase.plural" | transloco }}</th>
           <th>{{ "plist.tools" | transloco }}</th>
         </tr>
       </thead>
@@ -88,7 +88,7 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <p>{{ "user.remove-question" | transloco }}</p>
-    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" (click)="cd.reject()"> {{ "no" | transloco }}</button>
-    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" (click)="cd.accept()"> {{ "yes" | transloco }}</button>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" (click)="cd.reject()"> {{ "global.no" | transloco }}</button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" (click)="cd.accept()"> {{ "global.yes" | transloco }}</button>
   </ng-template>
 </p-confirmDialog>

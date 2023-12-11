@@ -1,13 +1,24 @@
 {
+  "global": {
+    "table": {
+      "property": "Propiedad",
+      "value": "Valor"
+    },
+    "id": "Id",
+    "edit": "Editar",
+    "new": "Nuevo",
+    "save": "Guardar",
+    "view": "Vista de",
+    "list": "Listado de",
+    "yes": "Sí",
+    "no": "No"
+  },
   "home": {
     "subtitle": "ilumina tus pensamientos",
     "featured-users": "Usuarios Destacados"
   },
   "menu": {
     "home": "Home",
-    "users": "Usuarios",
-    "threads": "Hilos",
-    "replies": "Respuestas",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "not-logged": "Sesión no iniciada"
@@ -26,10 +37,6 @@
     "logout": "Cerrar sesión",
     "question": "¿Estás seguro de que quieres cerrar la sesión?"
   },
-  "table": {
-    "property": "Propiedad",
-    "value": "Valor"
-  },
   "footer": {
     "by": "por",
     "licensed": "Licenciado bajo MIT"
@@ -37,14 +44,39 @@
   "plist": {
     "processing": "Procesando... espera, por favor",
     "empty": "Vaciar",
+    "filtered-by": "Filtrado por",
+    "reset-filter": "resetear filtro",
     "no-filter": "Sin filtro activo",
     "showing": "Mostrando",
     "of-total": "de un total de",
-    "tools": "Herramientas", 
-    "users": "usuarios"
+    "number-of": "Número de",
+    "tools": "Herramientas",
+    "by-new": "por nuevo",
+    "by-popular": "por popular"
+  },
+  "form": {
+    "to": "a",
+    "characters-long": "caracteres de largo",
+    "cant-change": "no se puede cambiar",
+    "this-number": "este número",
+    "is-required": "requerido",
+    "more-length": "Más longitud",
+    "max": "máx.",
+    "limit-exceed": "Límite excedido",
+    "is-not-valid": "no es valido",
+    "characters-not-accepted": "Caracteres no aceptados",
+    "alphanumeric": "alfanúmerico",
+    "find": "Busca un"
   },
   "user": {
-    "id": "ID",
+    "uppercase": {
+      "singular": "Usuario",
+      "plural": "Usuarios"
+    },
+    "lowercase": {
+      "singular": "usuario",
+      "plural": "usuarios"
+    },
     "name": "Nombre",
     "surname" :"1º Apellido",
     "lastname": "2º Apellido",
@@ -55,15 +87,31 @@
       "admin": "Administrador",
       "user": "Usuario"
     },
-    "threads": "Hilos",
-    "replies": "Respuestas",
-    "edit": "Editar usuario",
-    "new": "Nuevo usuario",
-    "view": "Vista de usuario",
-    "list": "Listado de usuarios",
+    "type": "Tipo de usuario",
     "removal": "Borrado de usuario",
     "remove-question": "¿Estás seguro de que quieres borrar este usuario?"
   },
-  "yes": "Sí",
-  "no": "No"
+  "thread": {
+    "uppercase": {
+      "singular": "Hilo",
+      "plural": "Hilos"
+    },
+    "lowercase": {
+      "singular": "hilo",
+      "plural": "hilos"
+    },
+    "title": "Título",
+    "removal": "Borrado de hilo",
+    "remove-question": "¿Estás seguro de que quieres borrar este hilo?"
+  },
+  "reply": {
+    "uppercase": {
+      "singular": "Respuesta",
+      "plural": "Respuestas"
+    },
+    "lowercase": {
+      "singular": "respuesta",
+      "plural": "respuestas"
+    }
+  }
 }

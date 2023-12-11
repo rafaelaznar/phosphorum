@@ -10,15 +10,15 @@
               </li>
               <li class="nav-item">
                   <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')"
-                      routerLink="/admin/user/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.users" | transloco }}</a>
+                      routerLink="/admin/user/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "user.uppercase.plural" | transloco }}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread')"
-                      routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.threads" | transloco }}</a>
+                      routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "thread.uppercase.plural" | transloco }}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
-                      routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "menu.replies" | transloco }}</a>
+                      routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "reply.uppercase.plural" | transloco }}</a>
               </li>
                   <li>
                     <a class="dropdown-item" (click)="clickTranslate('en')">
