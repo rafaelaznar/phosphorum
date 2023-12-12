@@ -24,20 +24,16 @@ export class UserPrintAjaxService {
   printUser = (id_user: number): void => {
     this.oUserAjaxService.getOne(id_user).subscribe({
       next: (oUserToPrint: IUser) => {
+        console.log('User to print:', oUserToPrint);
         //Cosas
         var doc = new jsPDF();
         doc.setFont('Courier');
-        doc.text(50, 64, `Prueba de si funciona`);
-        //doc = this.cabecera(doc, oUserToPrint);
+        //doc.text(50, 64, `Prueba de si funciona`);
+        doc = this.cabecera(doc, oUserToPrint);
+
         doc.save('prueba.pdf');
       }
-
-
-
-
     })
-
-
   }
 
 
@@ -58,20 +54,16 @@ export class UserPrintAjaxService {
      doc.text(142, 44, `Id de Usuario: ${oUserToPrint.id}`);
     */
     //
-    /* doc.setFillColor(240, 240, 240);
+     doc.setFillColor(240, 240, 240);
      doc.rect(120, 55, 80, 15, 'F');
      doc.setFontSize(12);
      doc.text(140, 64, `Nombre: ${oUserToPrint.name}`);
-    */
+    
     //
-    doc.setFillColor(240, 240, 240);
-    doc.rect(baseX, 75, 190, 50, 'F');
+    
     //
-    doc.text(140, 64, `Prueba de si funciona`);
-
-
-
-
+    doc.text(50, 64, `Prueba de si funciona`);
+    return doc;
   }
 
 
