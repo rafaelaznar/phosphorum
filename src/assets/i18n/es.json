@@ -11,7 +11,22 @@
     "view": "Vista de",
     "list": "Listado de",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "the": {
+      "masc": "El",
+      "fem": "La"
+    },
+    "remove": {
+      "has": {
+        "masc": "ha sido borrado",
+        "fem": "ha sido borrada"
+      },
+      "hasnt": {
+        "masc": "no ha sido borrado",
+        "fem": "no ha sido borrada"
+      }
+    },
+    "now-there-are": "Ahora hay"
   },
   "home": {
     "subtitle": "ilumina tus pensamientos",
@@ -52,7 +67,10 @@
     "number-of": "Número de",
     "tools": "Herramientas",
     "by-new": "por nuevo",
-    "by-popular": "por popular"
+    "by-popular": "por popular",
+    "header": {
+      "viewUser": "Ver usuario"
+    }
   },
   "form": {
     "to": "a",

@@ -11,7 +11,22 @@
     "view": "View",
     "list": "List",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "the": {
+      "masc": "The",
+      "fem": "The"
+    },
+    "remove": {
+      "has": {
+        "masc": "has been removed",
+        "fem": "has been removed"
+      },
+      "hasnt": {
+        "masc": "hasn't been removed",
+        "fem": "hasn't been removed"
+      }
+    },
+    "now-there-are": "Now there are"
   },
   "home": {
     "subtitle": "light your thoughts",
@@ -52,7 +67,10 @@
     "number-of": "Number of",
     "tools": "Tools",
     "by-new": "by new",
-    "by-popular": "by popular"
+    "by-popular": "by popular",
+    "header": {
+      "viewUser": "View user"
+    }
   },
   "form": {
     "to": "to",

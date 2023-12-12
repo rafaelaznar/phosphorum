@@ -77,7 +77,7 @@ export class MenuUnroutedComponent implements OnInit {
         data: {
           id: this.oSessionUser.id
         },
-        header: 'View of user',
+        header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('user.lowercase.singular'),
         width: '50%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
