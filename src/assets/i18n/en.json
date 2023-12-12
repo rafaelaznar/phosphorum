@@ -12,11 +12,16 @@
     "list": "List",
     "yes": "Yes",
     "no": "No",
+    "in": "in",
     "the": {
       "masc": "The",
       "fem": "The"
     },
     "remove": {
+      "remove": {
+        "uppercase": "Remove",
+        "lowercase": "remove"
+      },
       "has": {
         "masc": "has been removed",
         "fem": "has been removed"
@@ -26,7 +31,47 @@
         "fem": "hasn't been removed"
       }
     },
-    "now-there-are": "Now there are"
+    "create": {
+      "create": {
+        "uppercase": "Create",
+        "lowercase": "create"
+      },
+      "has": {
+        "masc": "has been created",
+        "fem": "has been created"
+      },
+      "hasnt": {
+        "masc": "hasn't been created",
+        "fem": "hasn't been created"
+      }
+    },
+    "update": {
+      "update": {
+        "uppercase": "Update",
+        "lowercase": "update"
+      },
+      "has": {
+        "masc": "has been updated",
+        "fem": "has been updated"
+      },
+      "hasnt": {
+        "masc": "hasn't been updated",
+        "fem": "hasn't been updated"
+      }
+    },
+    "now-there-are": "Now there are",
+    "post": "Post",
+    "a": {
+      "masc": "a",
+      "fem": "a"
+    },
+    "cancelled": "cancelled",
+    "error": "Error",
+    "emptying": "emptying",
+    "generating": "generating",
+    "reading": "reading",
+    "select": "Select",
+    "from-server": "from server"
   },
   "home": {
     "subtitle": "light your thoughts",
@@ -46,11 +91,14 @@
     "login": "Login",
     "reset": "Reset",
     "as-admin": "Login as Admin",
-    "as-user": "Login as User"
+    "as-user": "Login as User",
+    "successfull": "Login successfull",
+    "operation": "login operation"
   },
   "logout": {
     "logout": "Logout",
-    "question": "Do you really want to log out?"
+    "question": "Do you really want to log out?",
+    "successfull": "Logout successfull"
   },
   "footer": {
     "by": "by",
@@ -108,7 +156,8 @@
     },
     "type": "User type",
     "removal": "User removal",
-    "remove-question": "Are you sure you want to remove this user?"
+    "remove-question": "Are you sure that you want to remove this user?",
+    "remove-all-question": "Are you sure that you want to remove all the users?"
   },
   "thread": {
     "uppercase": {
@@ -121,7 +170,8 @@
     },
     "title": "Title",
     "removal": "Thread removal",
-    "remove-question": "Are you sure you want to remove this thread?"
+    "remove-question": "Are you sure that you want to remove this thread?",
+    "remove-all-question": "Are you sure that you want to remove all the threads?"
   },
   "reply": {
     "uppercase": {
@@ -136,6 +186,8 @@
     "creation": "Creation",
     "body": "Body",
     "removal": "Reply removal",
-    "remove-question": "Are you sure you want to remove this reply?"
+    "remove-question": "Are you sure that you want to remove this reply?",
+    "remove-all-question": "Are you sure that you want to remove all the replies?",
+    "no-replies-found": "No replies found for this"
   }
 }

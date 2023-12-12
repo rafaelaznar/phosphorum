@@ -12,7 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
-
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -71,7 +71,8 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     private oReplyAjaxService: ReplyAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oTranslocoService: TranslocoService
   ) { }
 
   ngOnInit() {
@@ -110,7 +111,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of reply',
+      header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular'),
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -122,7 +123,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.oReplyToRemove = u;
     this.oConfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.has.fem') + '.', '', { duration: 2000 });
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -130,12 +131,12 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem') + '.', "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem') + '.', "", { duration: 2000 });
       }
     });
   }
@@ -171,7 +172,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         data: {
           id_thread: this.id_thread_filter,
         },
-        header: 'Post a new reply',
+        header: this.oTranslocoService.translate('global.post') + ' ' + this.oTranslocoService.translate('global.a.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular'),
         width: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
@@ -192,7 +193,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         data: {
           id_thread: this.id_thread_filter,
         },
-        header: 'Post a new thread',
+        header: this.oTranslocoService.translate('global.post') + ' ' + this.oTranslocoService.translate('global.a.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular'),
         width: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,

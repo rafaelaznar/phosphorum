@@ -11,9 +11,9 @@
     <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h5>
   </div>
   <div class="d-flex justify-content-between" *ngIf="oSessionService.isSessionActive()">
-    <button type="button" class="btn btn-outline-primary" (click)="postNewThread()">Post new thread</button>
+    <button type="button" class="btn btn-outline-primary" (click)="postNewThread()">{{ "global.post" | transloco }} {{ "global.a.masc" | transloco }} {{ "thread.lowercase.singular" | transloco }}</button>
     <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h5>
-    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new reply</button>
+    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">{{ "global.post" | transloco }} {{ "global.a.fem" | transloco }} {{ "reply.lowercase.singular" | transloco }}</button>
   </div>
   <div class="d-flex justify-content-center m-1">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
@@ -31,7 +31,7 @@
               fontIcon="sentiment_dissatisfied"></mat-icon>
           </div>
 
-          <h4 class="px-3">No replies found for this <i style="color:red">"{{oThread?.title}}"</i> {{ "thread.lowercase.singular" | transloco }}</h4>
+          <h4 class="px-3">{{ "reply.no-replies-found" | transloco }}<i style="color:red">"{{oThread?.title}}"</i> {{ "thread.lowercase.singular" | transloco }}</h4>
         </div>
       </li>
       <li class="list-group-item" *ngFor="let r of oPage?.content">
@@ -51,7 +51,7 @@
           <p>{{r.body}}</p>
           <div class="d-flex justify-content-center my-2">
             <button type="button" class="btn  btn-sm btn-outline-danger" (click)="doRemove(r)"
-              *ngIf="r.user.username==oSessionService.getUsername()">Remove</button>
+              *ngIf="r.user.username==oSessionService.getUsername()">{{ "global.remove.remove.lowercase" | transloco }}</button>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
 
 <p-confirmDialog #cd2 [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
-    <h5> Reply removal</h5>
+    <h5> {{ "reply.removal" | transloco }}</h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
@@ -72,8 +72,8 @@
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p>¿Are you sure to remove reply?</p>
-    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" label="No" (click)="cd2.reject()"></button>
-    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" label="Yes" (click)="cd2.accept()"></button>
+    <p>{{ "reply.remove-question" | transloco }}</p>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" (click)="cd2.reject()"> {{ "global.no" | transloco }}</button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" (click)="cd2.accept()"> {{ "global.yes" | transloco }}</button>
   </ng-template>
 </p-confirmDialog>

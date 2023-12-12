@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -23,7 +24,8 @@ export class AdminReplyPlistRoutedComponent implements OnInit {
     private oActivatedRoute: ActivatedRoute,
     private oReplyAjaxService: ReplyAjaxService,
     private oConfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oTranslocoService: TranslocoService
   ) {
     this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("iduser") ?? "0");
     this.id_thread = parseInt(this.oActivatedRoute.snapshot.paramMap.get("idthread") ?? "0");
@@ -35,11 +37,11 @@ export class AdminReplyPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.oReplyAjaxService.generateRandom(amount).subscribe({
       next: (oResponse: number) => {
-        this.oMatSnackBar.open("Now there are " + oResponse + " replies", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.now-there-are') + ' ' + oResponse + this.oTranslocoService.translate('reply.lowercase.plural'), '', { duration: 2000 });
         this.bLoading = false;
       },
       error: (oError: HttpErrorResponse) => {
-        this.oMatSnackBar.open("Error generating replies: " + oError.message, '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.generating') + this.oTranslocoService.translate('reply.lowercase.plural') + ': ' + oError.message, '', { duration: 2000 });
         this.bLoading = false;
       },
     })
@@ -47,24 +49,26 @@ export class AdminReplyPlistRoutedComponent implements OnInit {
 
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
-      target: $event.target as EventTarget, 
-      message: 'Are you sure that you want to remove all the replies?',
+      target: $event.target as EventTarget,
+      message: this.oTranslocoService.translate('reply.remove-all-question'),
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: this.oTranslocoService.translate('global.yes'),
+      rejectLabel: this.oTranslocoService.translate('global.no'),
       accept: () => {
         this.oReplyAjaxService.empty().subscribe({
           next: (oResponse: number) => {
-            this.oMatSnackBar.open("Now there are " + oResponse + " replies", '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.now-there-are') + ' ' + oResponse + this.oTranslocoService.translate('reply.lowercase.plural'), '', { duration: 2000 });
             this.bLoading = false;
             this.forceReload.next(true);
           },
           error: (oError: HttpErrorResponse) => {
-            this.oMatSnackBar.open("Error emptying replies: " + oError.message, '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.emptying') + this.oTranslocoService.translate('reply.lowercase.plural') + ': ' + oError.message, '', { duration: 2000 });
             this.bLoading = false;
           },
         })
       },
       reject: () => {
-        this.oMatSnackBar.open("Empty Cancelled!", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('plist.empty') + ' ' + this.oTranslocoService.translate('global.cancelled') + '!', '', { duration: 2000 });
       }
     });
   }

@@ -12,11 +12,16 @@
     "list": "Listado de",
     "yes": "Sí",
     "no": "No",
+    "in": "en",
     "the": {
       "masc": "El",
       "fem": "La"
     },
     "remove": {
+      "remove": {
+        "uppercase": "Borrar",
+        "lowercase": "borrar"
+      },
       "has": {
         "masc": "ha sido borrado",
         "fem": "ha sido borrada"
@@ -26,7 +31,47 @@
         "fem": "no ha sido borrada"
       }
     },
-    "now-there-are": "Ahora hay"
+    "create": {
+      "create": {
+        "uppercase": "Crear",
+        "lowercase": "crear"
+      },
+      "has": {
+        "masc": "ha sido creado",
+        "fem": "ha sido creada"
+      },
+      "hasnt": {
+        "masc": "no ha sido creado",
+        "fem": "no ha sido creada"
+      }
+    },
+    "update": {
+      "update": {
+        "uppercase": "Actualizar",
+        "lowercase": "actualizar"
+      },
+      "has": {
+        "masc": "ha sido actualizado",
+        "fem": "ha sido actualizada"
+      },
+      "hasnt": {
+        "masc": "no ha sido actualizado",
+        "fem": "no ha sido actualizada"
+      }
+    },
+    "now-there-are": "Ahora hay",
+    "post": "Publica",
+    "a": {
+      "masc": "un",
+      "fem": "una"
+    },
+    "cancelled": "cancelado",
+    "error": "Error",
+    "emptying": "vaciando",
+    "generating": "generando",
+    "reading": "leyendo",
+    "select": "Selecciona",
+    "from-server": "desde el servidor"
   },
   "home": {
     "subtitle": "ilumina tus pensamientos",
@@ -46,11 +91,14 @@
     "login": "Iniciar sesión",
     "reset": "Reset",
     "as-admin": "Iniciar sesión como Administrador",
-    "as-user": "Iniciar sesión como Usuario"
+    "as-user": "Iniciar sesión como Usuario",
+    "successfull": "Inicio de sesión con éxito",
+    "operation": "operación de inicio de sesión"
   },
   "logout": {
     "logout": "Cerrar sesión",
-    "question": "¿Estás seguro de que quieres cerrar la sesión?"
+    "question": "¿Estás seguro de que quieres cerrar la sesión?",
+    "successfull": "Cierre de sesión con éxito"
   },
   "footer": {
     "by": "por",
@@ -108,7 +156,8 @@
     },
     "type": "Tipo de usuario",
     "removal": "Borrado de usuario",
-    "remove-question": "¿Estás seguro de que quieres borrar este usuario?"
+    "remove-question": "¿Estás seguro de que quieres borrar este usuario?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todos los usuarios?"
   },
   "thread": {
     "uppercase": {
@@ -121,7 +170,8 @@
     },
     "title": "Título",
     "removal": "Borrado de hilo",
-    "remove-question": "¿Estás seguro de que quieres borrar este hilo?"
+    "remove-question": "¿Estás seguro de que quieres borrar este hilo?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todos los hilos?"
   },
   "reply": {
     "uppercase": {
@@ -136,6 +186,8 @@
     "creation": "Creación",
     "body": "Cuerpo",
     "removal": "Borrado de respuesta",
-    "remove-question": "¿Estás seguro de que quieres borrar esta respuesta?"
+    "remove-question": "¿Estás seguro de que quieres borrar esta respuesta?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todas las respuestas?",
+    "no-replies-found": "Respuestas no encontradas para este"
   }
 }
