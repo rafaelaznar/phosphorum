@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UserAjaxService } from './user.ajax.service.service';
-import { IUser } from '../model/model.interfaces';
+import { IUser, IThreadPage } from '../model/model.interfaces';
 import { ThreadAjaxService } from './thread.ajax.service.service';
-
+import { Title } from '@angular/platform-browser';
+import { Observer } from 'rxjs';
 declare let jsPDF: any;
 
 @Injectable({
@@ -58,11 +59,32 @@ export class UserPrintAjaxService {
      doc.rect(120, 55, 80, 15, 'F');
      doc.setFontSize(12);
      doc.text(140, 64, `Nombre: ${oUserToPrint.name}`);
+    //
+    doc.setFillColor(240, 500, 240);
+     doc.rect(120, 35, 80, 15, 'F');
+     doc.setFontSize(12);
+     doc.text(140, 44, `Prueba: ${oUserToPrint.threads}`);
     
     //
     
-    //
-    doc.text(50, 64, `Prueba de si funciona`);
+    doc.text(50, 64, `Prueba de si funciona: `);
+
+    //Hay que gestionar esto
+   /* var oUserThreads = this.oThreadAjaxService.getPage(undefined, undefined, "defaultOrderField", "defaultOrderDirection", oUserToPrint.id)
+    .subscribe({
+        next: (result: IThreadPage) => {
+            // Hacer algo con los resultados
+            console.log(result);
+        },
+        error: (error) => {
+            // Manejar el error aquí
+            console.error("Error al obtener los hilos del usuario:", error);
+        },
+        complete: () => {
+            // Lógica a ejecutar cuando la operación está completa (si es necesario)
+        }
+    } as Observer<IThreadPage>);*/
+    
     return doc;
   }
 
