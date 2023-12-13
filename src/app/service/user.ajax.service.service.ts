@@ -34,7 +34,12 @@ export class UserAjaxService {
             return new Observable<number>();
         }
     }
+      searchUsers(searchText: string, pageable: { size?: number, page?: number }): Observable<IUserPage> {
+        const size = pageable.size || 10;
+        const page = pageable.page || 0;
 
+        return this.oHttpClient.get<IUserPage>(`${this.sUrl}/search?searchText=${searchText}&size=${size}&page=${page}`);
+    }
     newOne(oUser: IUser): Observable<IUser> {
         return this.oHttpClient.post<IUser>(this.sUrl, oUser);
     }
