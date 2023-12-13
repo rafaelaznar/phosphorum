@@ -57,4 +57,9 @@ export class UserAjaxService {
         return this.oHttpClient.delete<number>(this.sUrl + "/empty");
     }
 
+    confirmAccount(token: string): Observable<string> {
+        const url = `${this.sUrl}/confirm-account?token=${token}`;
+        return this.oHttpClient.get<string>(url);
+      }
+
 }

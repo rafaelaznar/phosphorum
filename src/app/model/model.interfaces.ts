@@ -50,6 +50,7 @@ export interface IUser extends IEntity {
     threads: number,
     replies: number,
     verified: boolean,
+    token: string,
 }
 
 export interface IUserPage extends IPage<IUser> {

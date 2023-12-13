@@ -38,6 +38,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
 //--
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
@@ -84,6 +85,7 @@ import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-fo
     FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ConfirmAccountComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
