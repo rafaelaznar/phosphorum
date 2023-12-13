@@ -7,6 +7,8 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unrouted/user-user-detail-unrouted.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
+import { Language } from 'src/app/model/utils/language';
+import { LanguageService } from 'src/app/service/language.service';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -19,13 +21,17 @@ export class MenuUnroutedComponent implements OnInit {
   oSessionUser: IUser | null = null;
   strUrl: string = "";
   lang = this.oTranslocoService.getActiveLang();
+  languages! : Language[];
+  selectedLanguage! : Language; 
+
 
   constructor(
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
     private oUserAjaxService: UserAjaxService,
     private oRouter: Router,
-    private oTranslocoService: TranslocoService
+    private oTranslocoService: TranslocoService,
+    private oLanguageService: LanguageService
   ) {
     
     this.oRouter.events.subscribe((ev) => {
@@ -65,9 +71,23 @@ export class MenuUnroutedComponent implements OnInit {
       }
     });
 
+    this.oLanguageService.getAllLanguages().subscribe({
+      next: (values: Language[]) => {
+        this.languages = values;
+      }
+    })
+
+    /*
     this.oTranslocoService.langChanges$.subscribe((response) => {
       this.lang = response;
     });
+    */
+
+    const activeLanguage = this.oLanguageService.getLanguageByCode(this.oTranslocoService.getActiveLang());
+
+    console.log(activeLanguage);
+    
+    this.selectedLanguage = (activeLanguage != null) ? activeLanguage : this.oLanguageService.getDefaultLanguage();
   }
 
   doSessionUserView($event: Event) {
@@ -88,8 +108,8 @@ export class MenuUnroutedComponent implements OnInit {
     //$event.preventDefault
   }
 
-  clickTranslate(language: string): void {
-    this.oTranslocoService.setActiveLang(language);
+  changeSiteLanguage(language: any): void {
+    this.oTranslocoService.setActiveLang(language.value.code);
   }
 
 }

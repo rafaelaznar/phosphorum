@@ -20,6 +20,7 @@
                   <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
                       routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "reply.uppercase.plural" | transloco }}</a>
               </li>
+              <!-- 
                   <li>
                     <a class="dropdown-item" (click)="clickTranslate('en')">
                       <img src="../../../../assets/images/icons/united-kingdom.png" alt="English" class="language-flag"> English
@@ -30,23 +31,28 @@
                       <img src="../../../../assets/images/icons/spain.png" alt="Español" class="language-flag"> Español
                     </a>
                   </li>
+              -->
           </ul>
-          <!-- 
-            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name">
+           
+            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name" (onChange)="changeSiteLanguage($event)">
             <ng-template pTemplate="selectedItem">
                 <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
-                    <img width="28px" [src]="'../../../../assets/images/icons/icon_uk_flag.png'+selectedLanguage.resource"/>
-                    <div>{{ selectedLanguage.name }}</div>
+                    <div>
+                        {{ selectedLanguage.name }}
+                        <img width="25px" [src]="'../../../../assets/images/icons/'+selectedLanguage.resource"/>
+                    </div>
                 </div>
             </ng-template>
             <ng-template let-language pTemplate="item">
                 <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
-                    <img width="28px" [src]="'../../../../assets/images/icons/icon_uk_flag.png'+language.resource"/>
-                    <div>{{ language.name }}</div>
+                    <div>
+                        {{ language.name }}
+                        <img width="25px" [src]="'../../../../assets/images/icons/'+language.resource"/>
+                    </div>
                 </div>
             </ng-template>
         </p-dropdown>
-          -->
+        
 
           <span class="navbar-text mx-1" *ngIf="strUserName">
               <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
