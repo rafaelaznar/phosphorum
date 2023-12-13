@@ -8,7 +8,7 @@ import { Language } from "../model/utils/language";
 export class LanguageService {
 
     private lngEnglish: Language = new Language('en', 'English', 'united-kingdom.png');
-    private lngSpanish: Language = new Language('es', 'Spanish', 'spain.png');
+    private lngSpanish: Language = new Language('es', 'Español', 'spain.png');
 
     constructor() { }
 

@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { PrimeNGConfig } from "primeng/api";
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,13 +12,10 @@ import { PrimeNGConfig } from "primeng/api";
 export class AppComponent {
   title: string = 'phosphorum';
 
-  constructor(
-    private primengConfig: PrimeNGConfig
-  ) {}
+  constructor(private primengConfig: PrimeNGConfig) {}
 
     ngOnInit() {
-      this.primengConfig.ripple = true;
-
+        this.primengConfig.ripple = true;
     }
 
 }
