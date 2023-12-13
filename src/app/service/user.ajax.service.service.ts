@@ -20,6 +20,9 @@ export class UserAjaxService {
     getByUsername(username: string): Observable<IUser> {
         return this.oHttpClient.get<IUser>(this.sUrl + "/byUsername/" + username);
     }
+    getUsersByName(name: string): Observable<IUser[]> {
+        return this.oHttpClient.get<IUser[]>(this.sUrl + "/byName/" + name);
+      }
 
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string): Observable<IUserPage> {
         if (!size) size = 10;

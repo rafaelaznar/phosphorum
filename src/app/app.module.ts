@@ -73,7 +73,7 @@ import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-p
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 
-
+import { AutoCompleteModule } from 'primeng/autocomplete';
 //--
 @NgModule({
   declarations: [
@@ -146,6 +146,7 @@ import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-fo
     MatToolbarModule,
     MatIconModule,
     //--
+    AutoCompleteModule
   ],
   providers: [
     MessageService,

@@ -1,9 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+
+interface AutoCompleteCompleteEvent {
+  originalEvent: Event;
+  query: string;
+}
 
 @Component({
   selector: 'app-admin-user-selection-unrouted',
@@ -19,17 +25,53 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null;
+  users: any[] | undefined;
+  filteredUsers: IUser[] | undefined;
+  selectedUsers: IUser | undefined;
+  formGroup: FormGroup;
 
   constructor(
     private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
     public oDynamicDialogRef: DynamicDialogRef
-  ) { }
+  ) {    this.formGroup = new FormGroup({
+    selectedUser: new FormControl<any | null>(null)
+  }); }
 
   ngOnInit() {
     this.getPage();
+
+    
+  }
+  filterUsers(event: AutoCompleteCompleteEvent) {
+    const query = event.query.toLowerCase();
+  
+    if (query.length > 2) { 
+      this.oUserAjaxService.getUsersByName(query).subscribe(users => {
+        this.filteredUsers = users;
+        this.filterTableBySearch(query); // Llamar al método de filtrado para la tabla
+      }, error => {
+        console.error('Error al obtener usuarios por nombre:', error);
+        this.filteredUsers = []; // Manejar el error aquí, si es necesario
+      });
+    } else {
+      this.filteredUsers = [];
+      this.getPage();  // Limpiar la tabla si la consulta es corta
+    }
   }
 
+  filterTableBySearch(query: string) {
+    if (this.oPage?.content) {
+      const filteredContent = this.oPage.content.filter((user: IUser) =>
+        user.name.toLowerCase().includes(query) ||
+        user.surname.toLowerCase().includes(query) ||
+        user.lastname.toLowerCase().includes(query) ||
+        user.email.toLowerCase().includes(query) ||
+        user.username.toLowerCase().includes(query)
+      );
+      this.filteredUsers = filteredContent;
+    }
+  }
   getPage(): void {
     this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({    
       next: (data: IUserPage) => {
