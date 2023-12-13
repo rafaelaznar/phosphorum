@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { from, Observable } from 'rxjs';
-import { Language } from "../model/utils/language";
+import { Language } from "../model/model.interfaces";
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +12,8 @@ export class LanguageService {
 
     constructor() { }
 
-    getAllLanguages(): Observable<Language[]>{
-        const result : Observable<Language[]> = from([
+    getAllLanguages(): Observable<Language[]> {
+        const result: Observable<Language[]> = from([
             [
                 this.lngEnglish,
                 this.lngSpanish
@@ -23,7 +23,7 @@ export class LanguageService {
         return result;
     }
 
-    getDefaultLanguage(): Language{
+    getDefaultLanguage(): Language {
         const browserLanguage = navigator.language || 'en';
         const languageCode = browserLanguage.split('-')[0];
 
@@ -37,11 +37,10 @@ export class LanguageService {
     }
 
     getLanguageByCode(code: string): Language {
-        let result: any = null;
         if (code !== null) {
-            result = (code === 'en') ? this.lngEnglish : this.lngSpanish;
+            return (code === 'en') ? this.lngEnglish : this.lngSpanish;
         }
 
-        return result;
+        return this.getDefaultLanguage();
     }
 }

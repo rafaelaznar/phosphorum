@@ -23,7 +23,7 @@
           </ul>
            
           <div class="dropdown-lang">
-            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name" (onChange)="changeSiteLanguage($event)">
+            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name" (onChange)="changeSiteLanguage($event.value)">
                 <ng-template pTemplate="selectedItem">
                     <div class="flex align-items-center gap-2" *ngIf="selectedLanguage">
                         <div>

@@ -7,7 +7,7 @@ import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unrouted/user-user-detail-unrouted.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { Language } from 'src/app/model/utils/language';
+import { Language } from 'src/app/model/model.interfaces';
 import { LanguageService } from 'src/app/service/language.service';
 
 @Component({
@@ -20,9 +20,9 @@ export class MenuUnroutedComponent implements OnInit {
   strUserName: string = "";
   oSessionUser: IUser | null = null;
   strUrl: string = "";
-  lang = this.oTranslocoService.getActiveLang();
-  languages! : Language[];
-  selectedLanguage! : Language; 
+  lang: string = "";
+  languages: Language[] = [];
+  selectedLanguage: Language | null = null;
 
 
   constructor(
@@ -33,13 +33,13 @@ export class MenuUnroutedComponent implements OnInit {
     private oTranslocoService: TranslocoService,
     private oLanguageService: LanguageService
   ) {
-    
+
     this.oRouter.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
       }
     })
-    
+
     this.strUserName = oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
@@ -77,17 +77,9 @@ export class MenuUnroutedComponent implements OnInit {
       }
     })
 
-    /*
-    this.oTranslocoService.langChanges$.subscribe((response) => {
-      this.lang = response;
-    });
-    */
-
-    const activeLanguage = this.oLanguageService.getLanguageByCode(this.oTranslocoService.getActiveLang());
-
-    console.log(activeLanguage);
-    
-    this.selectedLanguage = (activeLanguage != null) ? activeLanguage : this.oLanguageService.getDefaultLanguage();
+    this.lang = this.oTranslocoService.getActiveLang();
+    const activeLanguage = this.oLanguageService.getLanguageByCode(this.lang);
+    this.selectedLanguage = activeLanguage || this.oLanguageService.getDefaultLanguage();
   }
 
   doSessionUserView($event: Event) {
@@ -108,8 +100,8 @@ export class MenuUnroutedComponent implements OnInit {
     //$event.preventDefault
   }
 
-  changeSiteLanguage(language: any): void {
-    this.oTranslocoService.setActiveLang(language.value.code);
+  changeSiteLanguage(language: Language): void {
+    this.oTranslocoService.setActiveLang(language.code);
   }
 
 }
