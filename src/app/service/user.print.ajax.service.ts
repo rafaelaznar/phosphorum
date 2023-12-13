@@ -66,10 +66,10 @@ export class UserPrintAjaxService {
 
     doc.setTextColor(0, 0, 0, 0);
     //
+    //Reordenar
     doc.setFillColor(parseInt(indigoPastel.substring(1, 3), 16),
       parseInt(indigoPastel.substring(3, 5), 16),
       parseInt(indigoPastel.substring(5, 7), 16));
-    //separacion de cajas: h=15 v=5
     doc.roundedRect(baseX, 55, 104, 175, 5, 5, 'F');
     doc.setFontSize(14);
     doc.text(20, 68, `User Privileges: `);
@@ -131,6 +131,7 @@ export class UserPrintAjaxService {
     } else {
       rol = "Admin";
       doc.setFontSize(12);
+      //Por terminar
       doc.text(20, 78, `— Cosis cosis `);
       doc.text(20, 88, `— Cosis cosis `);
 
@@ -168,7 +169,7 @@ export class UserPrintAjaxService {
     doc.setDrawColor(indigoPastel);
     doc.line(10, 244, 200, 244);
 
-
+    //Por terminar
     return doc;
   }
 
