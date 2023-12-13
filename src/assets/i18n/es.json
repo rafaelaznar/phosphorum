@@ -149,6 +149,7 @@
     "lastname": "2º Apellido",
     "email": "Correo",
     "username": "Username",
+    "password": "Contraseña",
     "role": {
       "role": "Rol",
       "admin": "Administrador",

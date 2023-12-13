@@ -11,12 +11,14 @@
 <div class="login-form">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Username" formControlName="username">
+      <mat-label>{{ "user.username" | transloco }}:</mat-label>
+      <input matInput [placeholder]="'user.username' | transloco" formControlName="username">
       <mat-error *ngIf="loginForm.get('username')?.hasError('required')">{{ "login.username-required" | transloco }}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Password" formControlName="password">
+      <mat-label>{{ "user.password" | transloco }}:</mat-label>
+      <input matInput type="password" [placeholder]="'user.password' | transloco" formControlName="password">
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{ "login.password-required" | transloco }}</mat-error>
       <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">{{ "login.password-minlength" | transloco }}</mat-error>
     </mat-form-field>

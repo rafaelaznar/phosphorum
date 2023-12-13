@@ -13,14 +13,14 @@
         <div class="form-group">
           <mat-form-field [style.width.px]=250 *ngIf="operation=='EDIT'">
             <mat-label>{{ "global.id" | transloco }}:</mat-label>
-            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <input matInput formControlName="id" [placeholder]="'global.id' | transloco" required readonly>
             <mat-hint align="end">({{ "form.cant-change" | transloco }} {{ "form.this-number" | transloco }})</mat-hint>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>{{ "thread.title" | transloco }}:</mat-label>
-            <input matInput formControlName="title" placeholder="Title" required>
+            <input matInput formControlName="title" [placeholder]="'thread.title' | transloco" required>
             <mat-hint align="end">(3 {{ "form.to" | transloco }} 2048 {{ "form.characters-long" | transloco }})</mat-hint>
             <mat-error *ngIf="hasError('title', 'required')">{{ "thread.title" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
             <mat-error *ngIf="hasError('title', 'minlength')">{{ "form.more-length" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
@@ -31,7 +31,7 @@
           <div class="form-group">
             <mat-form-field [style.width.px]=100>
               <mat-label>{{ "user.uppercase.singular" | transloco }}:</mat-label>
-              <input matInput formControlName="id" placeholder="USER" required readonly>
+              <input matInput formControlName="id" [placeholder]="'user.uppercase.singular' | transloco" required readonly>
             </mat-form-field>
             <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
               {{ "form.find" | transloco }} {{ "user.lowercase.singular" | transloco }}</button>

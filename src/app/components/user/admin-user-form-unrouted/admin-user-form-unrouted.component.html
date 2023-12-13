@@ -13,14 +13,14 @@
         <div class="form-group">
           <mat-form-field [style.width.px]=250 *ngIf="operation=='EDIT'">
             <mat-label>{{ "global.id" | transloco }}:</mat-label>
-            <input matInput formControlName="id" placeholder="ID" required readonly>
+            <input matInput formControlName="id" [placeholder]="'global.id' | transloco" required readonly>
             <mat-hint align="end">({{ "form.cant-change" | transloco }} {{ "form.this-number" | transloco }})</mat-hint>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>{{ "user.name" | transloco }}:</mat-label>
-            <input matInput formControlName="name" placeholder="Name" required>
+            <input matInput formControlName="name" [placeholder]="'user.name' | transloco" required>
             <mat-hint align="end">(3 {{ "form.to" | transloco }} 255 {{ "form.characters-long" | transloco }})</mat-hint>
             <mat-error *ngIf="hasError('name', 'required')">{{ "user.name" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
             <mat-error *ngIf="hasError('name', 'minlength')">{{ "form.more-length" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
@@ -30,7 +30,7 @@
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>{{ "user.surname" | transloco }}:</mat-label>
-            <input matInput formControlName="surname" placeholder="Surname" required>
+            <input matInput formControlName="surname" [placeholder]="'user.surname' | transloco" required>
             <mat-hint align="end">(3 {{ "form.to" | transloco }} 255 {{ "form.characters-long" | transloco }})</mat-hint>
             <mat-error *ngIf="hasError('surname', 'required')">{{ "user.surname" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
             <mat-error *ngIf="hasError('surname', 'minlength')">{{ "form.more-length" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
@@ -40,7 +40,7 @@
         <div class="form-group">
           <mat-form-field [style.width.px]=350>
             <mat-label>{{ "user.lastname" | transloco }}:</mat-label>
-            <input matInput formControlName="lastname" placeholder="Lastname">
+            <input matInput formControlName="lastname" [placeholder]="'user.lastname' | transloco">
             <mat-hint align="end">({{ "form.max" | transloco }} 255 {{ "form.characters-long" | transloco }})</mat-hint>
             <mat-error *ngIf="hasError('lastname', 'maxlength')">{{ "form.limit-exceed" | transloco }}</mat-error>
           </mat-form-field>
@@ -48,7 +48,7 @@
         <div class="form-group">
           <mat-form-field>
             <mat-label>{{ "user.email" | transloco }}:</mat-label>
-            <input matInput formControlName="email" placeholder="Email" required>
+            <input matInput formControlName="email" [placeholder]="'user.email' | transloco" required>
             <mat-error *ngIf="hasError('email', 'required')">{{ "user.email" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
             <mat-error *ngIf="hasError('email', 'email')">{{ "user.email" | transloco }} {{ "form.is-not-valid" | transloco }}</mat-error>
           </mat-form-field>
@@ -56,7 +56,7 @@
         <div class="form-group">
           <mat-form-field>
             <mat-label>{{ "user.username" | transloco }}:</mat-label>
-            <input matInput formControlName="username" placeholder="Username" required>
+            <input matInput formControlName="username" [placeholder]="'user.username' | transloco" required>
             <mat-hint align="end">(6 {{ "form.to" | transloco }} 15 {{ "form.alphanumeric" | transloco }})</mat-hint>
             <mat-error *ngIf="hasError('username', 'required')">{{ "user.username" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
             <mat-error *ngIf="hasError('username', 'minlength')">{{ "form.more-length" | transloco }} {{ "form.is-required" | transloco }}</mat-error>

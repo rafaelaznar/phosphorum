@@ -149,6 +149,7 @@
     "lastname": "Lastname",
     "email": "Email",
     "username": "Username",
+    "password": "Password",
     "role": {
       "role": "Role",
       "admin": "Admin",
