@@ -24,7 +24,6 @@ export class MenuUnroutedComponent implements OnInit {
   languages: Language[] = [];
   selectedLanguage: Language | null = null;
 
-
   constructor(
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
@@ -74,6 +73,11 @@ export class MenuUnroutedComponent implements OnInit {
     this.oLanguageService.getAllLanguages().subscribe({
       next: (values: Language[]) => {
         this.languages = values;
+
+        const defaultLanguage = this.oLanguageService.getDefaultLanguage();
+        this.oTranslocoService.setDefaultLang(defaultLanguage.code);
+        this.oTranslocoService.setActiveLang(defaultLanguage.code);
+        this.selectedLanguage = defaultLanguage;
       }
     })
 

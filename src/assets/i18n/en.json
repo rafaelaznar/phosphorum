@@ -6,7 +6,10 @@
     },
     "id": "Id",
     "edit": "Edit",
-    "new": "New",
+    "new": {
+      "masc": "New",
+      "fem": "New"
+    },
     "save": "Save",
     "view": "View",
     "list": "List",

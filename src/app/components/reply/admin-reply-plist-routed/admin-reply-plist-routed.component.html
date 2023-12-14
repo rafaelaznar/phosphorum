@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center" *ngIf="!bLoading">
-                <a class="btn btn-primary" [routerLink]="['/admin','reply','new']">{{ "global.new" | transloco }} {{ "reply.lowercase.singular" | transloco }}</a>
+                <a class="btn btn-primary" [routerLink]="['/admin','reply','new']">{{ "global.new.fem" | transloco }} {{ "reply.lowercase.singular" | transloco }}</a>
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(10)">+10</a>
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(100)">+100</a>
                 <a class="btn btn-warning mx-1" (click)="doGenerateRandom(1000)">+1000</a>
