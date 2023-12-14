@@ -58,8 +58,8 @@ export class UserAjaxService {
     }
 
     confirmAccount(token: string): Observable<string> {
-        const url = `${this.sUrl}/confirm-account?token=${token}`;
-        return this.oHttpClient.get<string>(url);
+        
+        return this.oHttpClient.get<string>(this.sUrl + "/confirm-account?token=" + token);
       }
 
 }
