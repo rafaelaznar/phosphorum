@@ -8,7 +8,7 @@ import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrou
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
-import { Subject } from 'rxjs';
+import { Subject, debounceTime, of, switchMap } from 'rxjs';
 
 @Component({
   providers: [ConfirmationService],
@@ -80,7 +80,43 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     }
     this.getPage();
   }
+  getValue(event: any): string {
+    return event.target.value;
+  }
+  search(filterValue: string): void {
 
+    if (filterValue.length >= 3) {
+      
+      this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', this.id_user,filterValue)
+        .pipe(
+          debounceTime(500),
+          switchMap((data: IThreadPage) => {
+            return of(data);
+          })
+        )
+        .subscribe(
+          (data: IThreadPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
+    } else {
+      // If filterValue is null or less than 3 characters, load all users without debounce
+      this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', this.id_user)
+        .subscribe(
+          (data: IThreadPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
+    }
+  }
   doView(u: IThread) {
     this.ref = this.oDialogService.open(AdminThreadDetailUnroutedComponent, {
       data: {

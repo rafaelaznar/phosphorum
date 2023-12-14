@@ -20,7 +20,7 @@
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
-
+  <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search"/>
 
   <div class="mb-5 ">
     <table class="table table-bordered table-striped table-hover table-sm">

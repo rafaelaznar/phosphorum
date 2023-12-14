@@ -11,11 +11,14 @@
     <h3>No active filter</h3>
     <h3>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h3>
   </div>
+  <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search"/>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0"></p-paginator>
   </div>
+  
 
+  
 
   <div class="mb-5 ">
     <table class="table table-bordered table-striped table-hover table-sm">

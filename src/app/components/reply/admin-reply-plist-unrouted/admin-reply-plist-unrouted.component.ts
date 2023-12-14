@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
-import { Subject } from 'rxjs';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   providers: [ConfirmationService],
@@ -71,7 +71,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
       }
     })
   }
-
+ 
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
@@ -146,6 +146,36 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
 
     })
   }
-
-
+  getValue(event: any): string {
+    return event.target.value;
+  }
+  search(filterValue: string): void {
+    // Assuming oReplyService is the service handling the reply page data
+    if (filterValue.length > 2) {
+        this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, filterValue)
+            .pipe(debounceTime(500))
+            .subscribe(
+                (data: IReplyPage) => {
+                    this.oPage = data;
+                },
+                (error: any) => {
+                    // Handle error
+                    console.error(error);
+                }
+            );
+    } else {
+        // If filter length is less than 3, show all replies
+        this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, '')
+            .pipe(debounceTime(500))
+            .subscribe(
+                (data: IReplyPage) => {
+                    this.oPage = data;
+                },
+                (error: any) => {
+                    // Handle error
+                    console.error(error);
+                }
+            );
+    }
+}
 }
