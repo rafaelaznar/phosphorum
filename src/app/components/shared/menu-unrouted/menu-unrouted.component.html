@@ -6,7 +6,7 @@
 
               <li class="nav-item">
                   <a class="nav-link" [class.active]="strUrl=='/home'||strUrl=='/'" aria-current="page"
-                      routerLink="/home">{{ "menu.home" | transloco }}</a>
+                      routerLink="/home">{{ "home.home" | transloco }}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')"
@@ -47,15 +47,15 @@
               <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
           </span>
           <span class="navbar-text mx-1" *ngIf="!strUserName">
-            {{ "menu.not-logged" | transloco }}
+            {{ "login.not-logged" | transloco }}
           </span>
           <span class="navbar-text mx-1">
               <a class="nav-link" routerLink="/login" href="#" *ngIf="!strUserName"
-                  [class.active]="strUrl.startsWith('/login')">{{ "menu.login" | transloco }}</a>
+                  [class.active]="strUrl.startsWith('/login')">{{ "login.login" | transloco }}</a>
           </span>
           <span class="navbar-text mx-1">
               <a class="nav-link" routerLink="/logout" href="#" *ngIf="strUserName"
-                  [class.active]="strUrl.startsWith('/logout')">{{ "menu.logout" | transloco }}</a>
+                  [class.active]="strUrl.startsWith('/logout')">{{ "logout.logout" | transloco }}</a>
           </span>
 
       </div>

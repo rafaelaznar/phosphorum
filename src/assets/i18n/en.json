@@ -77,21 +77,17 @@
     "from-server": "from server"
   },
   "home": {
+    "home": "Home",
     "subtitle": "light your thoughts",
     "featured-users": "Featured Users"
   },
-  "menu": {
-    "home": "Home",
-    "login": "Login",
-    "logout": "Logout",
-    "not-logged": "Not logged in"
-  },
   "login": {
+    "login": "Login",
+    "not-logged":"Not logged in",
     "form": "Login Form",
     "username-required": "Username is required",
     "password-required": "Password is required",
     "password-minlength": "Password must be at least 6 characters length",
-    "login": "Login",
     "reset": "Reset",
     "as-admin": "Login as Admin",
     "as-user": "Login as User",

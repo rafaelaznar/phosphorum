@@ -77,21 +77,17 @@
     "from-server": "desde el servidor"
   },
   "home": {
+    "home": "Inicio",
     "subtitle": "ilumina tus pensamientos",
     "featured-users": "Usuarios Destacados"
   },
-  "menu": {
-    "home": "Home",
-    "login": "Iniciar sesión",
-    "logout": "Cerrar sesión",
-    "not-logged": "Sesión no iniciada"
-  },
   "login": {
+    "login": "Iniciar sesión",
+    "not-logged": "Sesión no iniciada",
     "form": "Formulario de Inicio de sesión",
     "username-required": "El username es requerido",
     "password-required": "La contraseña es requerida",
     "password-minlength": "la contraseña tiene que tener al menos 6 caracteres",
-    "login": "Iniciar sesión",
     "reset": "Resetear",
     "as-admin": "Iniciar sesión como Administrador",
     "as-user": "Iniciar sesión como Usuario",
