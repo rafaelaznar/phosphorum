@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
@@ -14,6 +15,7 @@ export class ConfirmAccountComponent implements OnInit {
     private oRouter: ActivatedRoute,
     private oUserAjaxService: UserAjaxService,
     private oRouterNavigate: Router,
+    private oMatSnackBar: MatSnackBar,
  
   ) { }
 
@@ -28,12 +30,12 @@ export class ConfirmAccountComponent implements OnInit {
       this.oUserAjaxService.confirmAccount(token).subscribe({
         next: (data:string) => {
           console.log('Cuenta confirmada correctamente', data);
+          this.oMatSnackBar.open(" Email verified!!", '', { duration: 2000 });
+
           this.oRouterNavigate.navigate(['/home']);
         },
         error:(error:HttpErrorResponse) => {
           console.error('Error al confirmar la cuenta', error);
-          //this.oRouterNavigate.navigate(['/home']);
-
         }
     });
     } else {
