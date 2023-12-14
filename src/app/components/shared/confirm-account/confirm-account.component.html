@@ -3,6 +3,10 @@
     <div class="card-body">
       <h2 class="card-title">Confirmar cuenta</h2>
       <p class="card-text">Haz clic en el botón de abajo para confirmar tu cuenta.</p>
+      <div class="form-group">
+        <label for="passwordInput">Nueva Contraseña:</label>
+        <input type="password" class="form-control" id="passwordInput" [(ngModel)]="password" placeholder="Contraseña">
+      </div>
       <button class="btn btn-primary" (click)="confirmAccount()">Confirmar</button>
     </div>
   </div>

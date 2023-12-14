@@ -39,6 +39,10 @@ export class UserAjaxService {
         return this.oHttpClient.post<IUser>(this.sUrl, oUser);
     }
 
+    newOneForUsers(oUser: IUser): Observable<IUser> {
+        return this.oHttpClient.post<IUser>(this.sUrl + "/forusers", oUser);
+    }
+
     updateOne(oUser: IUser): Observable<IUser> {
         return this.oHttpClient.put<IUser>(this.sUrl, oUser);
     }
@@ -57,9 +61,9 @@ export class UserAjaxService {
         return this.oHttpClient.delete<number>(this.sUrl + "/empty");
     }
 
-    confirmAccount(token: string): Observable<string> {
+    confirmAccount(token: string, pass:string): Observable<string> {
         
-        return this.oHttpClient.get<string>(this.sUrl + "/confirm-account?token=" + token);
+        return this.oHttpClient.get<string>(this.sUrl + "/confirm-account?token=" + token + "&password=" + pass);
       }
 
 }
