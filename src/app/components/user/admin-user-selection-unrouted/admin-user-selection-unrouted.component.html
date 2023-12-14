@@ -6,7 +6,7 @@
   </div>
 </div>
 <form [formGroup]="formGroup">
-  <div class="mb-3">
+  <div class="d-flex justify-content-center mb-3">
     <p-autoComplete formControlName="selectedUser" [forceSelection]="true"  (completeMethod)="filterUsers($event)" field="name"></p-autoComplete>
   </div>
 </form>

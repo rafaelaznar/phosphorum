@@ -4,6 +4,12 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { IThread, IThreadPage } from 'src/app/model/model.interfaces';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { FormControl, FormGroup } from '@angular/forms';
+
+interface AutoCompleteCompleteEvent {
+  originalEvent: Event;
+  query: string;
+}
 
 @Component({
   selector: 'app-admin-thread-selection-unrouted',
@@ -21,15 +27,49 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oThreadToRemove: IThread | null = null;
-
+  threads: any[] | undefined;
+  filteredThreads: IThread[] | undefined;
+  selectedThreads: IThread | undefined;
+  formGroup: FormGroup;
   constructor(
     private oThreadAjaxService: ThreadAjaxService,
     public oDialogService: DialogService,
-    public oDynamicDialogRef: DynamicDialogRef
-  ) { }
+    public oDynamicDialogRef: DynamicDialogRef,
+    
+    ) {    this.formGroup = new FormGroup({
+      selectedThreads: new FormControl<any | null>(null)
+    }); }
 
   ngOnInit() {
     this.getPage();
+  }
+
+  filterThreads(event: AutoCompleteCompleteEvent) {
+    const query = event.query.toLowerCase();
+  
+    if (query.length > 2) {
+      this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user, query).subscribe({
+        next: (data: IThreadPage) => {
+          this.oPage = data;
+          this.oPaginatorState.pageCount = data.totalPages;
+          console.log(this.oPaginatorState);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      });
+    } else {
+      this.getPage(); // Limpiar la tabla si la consulta es corta
+    }
+  }
+  filterTableBySearch(query: string) {
+    if (this.oPage?.content) {
+      const filteredContent = this.oPage.content.filter((thread: IThread) =>
+       
+       thread.title.toLowerCase().includes(query) 
+      );
+      this.filteredThreads = filteredContent;
+    }
   }
 
   getPage(): void {
