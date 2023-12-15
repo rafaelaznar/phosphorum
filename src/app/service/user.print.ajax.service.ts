@@ -16,20 +16,13 @@ export class UserPrintAjaxService {
     private oUserAjaxService: UserAjaxService
   ) { }
 
-
-  //Mirar qué hace esto
-  sp = (n: number): string => n.toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-
   printUser = (id_user: number): void => {
     this.oUserAjaxService.getOne(id_user).subscribe({
       next: (oUserToPrint: IUser) => {
         console.log('User to print:', oUserToPrint);
-        //Cosas
         var doc = new jsPDF();
         doc.setFont('Arial');
         doc.setFontSize(12);
-        //doc.text(50, 64, `Prueba de si funciona`);
         doc = this.cabecera(doc);
         doc = this.contenido(doc, oUserToPrint);
         doc = this.pie(doc);
@@ -174,7 +167,6 @@ export class UserPrintAjaxService {
     doc.roundedRect(baseX, 215, 80, 15, 5, 5, 'F');
     doc.setFontSize(14);
     doc.text(20, 224, `Replies: ${oUserToPrint.replies}`);
-    //
 
     return doc;
   }
@@ -185,8 +177,15 @@ export class UserPrintAjaxService {
 
     doc.setDrawColor(indigoPastel);
     doc.line(10, 244, 200, 244);
+    //
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); 
+    doc.text(11, 254, `CIPFP Ausiàs March`);
+    doc.text(11, 264, `Télf: 961205930`);
+    doc.text(65, 264, `Fax: 961205931`);
+    doc.text(11, 274, `C/Ángel Villena, s/n. 46013 Valencia`);
+    doc.text(11, 284, `secretaria@ausiasmarch.net`);
 
-    //Por terminar
     return doc;
   }
 
