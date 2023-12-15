@@ -28,7 +28,7 @@ export class UserPrintAjaxService {
         doc = this.pie(doc);
 
 
-        doc.save('prueba.pdf');
+        doc.save('profile.pdf');
       }
     })
   }
