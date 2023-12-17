@@ -55,5 +55,8 @@ export class ReplyAjaxService {
     empty(): Observable<number> {
         return this.oHttpClient.delete<number>(this.sUrl + "/empty");
     }
-
+    //Modified by p
+    getRepliesByMonth(id_user: number): Observable<any[]> {
+        return this.oHttpClient.get<any[]>(this.sUrl + "/getRepliesByMonth/" + id_user);
+      }
 }
