@@ -10,6 +10,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { Subject } from 'rxjs';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   providers: [ConfirmationService],
@@ -147,5 +148,16 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
       }
     })
   }
+  targetList: any[] = [];
+  
+  onItemDropped(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer !== event.container) {
+      // Si el elemento se suelta en un contenedor diferente, lo movemos a nuestra lista local
+      const movedItem = event.previousContainer.data[event.previousIndex];
+      this.targetList.push({ ...movedItem });
 
+      // Eliminamos el elemento del contenedor original
+      event.previousContainer.data.splice(event.previousIndex, 1);
+    }
+  }
 }

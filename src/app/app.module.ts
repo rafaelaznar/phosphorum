@@ -74,6 +74,8 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 //--
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     UserReplyDetailUnroutedComponent,
     UserReplyFormUnroutedComponent,
     //--    
+
+
   ],
   imports: [
     BrowserModule,
@@ -146,7 +150,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     MatToolbarModule,
     MatIconModule,
     //--
-    AutoCompleteModule
+    AutoCompleteModule,
+    DragDropModule
   ],
   providers: [
     MessageService,

@@ -56,4 +56,6 @@ export class ReplyAjaxService {
         return this.oHttpClient.delete<number>(this.sUrl + "/empty");
     }
 
+   
+
 }

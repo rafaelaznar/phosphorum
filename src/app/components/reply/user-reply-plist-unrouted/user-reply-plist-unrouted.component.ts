@@ -12,6 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -22,6 +23,8 @@ import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-u
 })
 
 export class UserReplyPlistUnroutedComponent implements OnInit {
+
+  @Output() replyDropped = new EventEmitter<CdkDragDrop<IReply[]>>();
 
   @Input()
   set id_user(value: number) {
@@ -97,9 +100,9 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     })
   }
 
-  onPageChang(event: PaginatorState) {
-    this.oPaginatorState.rows = event.rows;
-    this.oPaginatorState.page = event.page;
+  onPageChang(dropevent: PaginatorState) {
+    this.oPaginatorState.rows = dropevent.rows;
+    this.oPaginatorState.page = dropevent.page;
     this.getPage();
   }
 
@@ -204,5 +207,22 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         this.reply_change.emit(true);
       });
     }
+   
   }
+  @Output() itemDropped = new EventEmitter<any>();
+
+  onItemDragged(event: any) {
+    this.itemDropped.emit(event.source.data);
+  }
+
+
+   /* if (dropevent.previousContainer === dropevent.container) {
+      moveItemInArray(dropevent.container.data, dropevent.previousIndex, dropevent.currentIndex);
+   
+    } else {
+      const movedItem = dropevent.previousContainer.data[dropevent.previousIndex];
+      dropevent.container.data.splice(dropevent.currentIndex, 0, { ...movedItem });
+      dropevent.previousContainer.data.splice(dropevent.previousIndex, 1);
+    }
+  }*/
 }
