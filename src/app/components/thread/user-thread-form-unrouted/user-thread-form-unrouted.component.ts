@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-user-thread-form-unrouted',
@@ -18,7 +19,7 @@ export class UserThreadFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; //new or edit
 
   threadForm!: FormGroup;
-  oThread: IThread = {  user: { id: 0 } } as IThread;
+  oThread: IThread = { user: { id: 0 } } as IThread;
   status: HttpErrorResponse | null = null;
 
 
@@ -28,7 +29,8 @@ export class UserThreadFormUnroutedComponent implements OnInit {
     private oThreadAjaxService: ThreadAjaxService,
     private oMatSnackBar: MatSnackBar,
     public oDynamicDialogRef: DynamicDialogRef,
-    public oDialogService: DialogService
+    public oDialogService: DialogService,
+    private oTranslocoService: TranslocoService
   ) {
     this.initializeForm(this.oThread);
   }
@@ -52,7 +54,7 @@ export class UserThreadFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading thread from server.", '', { duration: 2000 });
+          this.oMatSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.reading') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.from-server'), '', { duration: 2000 });
         }
       })
     } else {
@@ -71,12 +73,12 @@ export class UserThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = { "user": {} } as IThread;
             this.initializeForm(this.oThread); //el id se genera en el servidor
-            this.oMatSnackBar.open('Thread has been created.', '', { duration: 2000 });
-            this.oDynamicDialogRef.close(data);  
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.has.masc'), '', { duration: 2000 });
+            this.oDynamicDialogRef.close(data);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to create thread.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.hasnt.masc'), '', { duration: 2000 });
           }
         });
       } else {
@@ -84,12 +86,12 @@ export class UserThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = data;
             this.initializeForm(this.oThread);
-            this.oMatSnackBar.open('Thread has been updated.', '', { duration: 2000 });
-            this.oDynamicDialogRef.close(data);  
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.has.masc'), '', { duration: 2000 });
+            this.oDynamicDialogRef.close(data);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to update thread.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.hasnt.masc'), '', { duration: 2000 });
           }
         });
       }
