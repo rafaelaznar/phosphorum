@@ -11,16 +11,26 @@
     <h3 *ngIf="id_thread>0">{{ "plist.filtered-by" | transloco }} {{ "thread.lowercase.singular" | transloco }} ({{id_thread}} - {{oThread?.title | trimming}}) <a type="button"
         class="btn btn-danger btn-sm" *ngIf="id_thread>0" [routerLink]="['/admin','reply','plist']">{{ "plist.reset-filter" | transloco }}</a>
     </h3>
+<<<<<<< HEAD
+    
+    <h3 *ngIf="id_user>0">Filtered by user ({{id_user}} - {{oUser?.name}} {{oUser?.surname}}) <a type="button"
+        class="btn btn-danger btn-sm" *ngIf="id_user>0" [routerLink]="['/admin','reply','plist']">reset filter</a></h3>
+    <h3 *ngIf="!(id_user>0)&&!(id_thread>0)">No active filter</h3>
+    <h3>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h3>
+=======
     <h3 *ngIf="id_user>0">{{ "plist.filtered-by" | transloco }} {{ "user.lowercase.singular" | transloco }} ({{id_user}} - {{oUser?.name}} {{oUser?.surname}}) <a type="button"
         class="btn btn-danger btn-sm" *ngIf="id_user>0" [routerLink]="['/admin','reply','plist']">{{ "plist.reset-filter" | transloco }}</a></h3>
     <h3 *ngIf="!(id_user>0)&&!(id_thread>0)">{{ "plist.no-filter" | transloco }}</h3>
     <h3>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h3>
+>>>>>>> 64c82ef3bbd9041d9bcb19ce15ef3fd3d4912890
   </div>
+  <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search"/>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      
   </div>
-
+  
 
   <div class="mb-5 ">
     <table class="table table-bordered table-striped table-hover table-sm">
