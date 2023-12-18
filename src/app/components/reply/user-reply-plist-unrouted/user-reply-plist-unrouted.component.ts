@@ -209,40 +209,34 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     }
    
   }
-
   onDrop(event: CdkDragDrop<any[]>) {
+    
     if (this.oPage && this.oPage.content && this.oPage.content.length > 0) {
-      if (event.container.id === 'trash') {
+      if (event.container.id === 'cdk-drop-list-1') {
         const replyToRemove = this.oPage.content[event.previousIndex];
-        this.deleteReply(replyToRemove);
+        this.confirmDelete(replyToRemove);
         this.oPage.content.splice(event.previousIndex, 1);
-      } else if (event.previousContainer === event.container) {
+      } else if (event.previousContainer) {
         moveItemInArray(
           this.oPage.content,
-          event.previousIndex,
-          event.currentIndex
-        );
-      } else {
-        transferArrayItem(
-          event.previousContainer.data,
-          event.container.data,
           event.previousIndex,
           event.currentIndex
         );
       }
     }
   }
-
-  deleteReply(reply: IReply) {
+  
+  confirmDelete(reply: IReply) {
     this.oReplyAjaxService.removeOne(reply?.id).subscribe({
       next: () => {
         this.getPage();
+        this.reply_change.emit(true);
+        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
+        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
       }
     });
   }
-
-
 }
