@@ -6,6 +6,9 @@ import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.serv
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unrouted/user-user-detail-unrouted.component';
 import { NavigationEnd, Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
+import { Language } from 'src/app/model/model.interfaces';
+import { LanguageService } from 'src/app/service/language.service';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -17,20 +20,25 @@ export class MenuUnroutedComponent implements OnInit {
   strUserName: string = "";
   oSessionUser: IUser | null = null;
   strUrl: string = "";
+  lang: string = "";
+  languages: Language[] = [];
+  selectedLanguage: Language | null = null;
 
   constructor(
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
     private oUserAjaxService: UserAjaxService,
-    private oRouter: Router
+    private oRouter: Router,
+    private oTranslocoService: TranslocoService,
+    private oLanguageService: LanguageService
   ) {
-    
+
     this.oRouter.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
       }
     })
-    
+
     this.strUserName = oSessionService.getUsername();
     this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
@@ -61,6 +69,21 @@ export class MenuUnroutedComponent implements OnInit {
         }
       }
     });
+
+    this.oLanguageService.getAllLanguages().subscribe({
+      next: (values: Language[]) => {
+        this.languages = values;
+
+        const defaultLanguage = this.oLanguageService.getDefaultLanguage();
+        this.oTranslocoService.setDefaultLang(defaultLanguage.code);
+        this.oTranslocoService.setActiveLang(defaultLanguage.code);
+        this.selectedLanguage = defaultLanguage;
+      }
+    })
+
+    this.lang = this.oTranslocoService.getActiveLang();
+    const activeLanguage = this.oLanguageService.getLanguageByCode(this.lang);
+    this.selectedLanguage = activeLanguage || this.oLanguageService.getDefaultLanguage();
   }
 
   doSessionUserView($event: Event) {
@@ -70,7 +93,7 @@ export class MenuUnroutedComponent implements OnInit {
         data: {
           id: this.oSessionUser.id
         },
-        header: 'View of user',
+        header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('user.lowercase.singular'),
         width: '50%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
@@ -79,6 +102,10 @@ export class MenuUnroutedComponent implements OnInit {
     }
     return false;
     //$event.preventDefault
+  }
+
+  changeSiteLanguage(language: Language): void {
+    this.oTranslocoService.setActiveLang(language.code);
   }
 
 }

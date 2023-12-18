@@ -9,6 +9,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { AdminThreadSelectionUnroutedComponent } from '../../thread/admin-thread-selection-unrouted/admin-thread-selection-unrouted.component';
 import { CALENDAR_ES } from 'src/environment/environment';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-admin-reply-form-unrouted',
@@ -34,7 +35,8 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
     private oReplyAjaxService: ReplyAjaxService,
     private router: Router,
     private matSnackBar: MatSnackBar,
-    public oDialogService: DialogService
+    public oDialogService: DialogService,
+    private oTranslocoService: TranslocoService
   ) {
     this.initializeForm(this.oReply);
   }
@@ -63,7 +65,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.matSnackBar.open("Error reading reply from server.", '', { duration: 2000 });
+          this.matSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.reading') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.from-server') + '.', '', { duration: 2000 });
         }
       });
     } else {
@@ -82,12 +84,12 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = { "user": {}, "thread": {} } as IReply;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been created.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.has.fem') + '.', '', { duration: 2000 });
             this.router.navigate(['/admin', 'reply', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't create reply.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.hasnt.fem') + '.', '', { duration: 2000 });
           }
         });
       } else {
@@ -95,12 +97,12 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been updated.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.has.fem') + '.', '', { duration: 2000 });
             this.router.navigate(['/admin', 'reply', 'view', this.oReply.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't update reply.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.hasnt.fem') + '.', '', { duration: 2000 });
           }
         });
       }
@@ -109,7 +111,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   onShowUsersSelection() {
     this.oDynamicDialogRef = this.oDialogService.open(AdminUserSelectionUnroutedComponent, {
-      header: 'Select a User',
+      header: this.oTranslocoService.translate('global.select') + ' ' + this.oTranslocoService.translate('global.a.masc') + ' ' + this.oTranslocoService.translate('user.uppercase.singular'),
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -126,7 +128,7 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
 
   onShowThreadsSelection() {
     this.oDynamicDialogRef = this.oDialogService.open(AdminThreadSelectionUnroutedComponent, {
-      header: 'Select a Thread',
+      header: this.oTranslocoService.translate('global.select') + ' ' + this.oTranslocoService.translate('global.a.masc') + ' ' + this.oTranslocoService.translate('thread.uppercase.singular'),
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,

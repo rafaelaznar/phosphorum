@@ -1,0 +1,193 @@
+{
+  "global": {
+    "table": {
+      "property": "Propiedad",
+      "value": "Valor"
+    },
+    "id": "Id",
+    "edit": "Editar",
+    "new": {
+      "masc": "Nuevo",
+      "fem": "Nueva"
+    },
+    "save": "Guardar",
+    "view": "Vista de",
+    "list": "Listado de",
+    "yes": "Sí",
+    "no": "No",
+    "in": "en",
+    "the": {
+      "masc": "El",
+      "fem": "La"
+    },
+    "remove": {
+      "remove": {
+        "uppercase": "Borrar",
+        "lowercase": "borrar"
+      },
+      "has": {
+        "masc": "ha sido borrado",
+        "fem": "ha sido borrada"
+      },
+      "hasnt": {
+        "masc": "no ha sido borrado",
+        "fem": "no ha sido borrada"
+      }
+    },
+    "create": {
+      "create": {
+        "uppercase": "Crear",
+        "lowercase": "crear"
+      },
+      "has": {
+        "masc": "ha sido creado",
+        "fem": "ha sido creada"
+      },
+      "hasnt": {
+        "masc": "no ha sido creado",
+        "fem": "no ha sido creada"
+      }
+    },
+    "update": {
+      "update": {
+        "uppercase": "Actualizar",
+        "lowercase": "actualizar"
+      },
+      "has": {
+        "masc": "ha sido actualizado",
+        "fem": "ha sido actualizada"
+      },
+      "hasnt": {
+        "masc": "no ha sido actualizado",
+        "fem": "no ha sido actualizada"
+      }
+    },
+    "now-there-are": "Ahora hay",
+    "post": "Publica",
+    "a": {
+      "masc": "un",
+      "fem": "una"
+    },
+    "cancelled": "cancelado",
+    "error": "Error",
+    "emptying": "vaciando",
+    "generating": "generando",
+    "reading": "leyendo",
+    "select": "Selecciona",
+    "from-server": "desde el servidor"
+  },
+  "home": {
+    "home": "Inicio",
+    "subtitle": "ilumina tus pensamientos",
+    "featured-users": "Usuarios Destacados"
+  },
+  "login": {
+    "login": "Iniciar sesión",
+    "not-logged": "Sesión no iniciada",
+    "form": "Formulario de Inicio de sesión",
+    "username-required": "El username es requerido",
+    "password-required": "La contraseña es requerida",
+    "password-minlength": "la contraseña tiene que tener al menos 6 caracteres",
+    "reset": "Resetear",
+    "as-admin": "Iniciar sesión como Administrador",
+    "as-user": "Iniciar sesión como Usuario",
+    "successfull": "Inicio de sesión con éxito",
+    "operation": "operación de inicio de sesión"
+  },
+  "logout": {
+    "logout": "Cerrar sesión",
+    "question": "¿Estás seguro de que quieres cerrar la sesión?",
+    "successfull": "Cierre de sesión con éxito"
+  },
+  "footer": {
+    "by": "por",
+    "licensed": "Licenciado bajo MIT"
+  }, 
+  "plist": {
+    "processing": "Procesando... espera, por favor",
+    "empty": "Vaciar",
+    "filtered-by": "Filtrado por",
+    "reset-filter": "restablecer filtro",
+    "no-filter": "Sin filtro activo",
+    "showing": "Mostrando",
+    "of-total": "de un total de",
+    "number-of": "Número de",
+    "tools": "Herramientas",
+    "by-new": "por nuevo",
+    "by-popular": "por popular",
+    "header": {
+      "viewUser": "Ver usuario"
+    }
+  },
+  "form": {
+    "to": "a",
+    "characters-long": "caracteres de largo",
+    "cant-change": "no se puede cambiar",
+    "this-number": "este número",
+    "is-required": "requerido",
+    "more-length": "Más longitud",
+    "max": "máx.",
+    "limit-exceed": "Límite excedido",
+    "is-not-valid": "no es valido",
+    "characters-not-accepted": "Caracteres no aceptados",
+    "alphanumeric": "alfanúmerico",
+    "valid-date": "Tienes que poner una fecha válida",
+    "find": "Busca un"
+  },
+  "user": {
+    "uppercase": {
+      "singular": "Usuario",
+      "plural": "Usuarios"
+    },
+    "lowercase": {
+      "singular": "usuario",
+      "plural": "usuarios"
+    },
+    "name": "Nombre",
+    "surname" :"1º Apellido",
+    "lastname": "2º Apellido",
+    "email": "Correo",
+    "username": "Username",
+    "password": "Contraseña",
+    "role": {
+      "role": "Rol",
+      "admin": "Administrador",
+      "user": "Usuario"
+    },
+    "type": "Tipo de usuario",
+    "removal": "Borrado de usuario",
+    "remove-question": "¿Estás seguro de que quieres borrar este usuario?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todos los usuarios?"
+  },
+  "thread": {
+    "uppercase": {
+      "singular": "Hilo",
+      "plural": "Hilos"
+    },
+    "lowercase": {
+      "singular": "hilo",
+      "plural": "hilos"
+    },
+    "title": "Título",
+    "removal": "Borrado de hilo",
+    "remove-question": "¿Estás seguro de que quieres borrar este hilo?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todos los hilos?"
+  },
+  "reply": {
+    "uppercase": {
+      "singular": "Respuesta",
+      "plural": "Respuestas"
+    },
+    "lowercase": {
+      "singular": "respuesta",
+      "plural": "respuestas"
+    },
+    "title": "Título",
+    "creation": "Creación",
+    "body": "Cuerpo",
+    "removal": "Borrado de respuesta",
+    "remove-question": "¿Estás seguro de que quieres borrar esta respuesta?",
+    "remove-all-question": "¿Estás seguro de que quieres borrar todas las respuestas?",
+    "no-replies-found": "Respuestas no encontradas para este"
+  }
+}

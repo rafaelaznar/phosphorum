@@ -12,21 +12,21 @@
       <form [formGroup]="replyForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <mat-form-field>
-            <mat-label>Título:</mat-label>
-            <input matInput formControlName="title" placeholder="Título" required>
-            <mat-hint align="end">(3 to 255 characters long)</mat-hint>
-            <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
-            <mat-error *ngIf="hasError('title', 'minlength')">Must be longer</mat-error>
-            <mat-error *ngIf="hasError('title', 'maxlength')">Exceeds characters limit</mat-error>
+            <mat-label>{{ "reply.title" | transloco }}:</mat-label>
+            <input matInput formControlName="title" [placeholder]="'reply.title' | transloco" required>
+            <mat-hint align="end">(3 {{ "form.to" | transloco }} 255 {{ "form.characters-long" | transloco }})</mat-hint>
+            <mat-error *ngIf="hasError('title', 'required')">{{ "reply.title" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
+            <mat-error *ngIf="hasError('title', 'minlength')">{{ "form.more-length" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
+            <mat-error *ngIf="hasError('title', 'maxlength')">{{ "form.limit-exceed" | transloco }}</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group">
           <mat-form-field [style.width.px]=500>
-            <mat-label>Cuerpo:</mat-label>
-            <textarea matInput formControlName="body" placeholder="Cuerpo" required></textarea>
-            <mat-hint align="end">(Max. 1000 characters)</mat-hint>
-            <mat-error *ngIf="hasError('body', 'required')">Body is required</mat-error>
-            <mat-error *ngIf="hasError('body', 'maxlength')">Exceeds characters limit</mat-error>
+            <mat-label>{{ "reply.body" | transloco }}:</mat-label>
+            <textarea matInput formControlName="body" [placeholder]="'reply.body' | transloco" required></textarea>
+            <mat-hint align="end">({{ "form.max" | transloco }} 1000 {{ "form.characters-long" | transloco }})</mat-hint>
+            <mat-error *ngIf="hasError('body', 'required')">{{ "reply.body" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
+            <mat-error *ngIf="hasError('body', 'maxlength')">{{ "form.limit-exceed" | transloco }}</mat-error>
           </mat-form-field>
         </div>
 
@@ -34,12 +34,11 @@
 
 
         <div class="row mb-3">
-          <label for="creation" class="col-sm-2 col-form-label"> Creation datetime:</label>
+          <label for="creation" class="col-sm-2 col-form-label"> {{ "reply.creation" | transloco }}:</label>
           <div class="col-sm-10">
             <p-calendar formControlName="creation" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"
               [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
-            <div *ngIf="hasError('creation', 'required')" class="text-danger"> You must
-              set a valid date
+            <div *ngIf="hasError('creation', 'required')" class="text-danger"> {{ "form.valid-date" | transloco }}
             </div>
           </div>
         </div>
@@ -50,29 +49,29 @@
         <div formGroupName="user">
           <div class="form-group">
             <mat-form-field [style.width.px]=100>
-              <mat-label>USER:</mat-label>
-              <input matInput formControlName="id" placeholder="USER" required readonly>
+              <mat-label>{{ "user.uppercase.singular" | transloco }}:</mat-label>
+              <input matInput formControlName="id" [placeholder]="'user.uppercase.singular' | transloco" required readonly>
             </mat-form-field>
             <button class="btn btn-primary" type="button" (click)="onShowUsersSelection()"> <i class="pi pi-search"></i>
-              Find a user</button>
+              {{ "form.find" | transloco }} {{ "user.lowercase.singular" | transloco }}</button>
             {{oReply.user.name}} {{oReply.user.surname}}
           </div>
         </div>
         <div formGroupName="thread">
           <div class="form-group">
             <mat-form-field [style.width.px]=100>
-              <mat-label>THREAD:</mat-label>
-              <input matInput formControlName="id" placeholder="THREAD" required readonly>
+              <mat-label>{{ "thread.uppercase.singular" | transloco }}:</mat-label>
+              <input matInput formControlName="id" [placeholder]="'thread.uppercase.singular' | transloco" required readonly>
             </mat-form-field>
             <button class="btn btn-primary" type="button" (click)="onShowThreadsSelection()"> <i
                 class="pi pi-search"></i>
-              Find a thread</button>
+                {{ "form.find" | transloco }} {{ "thread.lowercase.singular" | transloco }}</button>
             {{oReply.thread.title}}
           </div>
         </div>
 
         <div class="text-center mt-5">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!replyForm.valid">Save Reply</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!replyForm.valid">{{ "global.save" | transloco }} {{ "reply.lowercase.singular" | transloco }}</button>
         </div>
       </form>
     </div>
