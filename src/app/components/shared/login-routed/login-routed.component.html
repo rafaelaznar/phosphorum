@@ -22,6 +22,13 @@
       <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{ "login.password-required" | transloco }}</mat-error>
       <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">{{ "login.password-minlength" | transloco }}</mat-error>
     </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <img [src]="'data:image/png;base64,' + oPrelogin?.captchaImage" alt="Captcha">
+      <input matInput placeholder="Captcha" formControlName="captcha">
+      <mat-error *ngIf="loginForm.get('captcha')?.hasError('required')">Captcha is required</mat-error>
+    </mat-form-field>
+
     <div class="control-group text-center">
     <button class="mx-1" mat-raised-button type="submit" color="primary">{{ "login.login" | transloco }}</button>
     <button class="mx-1" mat-raised-button type="button" color="warn" (click)="onReset()">{{ "login.reset" | transloco }}</button>
