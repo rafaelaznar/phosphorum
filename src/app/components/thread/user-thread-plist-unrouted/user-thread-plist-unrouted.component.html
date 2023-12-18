@@ -27,9 +27,10 @@
   </div>
 
   <div class=" d-flex">
-    <ul class="list-group" cdkDropList (cdkDropListDropped)="onItemDropped($event)">
+    <div class="drop-area"  >
+    <ul class="list-group">
 
-      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let t of oPage?.content"
+      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let t of oPage?.content" 
         (click)="doShowReplies(t)" [ngClass]="{active: t.id==activeThread?.id}">
 
         <div class="ms-2 me-auto">

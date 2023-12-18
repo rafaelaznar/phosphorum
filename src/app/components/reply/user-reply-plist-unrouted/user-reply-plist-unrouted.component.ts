@@ -12,7 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -209,20 +209,40 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     }
    
   }
-  @Output() itemDropped = new EventEmitter<any>();
 
-  onItemDragged(event: any) {
-    this.itemDropped.emit(event.source.data);
+  onDrop(event: CdkDragDrop<any[]>) {
+    if (this.oPage && this.oPage.content && this.oPage.content.length > 0) {
+      if (event.container.id === 'trash') {
+        const replyToRemove = this.oPage.content[event.previousIndex];
+        this.deleteReply(replyToRemove);
+        this.oPage.content.splice(event.previousIndex, 1);
+      } else if (event.previousContainer === event.container) {
+        moveItemInArray(
+          this.oPage.content,
+          event.previousIndex,
+          event.currentIndex
+        );
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+    }
+  }
+
+  deleteReply(reply: IReply) {
+    this.oReplyAjaxService.removeOne(reply?.id).subscribe({
+      next: () => {
+        this.getPage();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
   }
 
 
-   /* if (dropevent.previousContainer === dropevent.container) {
-      moveItemInArray(dropevent.container.data, dropevent.previousIndex, dropevent.currentIndex);
-   
-    } else {
-      const movedItem = dropevent.previousContainer.data[dropevent.previousIndex];
-      dropevent.container.data.splice(dropevent.currentIndex, 0, { ...movedItem });
-      dropevent.previousContainer.data.splice(dropevent.previousIndex, 1);
-    }
-  }*/
 }

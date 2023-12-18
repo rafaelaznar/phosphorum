@@ -4,3 +4,7 @@ th {
     text-align: center;
     vertical-align: middle;
 }
+
+.button-container button {
+    margin-right: 10px; 
+  }
