@@ -210,13 +210,15 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
    
   }
   onDrop(event: CdkDragDrop<any[]>) {
-    
+    console.log("Container ID:", event.container?.id);
+    console.log("Previous Container ID:", event.previousContainer?.id);
+  
     if (this.oPage && this.oPage.content && this.oPage.content.length > 0) {
       if (event.container.id === 'cdk-drop-list-1') {
         const replyToRemove = this.oPage.content[event.previousIndex];
         this.confirmDelete(replyToRemove);
-        this.oPage.content.splice(event.previousIndex, 1);
-      } else if (event.previousContainer) {
+      
+      } else {
         moveItemInArray(
           this.oPage.content,
           event.previousIndex,

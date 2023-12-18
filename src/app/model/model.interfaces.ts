@@ -72,7 +72,7 @@ export interface IReply extends IEntity {
 }
 
 export interface IReplyPage extends IPage<IReply> {
-    previousIndex: number;
+   
 }
 
 export type formOperation = 'EDIT' | 'NEW';

@@ -15,7 +15,7 @@
    
     <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} replies</h5>
     
-    <div ><button   class="btn btn-danger px-2"  ><i class="pi pi-trash"></i></button>
+    <div ><button  id=" trash " class="btn btn-danger px-2"  ><i class="pi pi-trash"></i></button>
       <button  type="button" class="btn btn-outline-primary" (click)="postNewReply()">Post new reply</button>
   </div>
 </div>
@@ -28,7 +28,7 @@
 
   <div class="m-1" >
     <ul class="list-group">
-      <!-- if ni oPage.content then show no content -->
+     
       <li class="list-group-item" *ngIf="oPage?.content?.length==0">
         <div class="d-flex justify-content-center align-items-center my-3 p-5">
           <div class="alert alert-danger" role="alert">
@@ -40,7 +40,7 @@
           <h4  class="px-3">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h4>
         </div>
       </li>
-      <div class="drop-area"  cdkDropList (cdkDropListDropped)="onDrop($event)"  >
+      <div class="drop-area"  cdkDropList (cdkDropListDropped)="onDrop($event)" >
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let r of oPage?.content" cdkDrag cdkDragPreviewContainer="parent">
         <div class="d-flex flex-column">
