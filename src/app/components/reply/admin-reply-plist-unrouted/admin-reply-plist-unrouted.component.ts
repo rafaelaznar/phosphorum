@@ -10,6 +10,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { Subject } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -39,7 +40,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     private oReplyAjaxService: ReplyAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oTranslocoService: TranslocoService
   ) { }
 
   ngOnInit() {
@@ -94,7 +96,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of reply',
+      header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular'),
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -106,19 +108,19 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     this.oReplyToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.has.fem'), '', { duration: 2000 });
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem'), "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem'), "", { duration: 2000 });
       }
     });
   }

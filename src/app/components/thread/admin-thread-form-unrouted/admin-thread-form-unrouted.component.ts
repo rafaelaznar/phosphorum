@@ -7,6 +7,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-admin-thread-form-unrouted',
@@ -29,7 +30,8 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
     private oThreadAjaxService: ThreadAjaxService,
     private router: Router,
     private oMatSnackBar: MatSnackBar,
-    public oDialogService: DialogService
+    public oDialogService: DialogService,
+    private oTranslocoService: TranslocoService
   ) {
     this.initializeForm(this.oThread);
   }
@@ -53,7 +55,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMatSnackBar.open("Error reading thread from server.", '', { duration: 2000 });
+          this.oMatSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.reading') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.from-server'), '', { duration: 2000 });
         }
       })
     } else {
@@ -72,12 +74,12 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = { "user": {} } as IThread;
             this.initializeForm(this.oThread); //el id se genera en el servidor
-            this.oMatSnackBar.open('Thread has been created.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.has.masc'), '', { duration: 2000 });
             this.router.navigate(['/admin', 'thread', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to create thread.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.hasnt.masc'), '', { duration: 2000 });
           }
         });
       } else {
@@ -85,12 +87,12 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
           next: (data: IThread) => {
             this.oThread = data;
             this.initializeForm(this.oThread);
-            this.oMatSnackBar.open('Thread has been updated.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.has.masc'), '', { duration: 2000 });
             this.router.navigate(['/admin', 'thread', 'view', this.oThread.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open('Failed to update thread.', '', { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.hasnt.masc'), '', { duration: 2000 });
           }
         });
       }
@@ -99,7 +101,7 @@ export class AdminThreadFormUnroutedComponent implements OnInit {
 
   onShowUsersSelection() {
     this.oDynamicDialogRef = this.oDialogService.open(AdminUserSelectionUnroutedComponent, {
-      header: 'Select a User',
+      header: this.oTranslocoService.translate('global.select') + ' ' + this.oTranslocoService.translate('global.a.masc') + ' ' + this.oTranslocoService.translate('user.uppercase.singular'),
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
