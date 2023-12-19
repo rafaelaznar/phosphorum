@@ -19,8 +19,8 @@ import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
-import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SendEmailComponent } from './components/send-email/send-email.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 const routes: Routes = [

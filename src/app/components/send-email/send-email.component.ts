@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EmailPasswordService } from './../../service/emailPassword.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -17,6 +18,7 @@ export class SendEmailComponent implements OnInit {
     private oMatSnackBar: MatSnackBar,
     private oEmailPasswordService: EmailPasswordService,
     private fb: FormBuilder,
+    private oRouter: Router,
   ) { 
     this.sendEmailForm = this.fb.group({
       mailTo: ['', [Validators.required]],
@@ -28,14 +30,12 @@ export class SendEmailComponent implements OnInit {
 
   onSubmit() {
     const mailTo = this.sendEmailForm.get('mailTo')?.value;
-    console.log('mailTo:', mailTo); // Agrega este log para verificar el valor de mailTo
     this.oEmailPasswordService.sendEmail(new EmailValuesDto(mailTo)).subscribe({
         next: (data: string) => {
-            console.log('Response data:', data); // Agrega este log para verificar la respuesta
             this.oMatSnackBar.open('Email sent', 'OK', { duration: 2000 });
+            this.oRouter.navigate(['/home']);
         },
         error: (error: HttpErrorResponse) => {
-            console.error('Error:', error); // Agrega este log para verificar el error
             this.oMatSnackBar.open('Error sending email', 'OK', { duration: 2000 });
         }
     });
