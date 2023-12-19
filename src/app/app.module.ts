@@ -75,6 +75,8 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserPrintAjaxService } from './service/user.print.ajax.service';
 import { TranslocoRootModule } from './transloco-root.module';
+//
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 //--
@@ -124,6 +126,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     //--    
   ],
   imports: [
+    NgxCaptchaModule,
+    //--
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
