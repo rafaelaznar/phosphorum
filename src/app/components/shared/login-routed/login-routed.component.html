@@ -29,6 +29,17 @@
       <mat-error *ngIf="loginForm.get('captcha')?.hasError('required')">Captcha is required</mat-error>
     </mat-form-field>
 
+        <!-- Es necesario ejecutar el siguiente comando: npm install ngx-captcha -->
+        <!-- Integración de reCAPTCHA en el formulario de inicio de sesión -->
+        <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"></ngx-recaptcha2><br>
+        
+        <!-- Comentarios específicos -->
+        
+        <!-- 
+              - #captchaElem: Variable de referencia de plantilla que permite acceder al componente reCAPTCHA desde el código del componente. Puede usarse para interactuar con el componente, como obtener su estado o reiniciarlo.
+              - [siteKey]="siteKey": Vincula dinámicamente el valor de la variable siteKey del componente con la propiedad siteKey del componente ngx-recaptcha2. El siteKey es una clave única proporcionada por Google reCAPTCHA para identificar y validar tu sitio web.
+      -->
+
     <div class="control-group text-center">
     <button class="mx-1" mat-raised-button type="submit" color="primary">{{ "login.login" | transloco }}</button>
     <button class="mx-1" mat-raised-button type="button" color="warn" (click)="onReset()">{{ "login.reset" | transloco }}</button>
