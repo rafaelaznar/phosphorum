@@ -73,6 +73,7 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
+import { UserPrintAjaxService } from './service/user.print.ajax.service';
 import { TranslocoRootModule } from './transloco-root.module';
 
 
@@ -161,7 +162,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     ReplyAjaxService,
     SessionAjaxService,
     CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UserPrintAjaxService,
 
   ],
   bootstrap: [AppComponent]

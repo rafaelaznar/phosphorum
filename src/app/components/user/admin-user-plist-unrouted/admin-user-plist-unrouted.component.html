@@ -63,6 +63,9 @@
               <button class="btn btn-primary" (click)="doView(u)"><i class="pi pi-arrow-circle-up"></i></button>
               <button class="btn btn-warning" [routerLink]="['/admin','user','edit',u.id]"><i
                   class="pi pi-pencil"></i></button>
+                  <!--Pongo aquí el botón de crear el pdf-->
+              <button class="btn btn-primary" (click)="onPrintUser(u.id)">PDF</button>
+                  <!---->
               <button *ngIf="u.threads==0 && u.replies==0" class="btn btn-danger" (click)="doRemove(u)"><i
                   class="pi pi-trash"></i></button>
             </div>

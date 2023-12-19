@@ -7,6 +7,8 @@ import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
+
+import { UserPrintAjaxService } from 'src/app/service/user.print.ajax.service';
 import { Subject, filter, of } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { TranslocoService } from '@ngneat/transloco';
@@ -34,7 +36,9 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
     private oMatSnackBar: MatSnackBar,
+    private oUserPrintAjaxService: UserPrintAjaxService,
     private oTranslocoService: TranslocoService
+
   ) { }
 
   ngOnInit() {
@@ -153,6 +157,11 @@ getValue(event: any): string {
         this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('user.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.masc'), "", { duration: 2000 });
       }
     });
+  }
+
+  //Añado esto
+  onPrintUser = (id_user: number) => {
+    this.oUserPrintAjaxService.printUser(id_user);
   }
 
 }
