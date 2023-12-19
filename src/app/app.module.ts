@@ -20,6 +20,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 //--
@@ -76,6 +77,15 @@ import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserUserFormUnroutedComponent } from './components/user/user-user-form-unrouted/user-user-form-unrouted.component';
 
+//Sin esto da error!
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { UserPrintAjaxService } from './service/user.print.ajax.service';
+import { TranslocoRootModule } from './transloco-root.module';
+//
+import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 //--
 @NgModule({
@@ -127,6 +137,9 @@ import { UserUserFormUnroutedComponent } from './components/user/user-user-form-
     //--    
   ],
   imports: [
+    NgApexchartsModule,
+    NgxCaptchaModule,
+    //--
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -143,6 +156,7 @@ import { UserUserFormUnroutedComponent } from './components/user/user-user-form-
     ConfirmPopupModule,
     CalendarModule,
     TooltipModule,
+    DropdownModule,
     //--
     MatButtonModule,
     MatCardModule,
@@ -151,6 +165,7 @@ import { UserUserFormUnroutedComponent } from './components/user/user-user-form-
     MatFormFieldModule,
     MatToolbarModule,
     MatIconModule,
+    TranslocoRootModule,
     //--
   ],
   providers: [
@@ -163,7 +178,8 @@ import { UserUserFormUnroutedComponent } from './components/user/user-user-form-
     ReplyAjaxService,
     SessionAjaxService,
     CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UserPrintAjaxService,
 
   ],
   bootstrap: [AppComponent]

@@ -90,3 +90,21 @@ export interface IToken {
     exp: number;
     name: string;
 }
+
+export interface ICaptcha extends IEntity {
+    text: string,
+    image: string
+}
+
+export interface IPrelogin extends IEntity {
+    token: string,
+    captchaImage: string
+}
+
+export class Language {
+    constructor(
+        public code: string,
+        public name: string,
+        public resource: string
+    ) { }
+}
