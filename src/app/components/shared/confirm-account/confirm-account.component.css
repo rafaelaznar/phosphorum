@@ -1,0 +1,31 @@
+
+.card{
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+
+.btn{
+    background-color: #1e88e5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+}
+
+
+.btn:hover{
+    background-color: #2196f3;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+}
