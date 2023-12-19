@@ -20,6 +20,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 //--
@@ -76,6 +77,11 @@ import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-fo
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { UserPrintAjaxService } from './service/user.print.ajax.service';
+import { TranslocoRootModule } from './transloco-root.module';
+//
+import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 //--
 @NgModule({
@@ -125,6 +131,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   ],
   imports: [
     NgApexchartsModule,
+    NgxCaptchaModule,
+    //--
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -141,6 +149,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ConfirmPopupModule,
     CalendarModule,
     TooltipModule,
+    DropdownModule,
     //--
     MatButtonModule,
     MatCardModule,
@@ -149,6 +158,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatFormFieldModule,
     MatToolbarModule,
     MatIconModule,
+    TranslocoRootModule,
     //--
   ],
   providers: [
@@ -161,7 +171,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ReplyAjaxService,
     SessionAjaxService,
     CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UserPrintAjaxService,
 
   ],
   bootstrap: [AppComponent]

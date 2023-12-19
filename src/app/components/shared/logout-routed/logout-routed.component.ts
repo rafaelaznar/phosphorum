@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-logout-routed',
@@ -14,7 +15,8 @@ export class LogoutRoutedComponent implements OnInit {
   constructor(
     private oSessionService: SessionAjaxService,
     private oMatSnackBar: MatSnackBar,
-    private oRouter: Router
+    private oRouter: Router,
+    private oTranslocoService: TranslocoService
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class LogoutRoutedComponent implements OnInit {
   logout() {
     this.oSessionService.logout();
     this.oSessionService.emit({ type: 'logout' });
-    this.oMatSnackBar.open("Logout successfull.", '', { duration: 2000 });
+    this.oMatSnackBar.open(this.oTranslocoService.translate('logout.successfull'), '', { duration: 2000 });
     this.oRouter.navigate(['/home']);
   }
 

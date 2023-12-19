@@ -7,7 +7,11 @@ import { IUser, IUserPage } from 'src/app/model/model.interfaces';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
-import { Subject } from 'rxjs';
+
+import { UserPrintAjaxService } from 'src/app/service/user.print.ajax.service';
+import { Subject, filter, of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -31,7 +35,10 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oUserPrintAjaxService: UserPrintAjaxService,
+    private oTranslocoService: TranslocoService
+
   ) { }
 
   ngOnInit() {
@@ -44,6 +51,48 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       }
     });
   }
+// Inside your component class
+
+search(filterValue: string): void {
+  // Assuming oPageService is the service handling the user page data
+
+  // Check if filterValue is null or less than 3 characters
+  if (filterValue && filterValue.length >= 3) {
+    // If filterValue is valid, debounce the search
+    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', filterValue)
+      .pipe(
+        debounceTime(500),
+        switchMap((data: IUserPage) => {
+          return of(data);
+        })
+      )
+      .subscribe(
+        (data: IUserPage) => {
+          this.oPage = data;
+        },
+        (error: any) => {
+          // Handle error
+          console.error(error);
+        }
+      );
+  } else {
+    // If filterValue is null or less than 3 characters, load all users without debounce
+    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc')
+      .subscribe(
+        (data: IUserPage) => {
+          this.oPage = data;
+        },
+        (error: any) => {
+          // Handle error
+          console.error(error);
+        }
+      );
+  }
+}
+
+getValue(event: any): string {
+  return event.target.value;
+}
 
   getPage(): void {
     this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
@@ -81,7 +130,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of user',
+      header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('user.lowercase.singular'),
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -93,21 +142,26 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The user has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('user.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.has.masc'), '', { duration: 2000 });
         this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('user.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.masc'), "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The user hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('user.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.masc'), "", { duration: 2000 });
       }
     });
+  }
+
+  //Añado esto
+  onPrintUser = (id_user: number) => {
+    this.oUserPrintAjaxService.printUser(id_user);
   }
 
 }
