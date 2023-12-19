@@ -30,10 +30,7 @@ export class HomeRoutedComponent implements OnInit {
     this.reloadThreads.next(true);
   }
 
-    
-  onDrop(event: CdkDragDrop<any[]>) {
-    const droppedItem = event.item.data;
-      }
+
 }
 
 
