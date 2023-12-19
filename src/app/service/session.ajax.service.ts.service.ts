@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
-import { IToken, IUser, SessionEvent } from '../model/model.interfaces';
+import { IPrelogin, IToken, IUser, SessionEvent } from '../model/model.interfaces';
 import { UserAjaxService } from './user.ajax.service.service';
 
 @Injectable()
@@ -30,6 +30,14 @@ export class SessionAjaxService {
     login(sUsername: string, sPassword: string): Observable<string> {
         //const sUser: string = JSON.stringify({ username: sUsername, password: sPassword });
         return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
+    }
+
+    prelogin(): Observable<IPrelogin> {
+        return this.oHttpClient.get<IPrelogin>(this.sUrl + "/prelogin");
+    }
+
+    loginCaptcha(sUsername: string, sPassword: string, sToken: string, sAnswer: string): Observable<string> {
+        return this.oHttpClient.post<string>(this.sUrl + "/loginCaptcha", { username: sUsername, password: sPassword, token: sToken, answer: sAnswer });
     }
 
     setToken(sToken: string): void {

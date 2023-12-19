@@ -20,6 +20,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 //--
@@ -73,6 +74,8 @@ import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-p
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserPrintAjaxService } from './service/user.print.ajax.service';
+import { TranslocoRootModule } from './transloco-root.module';
+
 
 //--
 @NgModule({
@@ -137,6 +140,7 @@ import { UserPrintAjaxService } from './service/user.print.ajax.service';
     ConfirmPopupModule,
     CalendarModule,
     TooltipModule,
+    DropdownModule,
     //--
     MatButtonModule,
     MatCardModule,
@@ -145,6 +149,7 @@ import { UserPrintAjaxService } from './service/user.print.ajax.service';
     MatFormFieldModule,
     MatToolbarModule,
     MatIconModule,
+    TranslocoRootModule,
     //--
   ],
   providers: [
