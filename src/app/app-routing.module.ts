@@ -19,6 +19,8 @@ import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
 
 
 const routes: Routes = [
@@ -45,6 +47,8 @@ const routes: Routes = [
   { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent},  
   { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
   //--
+  { path: 'sendemail', component: SendEmailComponent },
+  { path: 'changepassword/:tokenPassword', component: ChangePasswordComponent },
 ];
 
 @NgModule({

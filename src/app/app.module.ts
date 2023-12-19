@@ -81,6 +81,8 @@ import { UserPrintAjaxService } from './service/user.print.ajax.service';
 import { TranslocoRootModule } from './transloco-root.module';
 //
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
 
 
 //--
@@ -93,6 +95,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ChangePasswordComponent,
+    SendEmailComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
