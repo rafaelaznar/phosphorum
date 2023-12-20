@@ -60,20 +60,10 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
         }
       });
     } else {
-      this.getPage(); // Limpiar la tabla si la consulta es corta
+      this.getPage(); 
     }
   }
-  filterTableBySearch(query: string) {
-    if (this.oPage?.content) {
-      const filteredContent = this.oPage.content.filter((user: IUser) =>
-        user.name.toLowerCase().includes(query) ||
-        user.surname.toLowerCase().includes(query) ||
-        user.lastname.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query) 
-      );
-      this.filteredUsers = filteredContent;
-    }
-  }
+
   getPage(): void {
     this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({    
       next: (data: IUserPage) => {

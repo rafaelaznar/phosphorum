@@ -8,3 +8,7 @@ th {
 .button-container button {
     margin-right: 10px; 
   }
+  .cdk-drag-preview {
+    background-color: white; 
+  
+  }

@@ -59,18 +59,10 @@ export class AdminThreadSelectionUnroutedComponent implements OnInit {
         }
       });
     } else {
-      this.getPage(); // Limpiar la tabla si la consulta es corta
+      this.getPage(); 
     }
   }
-  filterTableBySearch(query: string) {
-    if (this.oPage?.content) {
-      const filteredContent = this.oPage.content.filter((thread: IThread) =>
-       
-       thread.title.toLowerCase().includes(query) 
-      );
-      this.filteredThreads = filteredContent;
-    }
-  }
+  
 
   getPage(): void {
     this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({

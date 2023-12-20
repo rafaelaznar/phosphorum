@@ -209,36 +209,19 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     }
    
   }
-  onDrop(event: CdkDragDrop<any[]>) {
-    console.log("Container ID:", event.container?.id);
-    console.log("Previous Container ID:", event.previousContainer?.id);
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+}
+
+  onDragStart(event: DragEvent, reply: any) {
+    event.dataTransfer?.setData('text/plain', JSON.stringify(reply));
+}
+
+onDrop(event: DragEvent) {
+    event.preventDefault();
+    const replyData = JSON.parse(event.dataTransfer?.getData('text/plain') || '{}');
   
-    if (this.oPage && this.oPage.content && this.oPage.content.length > 0) {
-      if (event.container.id === 'cdk-drop-list-1') {
-        const replyToRemove = this.oPage.content[event.previousIndex];
-        this.confirmDelete(replyToRemove);
-      
-      } else {
-        moveItemInArray(
-          this.oPage.content,
-          event.previousIndex,
-          event.currentIndex
-        );
-      }
-    }
-  }
-  
-  confirmDelete(reply: IReply) {
-    this.oReplyAjaxService.removeOne(reply?.id).subscribe({
-      next: () => {
-        this.getPage();
-        this.reply_change.emit(true);
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
-      },
-      error: (error: HttpErrorResponse) => {
-        this.status = error;
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
-      }
-    });
-  }
+    this.doRemove(replyData); 
+}
 }
