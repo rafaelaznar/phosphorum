@@ -46,9 +46,12 @@ export interface IUser extends IEntity {
     lastname: string,
     email: string,
     username: string,
+    password: string,
     role: boolean,
     threads: number,
-    replies: number
+    replies: number,
+    verified: boolean,
+    token: string,
 }
 
 export interface IUserPage extends IPage<IUser> {

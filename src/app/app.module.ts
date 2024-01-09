@@ -39,6 +39,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
 //--
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
@@ -50,6 +51,7 @@ import { AdminUserFormUnroutedComponent } from './components/user/admin-user-for
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { UserUserFeaturedUnroutedComponent } from './components/user/user-user-featured-unrouted/user-user-featured-unrouted.component';
 import { UserUserDetailUnroutedComponent } from './components/user/user-user-detail-unrouted/user-user-detail-unrouted.component';
+import { UserUserNewRoutedComponent } from './components/user/user-user-new-routed/user-user-new-routed.component';
 //
 import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
@@ -73,6 +75,8 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
+import { UserUserFormUnroutedComponent } from './components/user/user-user-form-unrouted/user-user-form-unrouted.component';
+
 //Sin esto da error!
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
@@ -93,6 +97,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ConfirmAccountComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
@@ -104,6 +109,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AdminUserSelectionUnroutedComponent,
     UserUserFeaturedUnroutedComponent,
     UserUserDetailUnroutedComponent,
+    UserUserNewRoutedComponent,
+    UserUserFormUnroutedComponent,
     //--
     AdminThreadPlistRoutedComponent,
     AdminThreadViewRoutedComponent,

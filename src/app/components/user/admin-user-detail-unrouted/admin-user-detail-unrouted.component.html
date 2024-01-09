@@ -40,6 +40,8 @@
             <tr>
                 <th>{{ "user.role.role" | transloco }}</th>
                 <td>
+                    <span *ngIf="oUser.role==true">User</span>
+                    <span *ngIf="oUser.role==false">Admin</span>
                     <span *ngIf="oUser.role==true">{{ "user.role.admin" | transloco }}</span>
                     <span *ngIf="oUser.role==false">{{ "user.role.user" | transloco }}</span>
                 </td>
