@@ -40,12 +40,12 @@
           <h4  class="px-3">No replies found for <i style="color:red">"{{oThread?.title}}"</i> thread</h4>
         </div>
       </li>
-      <div class="drop-area"   >
+      <div class="drop-area"  >
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let r of oPage?.content" 
-          cdkDragPreviewClass="custom-drag-preview" draggable="true" (dragstart)="onDragStart($event, r)">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-between my-3">
+          <li   class="list-group-item" *ngFor="let r of oPage?.content" 
+        draggable="true" (dragstart)="onDragStart($event, r)"  >
+        <div  class="d-flex flex-column">
+          <div class="replies"  class="d-flex justify-content-between my-3">
             <div class="badge text-bg-info" *ngIf="r.user.username!=oSessionService.getUsername()">
               {{r.user.username}}
             </div>

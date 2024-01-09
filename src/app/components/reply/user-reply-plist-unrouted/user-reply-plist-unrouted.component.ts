@@ -220,6 +220,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
 
 onDrop(event: DragEvent) {
     event.preventDefault();
+    
     const replyData = JSON.parse(event.dataTransfer?.getData('text/plain') || '{}');
   
     this.doRemove(replyData); 
