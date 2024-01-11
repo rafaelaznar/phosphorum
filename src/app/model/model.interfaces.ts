@@ -75,6 +75,7 @@ export interface IReply extends IEntity {
 }
 
 export interface IReplyPage extends IPage<IReply> {
+   
 }
 
 export type formOperation = 'EDIT' | 'NEW';

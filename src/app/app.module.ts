@@ -86,6 +86,8 @@ import { TranslocoRootModule } from './transloco-root.module';
 //
 import { NgxCaptchaModule } from 'ngx-captcha';
 
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 //--
 @NgModule({
@@ -135,6 +137,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     UserReplyDetailUnroutedComponent,
     UserReplyFormUnroutedComponent,
     //--    
+
+
   ],
   imports: [
     NgApexchartsModule,
@@ -167,6 +171,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     MatIconModule,
     TranslocoRootModule,
     //--
+    AutoCompleteModule,
+    DragDropModule
   ],
   providers: [
     MessageService,

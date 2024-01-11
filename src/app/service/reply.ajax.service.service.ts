@@ -17,6 +17,10 @@ export class ReplyAjaxService {
         return this.oHttpClient.get<IReply>(this.sUrl + "/" + id);
     }
 
+
+
+
+
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id_user: number, id_thread: number, filter?: string): Observable<IReplyPage> {
         if (!size) size = 10;
         if (!page) page = 0;

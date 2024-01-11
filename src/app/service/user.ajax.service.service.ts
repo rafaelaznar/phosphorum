@@ -21,6 +21,7 @@ export class UserAjaxService {
         return this.oHttpClient.get<IUser>(this.sUrl + "/byUsername/" + username);
     }
 
+
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string): Observable<IUserPage> {
         let sUrl_filter: string;
         if (!size) size = 10;
