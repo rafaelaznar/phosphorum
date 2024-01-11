@@ -46,9 +46,12 @@ export interface IUser extends IEntity {
     lastname: string,
     email: string,
     username: string,
+    password: string,
     role: boolean,
     threads: number,
-    replies: number
+    replies: number,
+    verified: boolean,
+    token: string,
 }
 
 export interface IUserPage extends IPage<IUser> {
@@ -87,4 +90,22 @@ export interface IToken {
     iat: number;
     exp: number;
     name: string;
+}
+
+export interface ICaptcha extends IEntity {
+    text: string,
+    image: string
+}
+
+export interface IPrelogin extends IEntity {
+    token: string,
+    captchaImage: string
+}
+
+export class Language {
+    constructor(
+        public code: string,
+        public name: string,
+        public resource: string
+    ) { }
 }

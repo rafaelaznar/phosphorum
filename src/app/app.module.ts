@@ -20,6 +20,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 //--
@@ -38,6 +39,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
 //--
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
@@ -49,6 +51,7 @@ import { AdminUserFormUnroutedComponent } from './components/user/admin-user-for
 import { AdminUserSelectionUnroutedComponent } from './components/user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { UserUserFeaturedUnroutedComponent } from './components/user/user-user-featured-unrouted/user-user-featured-unrouted.component';
 import { UserUserDetailUnroutedComponent } from './components/user/user-user-detail-unrouted/user-user-detail-unrouted.component';
+import { UserUserNewRoutedComponent } from './components/user/user-user-new-routed/user-user-new-routed.component';
 //
 import { AdminThreadNewRoutedComponent } from './components/thread/admin-thread-new-routed/admin-thread-new-routed.component';
 import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread-view-routed/admin-thread-view-routed.component';
@@ -72,6 +75,16 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
+import { UserUserFormUnroutedComponent } from './components/user/user-user-form-unrouted/user-user-form-unrouted.component';
+
+//Sin esto da error!
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { UserPrintAjaxService } from './service/user.print.ajax.service';
+import { TranslocoRootModule } from './transloco-root.module';
+//
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -86,6 +99,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ConfirmAccountComponent,
     //--
     AdminUserPlistRoutedComponent,
     AdminUserViewRoutedComponent,
@@ -97,6 +111,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     AdminUserSelectionUnroutedComponent,
     UserUserFeaturedUnroutedComponent,
     UserUserDetailUnroutedComponent,
+    UserUserNewRoutedComponent,
+    UserUserFormUnroutedComponent,
     //--
     AdminThreadPlistRoutedComponent,
     AdminThreadViewRoutedComponent,
@@ -125,6 +141,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
   ],
   imports: [
+    NgApexchartsModule,
+    NgxCaptchaModule,
+    //--
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -141,6 +160,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ConfirmPopupModule,
     CalendarModule,
     TooltipModule,
+    DropdownModule,
     //--
     MatButtonModule,
     MatCardModule,
@@ -149,6 +169,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatToolbarModule,
     MatIconModule,
+    TranslocoRootModule,
     //--
     AutoCompleteModule,
     DragDropModule
@@ -163,7 +184,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReplyAjaxService,
     SessionAjaxService,
     CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UserPrintAjaxService,
 
   ],
   bootstrap: [AppComponent]

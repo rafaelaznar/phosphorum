@@ -19,20 +19,30 @@ export class ReplyAjaxService {
 
 
 
-    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id_user: number, id_thread: number): Observable<IReplyPage> {
+
+
+    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id_user: number, id_thread: number, filter?: string): Observable<IReplyPage> {
         if (!size) size = 10;
         if (!page) page = 0;
+        
         let strUrlUser = "";
         if (id_user > 0) {
             strUrlUser = "&user=" + id_user;
         }
+    
         let strUrlThread = "";
         if (id_thread > 0) {
             strUrlThread = "&thread=" + id_thread;
         }
-
-        return this.oHttpClient.get<IReplyPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser + strUrlThread);
+    
+        let strUrlFilter = "";
+        if (filter && filter.trim().length > 0) {
+            strUrlFilter = `&filter=${filter}`;
+        }
+    
+        return this.oHttpClient.get<IReplyPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + strUrlUser + strUrlThread + strUrlFilter);
     }
+    
 
     removeOne(id: number | undefined): Observable<number> {
         if (id) {
@@ -57,7 +67,8 @@ export class ReplyAjaxService {
     empty(): Observable<number> {
         return this.oHttpClient.delete<number>(this.sUrl + "/empty");
     }
-
-   
-
+    //Modified by p
+    getRepliesByMonth(id_user: number): Observable<any[]> {
+        return this.oHttpClient.get<any[]>(this.sUrl + "/getRepliesByMonth/" + id_user);
+      }
 }
