@@ -22,8 +22,7 @@ export class UserAjaxService {
     }
 
 
-    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string, strFilter?: string): Observable<IUserPage> {
-        let sUrl_filter: string;
+    getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string): Observable<IUserPage> {
         let sUrl_filter: string;
         if (!size) size = 10;
         if (!page) page = 0;    
