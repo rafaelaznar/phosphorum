@@ -64,6 +64,10 @@
               <button class="btn btn-warning" [routerLink]="['/admin','reply','edit',r.id]"><i
                   class="pi pi-pencil"></i></button>
               <button class="btn btn-danger" (click)="doRemove(r)"><i class="pi pi-trash"></i></button>
+              <button class="btn" [ngClass]="{'btn-success': r.active, 'btn-danger': !r.active}"
+                (click)="toggleReplyActive(r)">
+                <i class="pi pi-power-off"></i>
+              </button>
             </div>
           </td>
         </tr>

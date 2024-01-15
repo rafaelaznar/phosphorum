@@ -62,6 +62,13 @@
                     <span *ngIf="oUser.replies==0">0</span>
                 </td>
             </tr>
+            <tr>
+                <th>STATUS</th>
+                <td>
+                    <span *ngIf="oUser.active==true">Enabled</span>
+                    <span *ngIf="oUser.active==false">Disabled</span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

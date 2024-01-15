@@ -44,26 +44,27 @@
         <ul class="list-group">
           <li   class="list-group-item" *ngFor="let r of oPage?.content" 
         draggable="true" (dragstart)="onDragStart($event, r)"  >
-        <div  class="d-flex flex-column">
-          <div class="replies"  class="d-flex justify-content-between my-3">
-            <div class="badge text-bg-info" *ngIf="r.user.username!=oSessionService.getUsername()">
-              {{r.user.username}}
+        <ng-container *ngIf="r.user.active">
+          <div  class="d-flex flex-column">
+            <div class="replies"  class="d-flex justify-content-between my-3">
+              <div class="badge text-bg-info" *ngIf="r.user.username!=oSessionService.getUsername()">
+                {{r.user.username}}
+              </div>
+              <div class="badge text-bg-warning" *ngIf="r.user.username==oSessionService.getUsername()">
+                {{r.user.username}}
+              </div>
+              <div class="badge text-bg-secondary">{{r.creation | date:'dd/MM/yyyy HH:mm:ss'}}</div>
             </div>
-            <div class="badge text-bg-warning" *ngIf="r.user.username==oSessionService.getUsername()">
-              {{r.user.username}}
+            <div class="my-3">
+              <h2>{{r.title}}</h2>
             </div>
-            <div class="badge text-bg-secondary">{{r.creation | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+            <p>{{r.body}}</p>
+            <div class="d-flex justify-content-center my-2">
+              <button type="button" class="btn  btn-sm btn-outline-danger" (click)="doRemove(r)"
+                *ngIf="r.user.username==oSessionService.getUsername()">{{ "global.remove.remove.lowercase" | transloco }}</button>
+            </div>
           </div>
-          <div class="my-3">
-            <h2>{{r.title}}</h2>
-          </div>
-          <p>{{r.body}}</p>
-          <div class="d-flex justify-content-center my-2">
-            <button type="button" class="btn  btn-sm btn-outline-danger" (click)="doRemove(r)"
-              *ngIf="r.user.username==oSessionService.getUsername()">{{ "global.remove.remove.lowercase" | transloco }}</button>
-          </div>
-        </div>
-
+        </ng-container>
       </li>
     </ul>
 
