@@ -42,8 +42,10 @@
               {{t.user.surname}}</a>
           </td>
           <td class="text-center">
-            <a [routerLink]="['/admin','reply','plist','bythread',t.id]" *ngIf="t.replies>0">{{t.replies}}</a>
-            <span *ngIf="t.replies==0">0</span>
+            <ng-container *ngIf="t && t.replies !== undefined">
+              <a [routerLink]="['/admin','reply','plist','bythread',t.id]" *ngIf="t.replies > 0">{{t.replies}}</a>
+              <span *ngIf="t.replies == 0">0</span>
+            </ng-container>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

@@ -25,17 +25,6 @@
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
-          <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('name')">Name</th>
-          <th (click)="doOrder('surname')">Surname</th>
-          <th (click)="doOrder('lastname')">Last name</th>
-          <th (click)="doOrder('email')">Email</th>
-          <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('role')">Role</th>
-          <th (click)="doOrder('verified')">Verified</th>
-          <th>Threads</th>
-          <th>Replies</th>
-          <th>Tools</th>
           <th (click)="doOrder('id')">{{ "global.id" | transloco }}</th>
           <th (click)="doOrder('name')">{{ "user.name" | transloco }}</th>
           <th (click)="doOrder('surname')">{{ "user.surname" | transloco }}</th>
@@ -43,6 +32,7 @@
           <th (click)="doOrder('email')">{{ "user.email" | transloco }}</th>
           <th (click)="doOrder('username')">{{ "user.username" | transloco }}</th>
           <th (click)="doOrder('role')">{{ "user.role.role" | transloco }}</th>
+          <th (click)="doOrder('verified')">Verified</th>
           <th>{{ "thread.uppercase.plural" | transloco }}</th>
           <th>{{ "reply.uppercase.plural" | transloco }}</th>
           <th>{{ "plist.tools" | transloco }}</th>
@@ -65,11 +55,11 @@
             <span *ngIf="u.verified==false">No</span>
           </td>
           <td class="text-center">
-            <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.threads>0">{{u.threads}}</a>
+            <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.threads !== undefined && u.threads > 0">{{u.threads}}</a>
             <span *ngIf="u.threads==0">0</span>
           </td>
           <td class="text-center">
-            <a [routerLink]="['/admin','reply','plist','byuser',u.id]" *ngIf="u.replies>0">{{u.replies}}</a>
+            <a [routerLink]="['/admin','reply','plist','byuser',u.id]" *ngIf="u.replies !== undefined && u.replies > 0">{{u.replies}}</a>
             <span *ngIf="u.replies==0">0</span>
           </td>
           <td class="text-center">

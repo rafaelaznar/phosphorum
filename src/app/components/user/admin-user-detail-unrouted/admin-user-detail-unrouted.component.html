@@ -50,16 +50,16 @@
                 <th>{{ "thread.uppercase.plural" | transloco }}</th>
                 <td>
                     <a [routerLink]="['/admin','thread','plist','byuser',oUser.id]"
-                        *ngIf="oUser.threads>0">{{oUser.threads}}</a>
-                    <span *ngIf="oUser.threads==0">0</span>
+                        *ngIf="oUser.threads !== undefined && oUser.threads > 0">{{oUser.threads}}</a>
+                    <span *ngIf="oUser.threads === undefined || oUser.threads === 0">0</span>
                 </td>
             </tr>
             <tr>
                 <th>{{ "reply.uppercase.plural" | transloco }}</th>
                 <td>
                     <a [routerLink]="['/admin','reply','plist','byuser',oUser.id]"
-                        *ngIf="oUser.replies>0">{{oUser.replies}}</a>
-                    <span *ngIf="oUser.replies==0">0</span>
+                        *ngIf="oUser.replies !== undefined && oUser.replies > 0">{{oUser.replies}}</a>
+                    <span *ngIf="oUser.replies === undefined || oUser.replies === 0">0</span>
                 </td>
             </tr>
             <tr>
