@@ -22,12 +22,18 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { SendEmailComponent } from './components/send-email/send-email.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
+import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
+import { UserUserNewRoutedComponent } from './components/user/user-user-new-routed/user-user-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
   { path: 'home', component: HomeRoutedComponent },
   { path: 'login', component: LoginRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
+  { path: 'user/confirm-account', component: ConfirmAccountComponent },
+
+  { path: 'user/user/new', component: UserUserNewRoutedComponent },
+
   //--
   { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    

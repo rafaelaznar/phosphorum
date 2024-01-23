@@ -24,6 +24,17 @@
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
+          <th (click)="doOrder('id')">ID</th>
+          <th (click)="doOrder('name')">Name</th>
+          <th (click)="doOrder('surname')">Surname</th>
+          <th (click)="doOrder('lastname')">Last name</th>
+          <th (click)="doOrder('email')">Email</th>
+          <th (click)="doOrder('username')">Username</th>
+          <th (click)="doOrder('role')">Role</th>
+          <th (click)="doOrder('verified')">Verified</th>
+          <th>Threads</th>
+          <th>Replies</th>
+          <th>Tools</th>
           <th (click)="doOrder('id')">{{ "global.id" | transloco }}</th>
           <th (click)="doOrder('name')">{{ "user.name" | transloco }}</th>
           <th (click)="doOrder('surname')">{{ "user.surname" | transloco }}</th>
@@ -47,6 +58,10 @@
           <td class="text-center">
             <span *ngIf="u.role==true">{{ "user.role.user" | transloco }}</span>
             <span *ngIf="u.role==false">{{ "user.role.admin" | transloco }}</span>
+          </td>
+          <td class="text-center">
+            <span *ngIf="u.verified==true">Yes</span>
+            <span *ngIf="u.verified==false">No</span>
           </td>
           <td class="text-center">
             <a [routerLink]="['/admin','thread','plist','byuser',u.id]" *ngIf="u.threads>0">{{u.threads}}</a>

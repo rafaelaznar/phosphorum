@@ -100,6 +100,10 @@ export class LoginRoutedComponent implements OnInit {
     this.getPreloginData();
   }
 
+  onRegister() {
+    this.oRouter.navigate(['/user/user/new']);
+  }
+
   loginAdmin() {
     this.loginForm.setValue({
       username: 'pedropicapiedra',

@@ -12,6 +12,7 @@ import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { UserReplyFormUnroutedComponent } from '../user-reply-form-unrouted/user-reply-form-unrouted.component';
 import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-unrouted/user-thread-form-unrouted.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -22,6 +23,8 @@ import { TranslocoService } from '@ngneat/transloco';
 })
 
 export class UserReplyPlistUnroutedComponent implements OnInit {
+
+  @Output() replyDropped = new EventEmitter<CdkDragDrop<IReply[]>>();
 
   @Input()
   set id_user(value: number) {
@@ -98,9 +101,9 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     })
   }
 
-  onPageChang(event: PaginatorState) {
-    this.oPaginatorState.rows = event.rows;
-    this.oPaginatorState.page = event.page;
+  onPageChang(dropevent: PaginatorState) {
+    this.oPaginatorState.rows = dropevent.rows;
+    this.oPaginatorState.page = dropevent.page;
     this.getPage();
   }
 
@@ -205,5 +208,22 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         this.reply_change.emit(true);
       });
     }
+   
   }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+}
+
+  onDragStart(event: DragEvent, reply: any) {
+    event.dataTransfer?.setData('text/plain', JSON.stringify(reply));
+}
+
+onDrop(event: DragEvent) {
+    event.preventDefault();
+    
+    const replyData = JSON.parse(event.dataTransfer?.getData('text/plain') || '{}');
+  
+    this.doRemove(replyData); 
+}
 }

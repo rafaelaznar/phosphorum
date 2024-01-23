@@ -5,7 +5,11 @@
     </div>
   </div>
 </div>
-
+<form [formGroup]="formGroup">
+  <div class="d-flex justify-content-center mb-3">
+    <p-autoComplete formControlName="selectedThread" [forceSelection]="true"  (completeMethod)="filterThreads($event)" field="name"></p-autoComplete>
+  </div>
+</form>
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
     <h3 *ngIf="id_user>0">{{ "plist.filtered-by" | transloco }} {{ "user.lowercase.singular" | transloco }} ({{id_user}})</h3>

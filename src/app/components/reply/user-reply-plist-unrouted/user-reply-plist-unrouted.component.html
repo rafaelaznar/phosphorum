@@ -12,17 +12,23 @@
   </div>
   <div class="d-flex justify-content-between" *ngIf="oSessionService.isSessionActive()">
     <button type="button" class="btn btn-outline-primary" (click)="postNewThread()">{{ "global.post" | transloco }} {{ "global.a.masc" | transloco }} {{ "thread.lowercase.singular" | transloco }}</button>
+   
     <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "reply.lowercase.plural" | transloco }}</h5>
-    <button type="button" class="btn btn-outline-primary" (click)="postNewReply()">{{ "global.post" | transloco }} {{ "global.a.fem" | transloco }} {{ "reply.lowercase.singular" | transloco }}</button>
+    
+    <div ><button (dragover)="onDragOver($event)" (drop)="onDrop($event)" class="btn btn-danger px-2"  ><i class="pi pi-trash"></i></button>
+      <button  type="button" class="btn btn-outline-primary" (click)="postNewReply()">{{ "global.post" | transloco }} {{ "global.a.fem" | transloco }} {{ "reply.lowercase.singular" | transloco }}</button>
   </div>
-  <div class="d-flex justify-content-center m-1">
+</div>
+  <div class="button-container" >
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="" [showPageLinks]="false"></p-paginator>
   </div>
+</div>
 
-  <div class="m-1">
+
+  <div class="m-1" >
     <ul class="list-group">
-      <!-- if ni oPage.content then show no content -->
+     
       <li class="list-group-item" *ngIf="oPage?.content?.length==0">
         <div class="d-flex justify-content-center align-items-center my-3 p-5">
           <div class="alert alert-danger" role="alert">
@@ -31,12 +37,15 @@
               fontIcon="sentiment_dissatisfied"></mat-icon>
           </div>
 
-          <h4 class="px-3">{{ "reply.no-replies-found" | transloco }}<i style="color:red">"{{oThread?.title}}"</i> {{ "thread.lowercase.singular" | transloco }}</h4>
+          <h4  class="px-3">{{ "reply.no-replies-found" | transloco }}<i style="color:red">"{{oThread?.title}}"</i> {{ "thread.lowercase.singular" | transloco }}</h4>
         </div>
       </li>
-      <li class="list-group-item" *ngFor="let r of oPage?.content">
-        <div class="d-flex flex-column">
-          <div class="d-flex justify-content-between my-3">
+      <div class="drop-area"  >
+        <ul class="list-group">
+          <li   class="list-group-item" *ngFor="let r of oPage?.content" 
+        draggable="true" (dragstart)="onDragStart($event, r)"  >
+        <div  class="d-flex flex-column">
+          <div class="replies"  class="d-flex justify-content-between my-3">
             <div class="badge text-bg-info" *ngIf="r.user.username!=oSessionService.getUsername()">
               {{r.user.username}}
             </div>
@@ -59,7 +68,7 @@
     </ul>
 
   </div>
-</div>
+
 
 
 <p-confirmDialog #cd2 [style]="{ width: '30vw' }">
