@@ -8,12 +8,14 @@
 
 <div *ngIf="status==null">
   <div class="d-flex justify-content-between mb-3">
-    <h3 *ngIf="id_user>0">{{ "plist.filtered-by" | transloco }} {{ "user.lowercase.singular" | transloco }} ({{id_user}} - {{oUser?.name}} {{oUser?.surname}}) <a type="button"
-        class="btn btn-danger btn-sm" *ngIf="id_user>0" [routerLink]="['/admin','thread','plist']">{{ "plist.reset-filter" | transloco }}</a></h3>
+    <h3 *ngIf="id_user>0">{{ "plist.filtered-by" | transloco }} {{ "user.lowercase.singular" | transloco }} ({{id_user}}
+      - {{oUser?.name}} {{oUser?.surname}}) <a type="button" class="btn btn-danger btn-sm" *ngIf="id_user>0"
+        [routerLink]="['/admin','thread','plist']">{{ "plist.reset-filter" | transloco }}</a></h3>
     <h3 *ngIf="!(id_user>0)">{{ "plist.no-filter" | transloco }}</h3>
-    <h3>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "thread.lowercase.plural" | transloco }}.</h3>
+    <h3>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }}
+      {{oPage?.totalElements}} {{ "thread.lowercase.plural" | transloco }}.</h3>
   </div>
-  <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search"/>
+  <input type="text" (keyup)="search(getValue($event))" id="name" placeholder="Search" />
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
@@ -40,8 +42,10 @@
               {{t.user.surname}}</a>
           </td>
           <td class="text-center">
-            <a [routerLink]="['/admin','reply','plist','bythread',t.id]" *ngIf="t.replies>0">{{t.replies}}</a>
-            <span *ngIf="t.replies==0">0</span>
+            <ng-container *ngIf="t && t.replies !== undefined">
+              <a [routerLink]="['/admin','reply','plist','bythread',t.id]" *ngIf="t.replies > 0">{{t.replies}}</a>
+              <span *ngIf="t.replies == 0">0</span>
+            </ng-container>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -52,6 +56,10 @@
                   class="pi pi-pencil"></i></button>
               <button *ngIf="t.replies==0" class="btn btn-danger" (click)="doRemove(t)"><i
                   class="pi pi-trash"></i></button>
+              <button class="btn" [ngClass]="{'btn-success': t.active, 'btn-danger': !t.active}"
+                (click)="toggleThreadActive(t)">
+                <i class="pi pi-power-off"></i>
+              </button>
             </div>
           </td>
         </tr>
@@ -62,7 +70,8 @@
 
 <p-confirmDialog #cd [style]="{ width: '30vw' }">
   <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> {{ "thread.removal" | transloco }}</h5>
+    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> {{ "thread.removal" | transloco }}
+    </h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="container d-flex align-items-center justify-content-center">
@@ -71,7 +80,9 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <p>{{ "thread.remove-question" | transloco }}</p>
-    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" (click)="cd.reject()"> {{ "global.no" | transloco }}</button>
-    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" (click)="cd.accept()"> {{ "global.yes" | transloco }}</button>
+    <button class="btn btn-primary mx-1" pButton icon="pi pi-times" (click)="cd.reject()"> {{ "global.no" | transloco
+      }}</button>
+    <button class="btn btn-danger mx-1" pButton icon="pi pi-check" (click)="cd.accept()"> {{ "global.yes" | transloco
+      }}</button>
   </ng-template>
 </p-confirmDialog>

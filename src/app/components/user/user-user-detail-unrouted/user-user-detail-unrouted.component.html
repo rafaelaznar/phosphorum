@@ -31,15 +31,15 @@
             <tr>
                 <th>{{ "thread.uppercase.plural" | transloco }}</th>
                 <td>
-                    <span *ngIf="oUser.threads>0">{{oUser.threads}}</span>
-                    <span *ngIf="oUser.threads==0">0</span>
+                    <span *ngIf="oUser.threads !== undefined && oUser.threads > 0">{{oUser.threads}}</span>
+                    <span *ngIf="oUser.threads === undefined || oUser.threads === 0">0</span>
                 </td>
             </tr>
             <tr>
                 <th>{{ "reply.uppercase.plural" | transloco }}</th>
                 <td>
-                    <span *ngIf="oUser.replies>0">{{oUser.replies}}</span>
-                    <span *ngIf="oUser.replies==0">0</span>
+                    <span *ngIf="oUser.replies !== undefined && oUser.replies > 0">{{oUser.replies}}</span>
+                    <span *ngIf="oUser.replies === undefined || oUser.replies === 0">0</span>
                 </td>
             </tr>
         </tbody>

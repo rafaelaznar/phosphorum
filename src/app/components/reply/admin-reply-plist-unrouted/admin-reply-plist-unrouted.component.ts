@@ -73,7 +73,7 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
       }
     })
   }
- 
+
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
@@ -154,30 +154,53 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
   search(filterValue: string): void {
     // Assuming oReplyService is the service handling the reply page data
     if (filterValue.length > 2) {
-        this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, filterValue)
-            .pipe(debounceTime(500))
-            .subscribe(
-                (data: IReplyPage) => {
-                    this.oPage = data;
-                },
-                (error: any) => {
-                    // Handle error
-                    console.error(error);
-                }
-            );
+      this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, filterValue)
+        .pipe(debounceTime(500))
+        .subscribe(
+          (data: IReplyPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
     } else {
-        // If filter length is less than 3, show all replies
-        this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, '')
-            .pipe(debounceTime(500))
-            .subscribe(
-                (data: IReplyPage) => {
-                    this.oPage = data;
-                },
-                (error: any) => {
-                    // Handle error
-                    console.error(error);
-                }
-            );
+      // If filter length is less than 3, show all replies
+      this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', 0, 0, '')
+        .pipe(debounceTime(500))
+        .subscribe(
+          (data: IReplyPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
     }
-}
+  }
+
+  toggleReplyActive(reply: IReply): void {
+    const replyToUpdate: IReply = { ...reply };
+    delete replyToUpdate.thread.replies;
+    delete replyToUpdate.user.replies;
+    delete replyToUpdate.user.threads;
+    delete replyToUpdate.user.replies;
+    delete replyToUpdate.thread.user.replies;
+    delete replyToUpdate.thread.user.threads;
+
+
+
+    replyToUpdate.active = !replyToUpdate.active;
+  
+    this.oReplyAjaxService.updateOne(replyToUpdate).subscribe({
+      next: () => {
+        this.forceReload.next(true);
+      },
+      error: (error) => {
+        replyToUpdate.active = !replyToUpdate.active;
+      }
+    });
+  }
 }
