@@ -38,6 +38,13 @@
                 <th>{{ "thread.uppercase.singular" | transloco }}</th>
                 <td> <a [routerLink]="['/admin','thread','view',oReply.thread.id]">{{oReply.thread.title}}</a> </td>
             </tr>
+            <tr>
+                <th>STATUS</th>
+                <td>
+                    <span *ngIf="oReply.active==true">Enabled</span>
+                    <span *ngIf="oReply.active==false">Disabled</span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

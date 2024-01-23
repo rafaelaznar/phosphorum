@@ -164,4 +164,21 @@ getValue(event: any): string {
     this.oUserPrintAjaxService.printUser(id_user);
   }
 
+  toggleUserActive(user: IUser): void {
+    const userToUpdate: IUser = { ...user };
+    delete userToUpdate.threads;
+    delete userToUpdate.replies;
+
+    userToUpdate.active = !userToUpdate.active;
+
+    this.oUserAjaxService.updateOne(userToUpdate).subscribe({
+      next: () => {
+        this.forceReload.next(true);
+      },
+      error: (error) => {
+        userToUpdate.active = !userToUpdate.active;
+      }
+    });
+  }
+
 }

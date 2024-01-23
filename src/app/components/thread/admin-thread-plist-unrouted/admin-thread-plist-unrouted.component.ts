@@ -165,4 +165,22 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     })
   }
 
+  toggleThreadActive(thread: IThread): void {
+    const threadToUpdate: IThread = { ...thread };
+    delete threadToUpdate.replies;
+    delete threadToUpdate.user.threads
+    delete threadToUpdate.user.replies;
+
+    threadToUpdate.active = !threadToUpdate.active;
+
+    this.oThreadAjaxService.updateOne(threadToUpdate).subscribe({
+      next: () => {
+        this.forceReload.next(true);
+      },
+      error: (error) => {
+        threadToUpdate.active = !threadToUpdate.active;
+      }
+    });
+  }
+
 }

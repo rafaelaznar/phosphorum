@@ -48,10 +48,11 @@ export interface IUser extends IEntity {
     username: string,
     password: string,
     role: boolean,
-    threads: number,
-    replies: number,
+    threads?: number,
+    replies?: number,
     verified: boolean,
     token: string,
+    active: boolean
 }
 
 export interface IUserPage extends IPage<IUser> {
@@ -60,7 +61,8 @@ export interface IUserPage extends IPage<IUser> {
 export interface IThread extends IEntity {
     title: string,
     user: IUser,
-    replies: number
+    replies?: number,
+    active: boolean
 }
 
 export interface IThreadPage extends IPage<IThread> {
@@ -71,7 +73,8 @@ export interface IReply extends IEntity {
     body: string,
     creation: Date,
     user: IUser,
-    thread: IThread
+    thread: IThread,
+    active: boolean
 }
 
 export interface IReplyPage extends IPage<IReply> {
