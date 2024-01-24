@@ -85,6 +85,8 @@ import { UserPrintAjaxService } from './service/user.print.ajax.service';
 import { TranslocoRootModule } from './transloco-root.module';
 //
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -99,6 +101,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FooterUnroutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ChangePasswordComponent,
+    SendEmailComponent,
     ConfirmAccountComponent,
     //--
     AdminUserPlistRoutedComponent,

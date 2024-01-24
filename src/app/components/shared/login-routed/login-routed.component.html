@@ -23,6 +23,10 @@
       <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">{{ "login.password-minlength" | transloco }}</mat-error>
     </mat-form-field>
 
+    <div class="d-flex  justify-content-center ">
+      <a routerLink="/sendemail" class="pb-5 text-decoration-underline">I forgot my password</a>
+    </div>
+
     <mat-form-field class="full-width">
       <img [src]="'data:image/png;base64,' + oPrelogin?.captchaImage" alt="Captcha">
       <input matInput placeholder="Captcha" formControlName="captcha">
