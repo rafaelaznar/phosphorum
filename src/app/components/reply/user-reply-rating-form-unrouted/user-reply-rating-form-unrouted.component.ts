@@ -9,6 +9,7 @@ import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 
+
 @Component({
   selector: 'app-user-reply-rating-form-unrouted',
   templateUrl: './user-reply-rating-form-unrouted.component.html',

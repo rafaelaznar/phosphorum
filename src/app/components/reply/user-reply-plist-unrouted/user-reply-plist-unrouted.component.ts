@@ -15,7 +15,8 @@ import { UserThreadFormUnroutedComponent } from '../../thread/user-thread-form-u
 import { UserReplyRatingFormUnroutedComponent } from '../user-reply-rating-form-unrouted/user-reply-rating-form-unrouted.component';
 import { RatingAjaxService } from 'src/app/service/rating.service';
 import { Observable } from 'rxjs';
-
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -59,7 +60,9 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     private oReplyAjaxService: ReplyAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oTranslocoService: TranslocoService
+
   ) { }
 
   // Llama al método para obtener la página de respuestas
@@ -75,6 +78,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.calculateAverageRatingsForAllReplies();
     this.getAllIds();
   }
+  @Output() replyDropped = new EventEmitter<CdkDragDrop<IReply[]>>();
 
   @Input()
   set id_user(value: number) {
@@ -103,28 +107,6 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     return this.id_thread_filter;
   }
 
-  getUser(): void {
-    this.oUserAjaxService.getOne(this.id_user).subscribe({
-      next: (data: IUser) => {
-        this.oUser = data;
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Error getting user:', error);
-      }
-    });
-  }
-
-  getThread(): void {
-    this.oThreadAjaxService.getOne(this.id_thread).subscribe({
-      next: (data: IThread) => {
-        this.oThread = data;
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Error getting thread:', error);
-      }
-    });
-  }
-
   // Llama al método para obtener la página de respuestas
   getPage(): void {
     this.oReplyAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user_filter, this.id_thread_filter).subscribe({
@@ -144,6 +126,58 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
+
+  doView(u: IReply) {
+    this.ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
+      data: {
+        id: u.id
+      },
+      header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular'),
+      width: '50%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false
+    });
+  }
+
+
+
+  getUser(): void {
+    this.oUserAjaxService.getOne(this.id_user).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error getting user:', error);
+        this.status = error;
+      }
+    });
+  }
+
+  getThread(): void {
+    this.oThreadAjaxService.getOne(this.id_thread).subscribe({
+      next: (data: IThread) => {
+        this.oThread = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error getting thread:', error);
+      }
+    });
+  }
+
+
+
+
+  doOrder(fieldorder: string) {
+    this.orderField = fieldorder;
+    if (this.orderDirection == "asc") {
+      this.orderDirection = "desc";
+    } else {
+      this.orderDirection = "asc";
+    }
+    this.getPage();
+  }
+
   postNewReply(): void {
     if (this.id_thread_filter > 0 && this.oSessionService.isSessionActive()) {
 
@@ -151,12 +185,13 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         data: {
           id_thread: this.id_thread_filter,
         },
-        header: 'Post a new reply',
+        header: this.oTranslocoService.translate('global.post') + ' ' + this.oTranslocoService.translate('global.a.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular'),
         width: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: false
       });
+
       this.ref.onClose.subscribe((nReply: number) => {
         this.getPage();
         this.reply_change.emit(true);
@@ -171,12 +206,13 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
         data: {
           id_thread: this.id_thread_filter,
         },
-        header: 'Post a new thread',
+        header: this.oTranslocoService.translate('global.post') + ' ' + this.oTranslocoService.translate('global.a.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular'),
         width: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: false
       });
+
       this.ref.onClose.subscribe((nThread: number) => {
         this.getPage();
         this.reply_change.emit(true);
@@ -188,7 +224,7 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
     this.oReplyToRemove = u;
     this.oConfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The reply has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.has.fem'), '', { duration: 2000 });
         this.oReplyAjaxService.removeOne(this.oReplyToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -196,29 +232,15 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem'), "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The reply hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.fem'), "", { duration: 2000 });
       }
     });
   }
-
-  doView(u: IReply) {
-    this.ref = this.oDialogService.open(AdminReplyDetailUnroutedComponent, {
-      data: {
-        id: u.id
-      },
-      header: 'View of reply',
-      width: '50%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: false
-    });
-  }
-
 
   // MODULO VALORACIONES
   // Método para abrir el formulario de valoración de respuestas
@@ -352,5 +374,19 @@ export class UserReplyPlistUnroutedComponent implements OnInit {
   }
 
 
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
 
+  onDragStart(event: DragEvent, reply: any) {
+    event.dataTransfer?.setData('text/plain', JSON.stringify(reply));
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+
+    const replyData = JSON.parse(event.dataTransfer?.getData('text/plain') || '{}');
+
+    this.doRemove(replyData);
+  }
 }

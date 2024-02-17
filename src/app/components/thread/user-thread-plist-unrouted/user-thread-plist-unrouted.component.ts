@@ -3,13 +3,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationService, ConfirmEventType } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IThread, IThreadPage, IUser } from 'src/app/model/model.interfaces';
+import { IReplyPage, IThread, IThreadPage, IUser } from 'src/app/model/model.interfaces';
 import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrouted/admin-thread-detail-unrouted.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
 import { SessionAjaxService } from 'src/app/service/session.ajax.service.ts.service';
 import { Subject } from 'rxjs';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
 
 @Component({
   providers: [ConfirmationService],
@@ -40,6 +42,7 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
     private oUserAjaxService: UserAjaxService,
     public oSessionService: SessionAjaxService,
     private oThreadAjaxService: ThreadAjaxService,
+    private oRepliesAjaxService: ReplyAjaxService
   ) { }
 
   ngOnInit() {
@@ -147,5 +150,8 @@ export class UserThreadPlistUnroutedComponent implements OnInit {
       }
     })
   }
+
+
+
 
 }

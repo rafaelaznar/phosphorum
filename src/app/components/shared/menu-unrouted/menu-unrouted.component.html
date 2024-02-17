@@ -1,46 +1,63 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/home">Phosphorum 2023</a>
-        <div class="navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Phosphorum 2023</a>
+      <div class="navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl=='/home'||strUrl=='/'" aria-current="page"
-                        routerLink="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')" routerLink="/admin/user/plist"
-                        *ngIf="strUserName && oSessionUser?.role==false">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread')"
-                        routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">Threads</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
-                        routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">Replies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [class.active]="strUrl.startsWith('/admin/rating')"
-                        routerLink="/admin/rating/plist" *ngIf="strUserName && oSessionUser?.role==false">Ratings</a>
-                </li>
-            </ul>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl=='/home'||strUrl=='/'" aria-current="page"
+                      routerLink="/home">{{ "home.home" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/user')"
+                      routerLink="/admin/user/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "user.uppercase.plural" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/thread')"
+                      routerLink="/admin/thread/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "thread.uppercase.plural" | transloco }}</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [class.active]="strUrl.startsWith('/admin/reply')"
+                      routerLink="/admin/reply/plist" *ngIf="strUserName && oSessionUser?.role==false">{{ "reply.uppercase.plural" | transloco }}</a>
+              </li>
+          </ul>
+           
+          <div class="dropdown-lang">
+            <p-dropdown [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name" (onChange)="changeSiteLanguage($event.value)">
+                <ng-template pTemplate="selectedItem">
+                    <div *ngIf="selectedLanguage">
+                        <div>
+                            {{ selectedLanguage.name }}
+                            <img width="25px" [src]="'../../../../assets/images/icons/'+selectedLanguage.resource"/>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-language pTemplate="item">
+                    <div *ngIf="selectedLanguage">
+                        <div>
+                            {{ language.name }}
+                            <img width="25px" [src]="'../../../../assets/images/icons/'+language.resource"/>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+          </div>
 
-            <span class="navbar-text mx-1" *ngIf="strUserName">
-                <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
-            </span>
-            <span class="navbar-text mx-1" *ngIf="!strUserName">
-                Not logged in
-            </span>
-            <span class="navbar-text mx-1">
-                <a class="nav-link" routerLink="/login" href="#" *ngIf="!strUserName"
-                    [class.active]="strUrl.startsWith('/login')">Login</a>
-            </span>
-            <span class="navbar-text mx-1">
-                <a class="nav-link" routerLink="/logout" href="#" *ngIf="strUserName"
-                    [class.active]="strUrl.startsWith('/logout')">Logout</a>
-            </span>
+          <span class="navbar-text mx-1" *ngIf="strUserName">
+              <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
+          </span>
+          <span class="navbar-text mx-1" *ngIf="!strUserName">
+            {{ "login.not-logged" | transloco }}
+          </span>
+          <span class="navbar-text mx-1">
+              <a class="nav-link" routerLink="/login" href="#" *ngIf="!strUserName"
+                  [class.active]="strUrl.startsWith('/login')">{{ "login.login" | transloco }}</a>
+          </span>
+          <span class="navbar-text mx-1">
+              <a class="nav-link" routerLink="/logout" href="#" *ngIf="strUserName"
+                  [class.active]="strUrl.startsWith('/logout')">{{ "logout.logout" | transloco }}</a>
+          </span>
 
-        </div>
-    </div>
+      </div>
+  </div>
 </nav>

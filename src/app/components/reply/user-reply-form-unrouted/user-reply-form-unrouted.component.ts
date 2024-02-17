@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IReply, IThread, IUser, formOperation } from 'src/app/model/model.interfaces';
 import { ReplyAjaxService } from 'src/app/service/reply.ajax.service.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-user-reply-form-unrouted',
@@ -28,7 +29,8 @@ export class UserReplyFormUnroutedComponent implements OnInit {
     private matSnackBar: MatSnackBar,
     public oDialogService: DialogService,
     public oDynamicDialogRef: DynamicDialogRef,
-    public oDynamicDialogConfig: DynamicDialogConfig
+    public oDynamicDialogConfig: DynamicDialogConfig,
+    private oTranslocoService: TranslocoService
   ) {
     if (oDynamicDialogConfig) {
       if (oDynamicDialogConfig.data) {
@@ -83,7 +85,7 @@ export class UserReplyFormUnroutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.matSnackBar.open("Error reading reply from server.", '', { duration: 2000 });
+          this.matSnackBar.open(this.oTranslocoService.translate('global.error') + ' ' + this.oTranslocoService.translate('global.reading') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.from-server') + '.', '', { duration: 2000 });
         }
       });
     } else {
@@ -109,12 +111,12 @@ export class UserReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = { "user": {}, "thread": {} } as IReply;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been created.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.has.fem') + '.', '', { duration: 2000 });
             this.oDynamicDialogRef.close(data);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't create reply.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.create.hasnt.fem') + '.', '', { duration: 2000 });
           }
         });
       } else {
@@ -122,12 +124,12 @@ export class UserReplyFormUnroutedComponent implements OnInit {
           next: (data: IReply) => {
             this.oReply = data;
             this.initializeForm(this.oReply);
-            this.matSnackBar.open("Reply has been updated.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.has.fem') + '.', '', { duration: 2000 });
             this.oDynamicDialogRef.close(data);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.matSnackBar.open("Can't update reply.", '', { duration: 2000 });
+            this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.has.fem') + '.', '', { duration: 2000 });
           }
         });
       }

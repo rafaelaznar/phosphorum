@@ -46,9 +46,13 @@ export interface IUser extends IEntity {
     lastname: string,
     email: string,
     username: string,
+    password: string,
     role: boolean,
-    threads: number,
-    replies: number
+    threads?: number,
+    replies?: number,
+    verified: boolean,
+    token: string,
+    active: boolean
 }
 
 export interface IUserPage extends IPage<IUser> {
@@ -57,13 +61,15 @@ export interface IUserPage extends IPage<IUser> {
 export interface IThread extends IEntity {
     title: string,
     user: IUser,
-    replies: number
+    replies?: number,
+    active: boolean
 }
 
 export interface IThreadPage extends IPage<IThread> {
 }
 
 export interface IReply extends IEntity {
+    active: boolean;
     reply: any;
     title: string,
     body: string,
@@ -74,6 +80,11 @@ export interface IReply extends IEntity {
 }
 
 export interface IReplyPage extends IPage<IReply> {
+    active: boolean
+}
+
+export interface IReplyPage extends IPage<IReply> {
+
 }
 
 export type formOperation = 'EDIT' | 'NEW';
@@ -99,4 +110,19 @@ export interface IRating {
 }
 
 export interface IRatingPage extends IPage<IRating> {
+    text: string,
+    image: string
+}
+
+export interface IPrelogin extends IEntity {
+    token: string,
+    captchaImage: string
+}
+
+export class Language {
+    constructor(
+        public code: string,
+        public name: string,
+        public resource: string
+    ) { }
 }

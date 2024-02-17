@@ -1,0 +1,193 @@
+{
+  "global": {
+    "table": {
+      "property": "Property",
+      "value": "Value"
+    },
+    "id": "Id",
+    "edit": "Edit",
+    "new": {
+      "masc": "New",
+      "fem": "New"
+    },
+    "save": "Save",
+    "view": "View",
+    "list": "List",
+    "yes": "Yes",
+    "no": "No",
+    "in": "in",
+    "the": {
+      "masc": "The",
+      "fem": "The"
+    },
+    "remove": {
+      "remove": {
+        "uppercase": "Remove",
+        "lowercase": "remove"
+      },
+      "has": {
+        "masc": "has been removed",
+        "fem": "has been removed"
+      },
+      "hasnt": {
+        "masc": "hasn't been removed",
+        "fem": "hasn't been removed"
+      }
+    },
+    "create": {
+      "create": {
+        "uppercase": "Create",
+        "lowercase": "create"
+      },
+      "has": {
+        "masc": "has been created",
+        "fem": "has been created"
+      },
+      "hasnt": {
+        "masc": "hasn't been created",
+        "fem": "hasn't been created"
+      }
+    },
+    "update": {
+      "update": {
+        "uppercase": "Update",
+        "lowercase": "update"
+      },
+      "has": {
+        "masc": "has been updated",
+        "fem": "has been updated"
+      },
+      "hasnt": {
+        "masc": "hasn't been updated",
+        "fem": "hasn't been updated"
+      }
+    },
+    "now-there-are": "Now there are",
+    "post": "Post",
+    "a": {
+      "masc": "a",
+      "fem": "a"
+    },
+    "cancelled": "cancelled",
+    "error": "Error",
+    "emptying": "emptying",
+    "generating": "generating",
+    "reading": "reading",
+    "select": "Select",
+    "from-server": "from server"
+  },
+  "home": {
+    "home": "Home",
+    "subtitle": "light your thoughts",
+    "featured-users": "Featured Users"
+  },
+  "login": {
+    "login": "Login",
+    "not-logged":"Not logged in",
+    "form": "Login Form",
+    "username-required": "Username is required",
+    "password-required": "Password is required",
+    "password-minlength": "Password must be at least 6 characters length",
+    "reset": "Reset",
+    "as-admin": "Login as Admin",
+    "as-user": "Login as User",
+    "successfull": "Login successfull",
+    "operation": "login operation"
+  },
+  "logout": {
+    "logout": "Logout",
+    "question": "Do you really want to log out?",
+    "successfull": "Logout successfull"
+  },
+  "footer": {
+    "by": "by",
+    "licensed": "MIT Licensed"
+  }, 
+  "plist": {
+    "processing": "Processing... wait, please",
+    "empty": "Empty",
+    "filtered-by": "Filtered by",
+    "reset-filter": "reset filter",
+    "no-filter": "No active filter",
+    "showing": "Showing",
+    "of-total": "of total",
+    "number-of": "Number of",
+    "tools": "Tools",
+    "by-new": "by new",
+    "by-popular": "by popular",
+    "header": {
+      "viewUser": "View user"
+    }
+  },
+  "form": {
+    "to": "to",
+    "characters-long": "characters long",
+    "cant-change": "can't change",
+    "this-number": "this number",
+    "is-required": "is required",
+    "more-length": "More length",
+    "max": "max.",
+    "limit-exceed": "Limit exceed",
+    "is-not-valid": "is not valid",
+    "characters-not-accepted": "Characters not accepted",
+    "alphanumeric": "alphanumeric",
+    "valid-date": "You must set a valid date",
+    "find": "Find a"
+  },
+  "user": {
+    "uppercase": {
+      "singular": "User",
+      "plural": "Users"
+    },
+    "lowercase": {
+      "singular": "user",
+      "plural": "users"
+    },
+    "name": "Name",
+    "surname" :"Surname",
+    "lastname": "Lastname",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "role": {
+      "role": "Role",
+      "admin": "Admin",
+      "user": "User"
+    },
+    "type": "User type",
+    "removal": "User removal",
+    "remove-question": "Are you sure that you want to remove this user?",
+    "remove-all-question": "Are you sure that you want to remove all the users?"
+  },
+  "thread": {
+    "uppercase": {
+      "singular": "Thread",
+      "plural": "Threads"
+    },
+    "lowercase": {
+      "singular": "thread",
+      "plural": "threads"
+    },
+    "title": "Title",
+    "removal": "Thread removal",
+    "remove-question": "Are you sure that you want to remove this thread?",
+    "remove-all-question": "Are you sure that you want to remove all the threads?"
+  },
+  "reply": {
+    "uppercase": {
+      "singular": "Reply",
+      "plural": "Replies"
+    },
+    "lowercase": {
+      "singular": "reply",
+      "plural": "replies"
+    },
+    "title": "Title",
+    "creation": "Creation",
+    "body": "Body",
+    "removal": "Reply removal",
+    "remove-question": "Are you sure that you want to remove this reply?",
+    "remove-all-question": "Are you sure that you want to remove all the replies?",
+    "no-replies-found": "No replies found for this"
+  }
+}

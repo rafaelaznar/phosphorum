@@ -19,3 +19,16 @@ th {
 .marging {
   margin-left: 10px; /* Márgen entre estrellas y votos */
 }
+
+
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button-container button {
+    margin-right: 10px; 
+  }
+  .replies  {
+    background-color: black; 
+  }

@@ -10,14 +10,15 @@
   <div class="d-flex justify-content-between">
 
     <input type="radio" class="btn-check btn-sm" name="options-outlined" id="success-outlined" autocomplete="off"
-       (change)="onOrderChange($event)" [checked]="activeOrder">
-    <label class="btn btn-outline-success" for="success-outlined">by new</label>
+      (change)="onOrderChange($event)" [checked]="activeOrder">
+    <label class="btn btn-outline-success" for="success-outlined">{{ "plist.by-new" | transloco }}</label>
 
-    <h5 class="px-2">Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} threads.</h5>
+    <h5 class="px-2">{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }}
+      {{oPage?.totalElements}} {{ "thread.lowercase.plural" | transloco }}.</h5>
 
     <input type="radio" class="btn-check btn-sm" name="options-outlined" id="danger-outlined" autocomplete="off"
-       (change)="onOrderChange($event)" [checked]="!activeOrder">
-    <label class="btn btn-outline-danger" for="danger-outlined">by popular</label>
+      (change)="onOrderChange($event)" [checked]="!activeOrder">
+    <label class="btn btn-outline-danger" for="danger-outlined">{{ "plist.by-popular" | transloco }} </label>
 
   </div>
 
@@ -27,9 +28,10 @@
   </div>
 
   <div class=" d-flex">
+    <div class="drop-area"  >
     <ul class="list-group">
 
-      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let t of oPage?.content"
+      <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let t of oPage?.content" 
         (click)="doShowReplies(t)" [ngClass]="{active: t.id==activeThread?.id}">
 
         <div class="ms-2 me-auto">
@@ -38,9 +40,9 @@
         <div class="ms-1">
           <span class="badge bg-light">
             <span class="badge text-bg-warning"
-              *ngIf="t.user.username==oSessionService.getUsername()">{{t.user.username}}</span>
+              *ngIf="t?.user?.username==oSessionService.getUsername()">{{t?.user?.username}}</span>
             <span class="badge text-bg-info"
-              *ngIf="t.user.username!=oSessionService.getUsername()">{{t.user.username}}</span>
+              *ngIf="t?.user?.username!=oSessionService.getUsername()">{{t?.user?.username}}</span>
             <span class="badge bg-secondary rounded-pill">{{t.replies}}</span>
           </span>
         </div>

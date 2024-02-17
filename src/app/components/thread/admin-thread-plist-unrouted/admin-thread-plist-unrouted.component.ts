@@ -8,7 +8,8 @@ import { AdminThreadDetailUnroutedComponent } from '../admin-thread-detail-unrou
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThreadAjaxService } from 'src/app/service/thread.ajax.service.service';
 import { UserAjaxService } from 'src/app/service/user.ajax.service.service';
-import { Subject } from 'rxjs';
+import { Subject, debounceTime, of, switchMap } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   providers: [ConfirmationService],
@@ -36,7 +37,8 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     private oThreadAjaxService: ThreadAjaxService,
     public oDialogService: DialogService,
     private oCconfirmationService: ConfirmationService,
-    private oMatSnackBar: MatSnackBar
+    private oMatSnackBar: MatSnackBar,
+    private oTranslocoService: TranslocoService
   ) { }
 
   ngOnInit() {
@@ -81,12 +83,49 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
+  getValue(event: any): string {
+    return event.target.value;
+  }
+  search(filterValue: string): void {
+
+    if (filterValue.length >= 3) {
+      
+      this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', this.id_user,filterValue)
+        .pipe(
+          debounceTime(500),
+          switchMap((data: IThreadPage) => {
+            return of(data);
+          })
+        )
+        .subscribe(
+          (data: IThreadPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
+    } else {
+      // If filterValue is null or less than 3 characters, load all users without debounce
+      this.oThreadAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc', this.id_user)
+        .subscribe(
+          (data: IThreadPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
+    }
+  }
   doView(u: IThread) {
     this.ref = this.oDialogService.open(AdminThreadDetailUnroutedComponent, {
       data: {
         id: u.id
       },
-      header: 'View of thread',
+      header: this.oTranslocoService.translate('global.view') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular'),
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -98,19 +137,19 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     this.oThreadToRemove = u;
     this.oCconfirmationService.confirm({
       accept: () => {
-        this.oMatSnackBar.open("The thread has been removed.", '', { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.has.masc'), '', { duration: 2000 });
         this.oThreadAjaxService.removeOne(this.oThreadToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
+            this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.masc'), "", { duration: 2000 });
           }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMatSnackBar.open("The thread hasn't been removed.", "", { duration: 2000 });
+        this.oMatSnackBar.open(this.oTranslocoService.translate('global.the.masc') + ' ' + this.oTranslocoService.translate('thread.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.remove.hasnt.masc'), "", { duration: 2000 });
       }
     });
   }
@@ -125,6 +164,24 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
       }
 
     })
+  }
+
+  toggleThreadActive(thread: IThread): void {
+    const threadToUpdate: IThread = { ...thread };
+    delete threadToUpdate.replies;
+    delete threadToUpdate.user.threads
+    delete threadToUpdate.user.replies;
+
+    threadToUpdate.active = !threadToUpdate.active;
+
+    this.oThreadAjaxService.updateOne(threadToUpdate).subscribe({
+      next: () => {
+        this.forceReload.next(true);
+      },
+      error: (error) => {
+        threadToUpdate.active = !threadToUpdate.active;
+      }
+    });
   }
 
 }

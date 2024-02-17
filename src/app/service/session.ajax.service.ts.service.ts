@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, catchError, map, of } from 'rxjs';
 import { API_URL } from 'src/environment/environment';
-import { IToken, IUser, SessionEvent } from '../model/model.interfaces';
+import { IPrelogin, IToken, IUser, SessionEvent } from '../model/model.interfaces';
 import { UserAjaxService } from './user.ajax.service.service';
 
 @Injectable()
@@ -35,11 +35,23 @@ export class SessionAjaxService {
         localStorage.setItem('token', sToken);
     }
 
+
+    prelogin(): Observable<IPrelogin> {
+        return this.oHttpClient.get<IPrelogin>(this.sUrl + "/prelogin");
+    }
+
+    loginCaptcha(sUsername: string, sPassword: string, sToken: string, sAnswer: string): Observable<string> {
+        return this.oHttpClient.post<string>(this.sUrl + "/loginCaptcha", { username: sUsername, password: sPassword, token: sToken, answer: sAnswer });
+    }
+
+
+
     getToken(): string | null {
         return localStorage.getItem('token');
     }
 
     logout(): void {
+        localStorage.removeItem('token');
         localStorage.removeItem('token');
     }
 

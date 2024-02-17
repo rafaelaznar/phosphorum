@@ -5,10 +5,14 @@
     </div>
   </div>
 </div>
-
+<form [formGroup]="formGroup">
+  <div class="d-flex justify-content-center mb-3">
+    <p-autoComplete formControlName="selectedUser" [forceSelection]="true"  (completeMethod)="filterUsers($event)" field="name"></p-autoComplete>
+  </div>
+</form>
 <div *ngIf="status==null">
   <div class="d-flex justify-content-end mb-3">
-    <h6>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h6>
+    <h6>{{ "plist.showing" | transloco }} {{oPage?.numberOfElements}} {{ "plist.of-total" | transloco }} {{oPage?.totalElements}} {{ "user.lowercase.plural" | transloco }}.</h6>
   </div>
   <div class="flex justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
@@ -20,16 +24,17 @@
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
-          <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('name')">Name</th>
-          <th (click)="doOrder('surname')">Surname</th>
-          <th (click)="doOrder('lastname')">Last name</th>
-          <th (click)="doOrder('email')">Email</th>
-          <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('role')">Role</th>
-          <th>Threads</th>
-          <th>Replies</th>
-          <th>Tools</th>
+          <th (click)="doOrder('id')">{{ "global.id" | transloco }}</th>
+          <th (click)="doOrder('name')">{{ "user.name" | transloco }}</th>
+          <th (click)="doOrder('surname')">{{ "user.surname" | transloco }}</th>
+          <th (click)="doOrder('lastname')">{{ "user.lastname" | transloco }}</th>
+          <th (click)="doOrder('email')">{{ "user.email" | transloco }}</th>
+          <th (click)="doOrder('username')">{{ "user.username" | transloco }}</th>
+          <th (click)="doOrder('role')">{{ "user.role.role" | transloco }}</th>
+          <th>{{ "thread.uppercase.plural" | transloco }}</th>
+          <th>{{ "reply.uppercase.plural" | transloco }}</th>
+          <th (click)="doOrder('active')">Status</th>
+          <th>{{ "plist.tools" | transloco }}</th>
         </tr>
       </thead>
       <tbody>
@@ -41,14 +46,19 @@
           <td>{{u.email}}</td>
           <td>{{u.username}}</td>
           <td class="text-center">
-            <span *ngIf="u.role==true">Admin</span>
-            <span *ngIf="u.role==false">User</span>
+            <span *ngIf="u.role==true">{{ "user.role.admin" | transloco }}</span>
+            <span *ngIf="u.role==false">{{ "user.role.user" | transloco }}</span>
           </td>
+          
           <td class="text-center">
             {{u.threads}}
           </td>
           <td class="text-center">
             {{u.replies}}
+          </td>
+          <td class="text-center">
+            <span *ngIf="u.active==true">Enabled</span>
+            <span *ngIf="u.active==false">Disabled</span>
           </td>
           <td class="text-center">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">

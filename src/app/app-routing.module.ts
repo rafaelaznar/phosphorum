@@ -23,6 +23,11 @@ import { AdminRatingPlistRoutedComponent } from './components/rating/admin-ratin
 import { AdminRatingViewRoutedComponent } from './components/rating/admin-rating-view-routed/admin-rating-view-routed.component';
 import { AdminRatingNewRoutedComponent } from './components/rating/admin-rating-new-routed/admin-rating-new-routed.component';
 
+import { SendEmailComponent } from './components/send-email/send-email.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+
+import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
+import { UserUserNewRoutedComponent } from './components/user/user-user-new-routed/user-user-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -32,6 +37,13 @@ const routes: Routes = [
   //--
   { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
   { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },
+  { path: 'user/confirm-account', component: ConfirmAccountComponent },
+
+  { path: 'user/user/new', component: UserUserNewRoutedComponent },
+
+  //--
+  { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
+  { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   //--  
@@ -54,6 +66,19 @@ const routes: Routes = [
 
 
 
+  { path: 'admin/thread/view/:id', component: AdminThreadViewRoutedComponent },    
+  { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },  
+  { path: 'admin/thread/edit/:id', component: AdminThreadEditRoutedComponent },  
+  //--
+  { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
+  { path: 'admin/reply/plist/byuser/:iduser', component: AdminReplyPlistRoutedComponent },  
+  { path: 'admin/reply/plist/bythread/:idthread', component: AdminReplyPlistRoutedComponent },  
+  { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },    
+  { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent},  
+  { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
+  //--
+  { path: 'sendemail', component: SendEmailComponent },
+  { path: 'changepassword/:tokenPassword', component: ChangePasswordComponent },
 ];
 
 @NgModule({
