@@ -75,6 +75,17 @@ import { AdminReplyFormUnroutedComponent } from './components/reply/admin-reply-
 import { UserReplyPlistUnroutedComponent } from './components/reply/user-reply-plist-unrouted/user-reply-plist-unrouted.component';
 import { UserReplyDetailUnroutedComponent } from './components/reply/user-reply-detail-unrouted/user-reply-detail-unrouted.component';
 import { UserReplyFormUnroutedComponent } from './components/reply/user-reply-form-unrouted/user-reply-form-unrouted.component';
+//
+import { AdminRatingPlistRoutedComponent } from './components/rating/admin-rating-plist-routed/admin-rating-plist-routed.component';
+import { RatingAjaxService } from './service/rating.service';
+import { AdminRatingPlistUnroutedComponent } from './components/rating/admin-rating-plist-unrouted/admin-rating-plist-unrouted.component';
+import { AdminRatingDetailUnroutedComponent } from './components/rating/admin-rating-detail-unrouted/admin-rating-detail-unrouted.component';
+import { AdminRatingViewRoutedComponent } from './components/rating/admin-rating-view-routed/admin-rating-view-routed.component';
+import { AdminRatingFormUnroutedComponent } from './components/rating/admin-rating-form-unrouted/admin-rating-form-unrouted.component';
+import { AdminRatingNewRoutedComponent } from './components/rating/admin-rating-new-routed/admin-rating-new-routed.component';
+import { AdminReplySelectionUnroutedComponent } from './components/reply/admin-reply-selection-unrouted/admin-reply-selection-unrouted.component';
+import { UserReplyRatingFormUnroutedComponent } from './components/reply/user-reply-rating-form-unrouted/user-reply-rating-form-unrouted.component';
+
 import { UserUserFormUnroutedComponent } from './components/user/user-user-form-unrouted/user-user-form-unrouted.component';
 
 //Sin esto da error!
@@ -93,105 +104,120 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 //--
 @NgModule({
-  declarations: [
-    TrimPipe,
-    AppComponent,
-    HomeRoutedComponent,
-    MenuUnroutedComponent,
-    FooterUnroutedComponent,
-    LoginRoutedComponent,
-    LogoutRoutedComponent,
-    ChangePasswordComponent,
-    SendEmailComponent,
-    ConfirmAccountComponent,
-    //--
-    AdminUserPlistRoutedComponent,
-    AdminUserViewRoutedComponent,
-    AdminUserNewRoutedComponent,
-    AdminUserEditRoutedComponent,
-    AdminUserPlistUnroutedComponent,
-    AdminUserDetailUnroutedComponent,
-    AdminUserFormUnroutedComponent,
-    AdminUserSelectionUnroutedComponent,
-    UserUserFeaturedUnroutedComponent,
-    UserUserDetailUnroutedComponent,
-    UserUserNewRoutedComponent,
-    UserUserFormUnroutedComponent,
-    //--
-    AdminThreadPlistRoutedComponent,
-    AdminThreadViewRoutedComponent,
-    AdminThreadNewRoutedComponent,
-    AdminThreadEditRoutedComponent,
-    AdminThreadPlistUnroutedComponent,
-    AdminThreadDetailUnroutedComponent,
-    AdminThreadFormUnroutedComponent,
-    AdminThreadSelectionUnroutedComponent,
-    UserThreadFeaturedUnroutedComponent,
-    UserThreadPlistUnroutedComponent,
-    UserThreadFormUnroutedComponent,
-    //--
-    AdminReplyPlistRoutedComponent,
-    AdminReplyViewRoutedComponent,
-    AdminReplyNewRoutedComponent,
-    AdminReplyEditRoutedComponent,
-    AdminReplyPlistUnroutedComponent,
-    AdminReplyDetailUnroutedComponent,
-    AdminReplyFormUnroutedComponent,
-    UserReplyPlistUnroutedComponent,
-    UserReplyDetailUnroutedComponent,
-    UserReplyFormUnroutedComponent,
-    //--    
+    declarations: [
+        TrimPipe,
+        AppComponent,
+        HomeRoutedComponent,
+        MenuUnroutedComponent,
+        FooterUnroutedComponent,
+        LoginRoutedComponent,
+        LogoutRoutedComponent,
+        ChangePasswordComponent,
+        SendEmailComponent,
+        ConfirmAccountComponent,
+        //--
+        AdminUserPlistRoutedComponent,
+        AdminUserViewRoutedComponent,
+        AdminUserNewRoutedComponent,
+        AdminUserEditRoutedComponent,
+        AdminUserPlistUnroutedComponent,
+        AdminUserDetailUnroutedComponent,
+        AdminUserFormUnroutedComponent,
+        AdminUserSelectionUnroutedComponent,
+        UserUserFeaturedUnroutedComponent,
+        UserUserDetailUnroutedComponent,
+        UserUserNewRoutedComponent,
+        UserUserFormUnroutedComponent,
+        //--
+        AdminThreadPlistRoutedComponent,
+        AdminThreadViewRoutedComponent,
+        AdminThreadNewRoutedComponent,
+        AdminThreadEditRoutedComponent,
+        AdminThreadPlistUnroutedComponent,
+        AdminThreadDetailUnroutedComponent,
+        AdminThreadFormUnroutedComponent,
+        AdminThreadSelectionUnroutedComponent,
+        UserThreadFeaturedUnroutedComponent,
+        UserThreadPlistUnroutedComponent,
+        UserThreadFormUnroutedComponent,
+        //--
+        AdminReplyPlistRoutedComponent,
+        AdminReplyViewRoutedComponent,
+        AdminReplyNewRoutedComponent,
+        AdminReplyEditRoutedComponent,
+        AdminReplyPlistUnroutedComponent,
+        AdminReplyDetailUnroutedComponent,
+        AdminReplyFormUnroutedComponent,
+        UserReplyPlistUnroutedComponent,
+        UserReplyDetailUnroutedComponent,
+        UserReplyFormUnroutedComponent,
+        AdminReplySelectionUnroutedComponent,
+        UserReplyRatingFormUnroutedComponent,
+        //-- 
+        AdminRatingPlistRoutedComponent,
+        AdminRatingPlistUnroutedComponent,
+        AdminRatingDetailUnroutedComponent,
+        AdminRatingViewRoutedComponent,
+        AdminRatingFormUnroutedComponent,
+        AdminRatingNewRoutedComponent,
+        //-- 
+        //--    
 
 
-  ],
-  imports: [
-    NgApexchartsModule,
-    NgxCaptchaModule,
-    //--
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    //--
-    BrowserAnimationsModule,
-    DynamicDialogModule,
-    BrowserAnimationsModule,
-    PaginatorModule,
-    TableModule,
-    ConfirmDialogModule,
-    ConfirmPopupModule,
-    CalendarModule,
-    TooltipModule,
-    DropdownModule,
-    //--
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatRadioModule,
-    MatFormFieldModule,
-    MatToolbarModule,
-    MatIconModule,
-    TranslocoRootModule,
-    //--
-    AutoCompleteModule,
-    DragDropModule
-  ],
-  providers: [
-    MessageService,
-    DialogService,
-    ConfirmationService,
-    MatSnackBar,
-    UserAjaxService,
-    ThreadAjaxService,
-    ReplyAjaxService,
-    SessionAjaxService,
-    CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    UserPrintAjaxService,
+    ],
+    imports: [
+        NgApexchartsModule,
+        NgxCaptchaModule,
+        //--
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        //--
+        BrowserAnimationsModule,
+        DynamicDialogModule,
+        BrowserAnimationsModule,
+        PaginatorModule,
+        TableModule,
+        ConfirmDialogModule,
+        ConfirmPopupModule,
+        CalendarModule,
+        TooltipModule,
+        DropdownModule,
+        //--
+        MatButtonModule,
+        MatCardModule,
+        MatInputModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatToolbarModule,
+        MatIconModule,
+        //--
 
-  ],
-  bootstrap: [AppComponent]
+        TranslocoRootModule,
+        //--
+        AutoCompleteModule,
+        DragDropModule
+    ],
+    providers: [
+        MessageService,
+        DialogService,
+        ConfirmationService,
+        MatSnackBar,
+        UserAjaxService,
+        ThreadAjaxService,
+        ReplyAjaxService,
+        SessionAjaxService,
+        CryptoService,
+        RatingAjaxService,
+        UserPrintAjaxService,
+
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+        ,
+
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

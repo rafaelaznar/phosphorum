@@ -82,6 +82,7 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
     }
     this.getPage();
   }
+
   getValue(event: any): string {
     return event.target.value;
   }

@@ -46,6 +46,7 @@ export class UserUserFeaturedUnroutedComponent implements OnInit {
       }
     })
   }
+
  // Función para crear el gráfico donut
  createDonutChart(): void {
   const ctx = document.getElementById('donutChart') as HTMLCanvasElement;

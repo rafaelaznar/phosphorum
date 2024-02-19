@@ -69,16 +69,22 @@ export interface IThreadPage extends IPage<IThread> {
 }
 
 export interface IReply extends IEntity {
+    active: boolean;
+    reply: any;
     title: string,
     body: string,
     creation: Date,
     user: IUser,
     thread: IThread,
+    ratings: number
+}
+
+export interface IReplyPage extends IPage<IReply> {
     active: boolean
 }
 
 export interface IReplyPage extends IPage<IReply> {
-   
+
 }
 
 export type formOperation = 'EDIT' | 'NEW';
@@ -95,7 +101,15 @@ export interface IToken {
     name: string;
 }
 
-export interface ICaptcha extends IEntity {
+export interface IRating {
+    id: number;
+    user: IUser;
+    reply: IReply;
+    stars: number;
+    created_at: Date;
+}
+
+export interface IRatingPage extends IPage<IRating> {
     text: string,
     image: string
 }

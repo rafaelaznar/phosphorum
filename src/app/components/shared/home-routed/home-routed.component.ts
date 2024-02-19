@@ -4,8 +4,6 @@ import { Subject } from 'rxjs';
 import { IThread } from 'src/app/model/model.interfaces';
 
 
-
-
 @Component({
   selector: 'app-home-routed',
   templateUrl: './home-routed.component.html',

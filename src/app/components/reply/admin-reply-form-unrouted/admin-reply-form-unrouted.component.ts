@@ -101,7 +101,6 @@ export class AdminReplyFormUnroutedComponent implements OnInit {
             this.router.navigate(['/admin', 'reply', 'view', this.oReply.id]);
           },
           error: (error: HttpErrorResponse) => {
-            this.status = error;
             this.matSnackBar.open(this.oTranslocoService.translate('global.the.fem') + ' ' + this.oTranslocoService.translate('reply.lowercase.singular') + ' ' + this.oTranslocoService.translate('global.update.hasnt.fem') + '.', '', { duration: 2000 });
           }
         });

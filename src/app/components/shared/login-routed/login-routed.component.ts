@@ -18,7 +18,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 export class LoginRoutedComponent implements OnInit {
 
-    // El decorador @ViewChild se utiliza para acceder a un componente hijo en el componente actual.
+  // El decorador @ViewChild se utiliza para acceder a un componente hijo en el componente actual.
   // 'captchaElem' es un nombre de variable que se utiliza para referenciar el componente ReCaptcha2Component en el código del componente.
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   // Esto crea una propiedad 'captchaElem' en el componente actual, que se inicializará con la instancia del componente ReCaptcha2Component cuando Angular haya inicializado las vistas.
@@ -29,7 +29,7 @@ export class LoginRoutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oPrelogin: IPrelogin | null = null;
 
-    // Declaración de la variable 'siteKey' que almacenará la clave del sitio proporcionada por Google reCAPTCHA.
+  // Declaración de la variable 'siteKey' que almacenará la clave del sitio proporcionada por Google reCAPTCHA.
   // La clave del sitio es necesaria para configurar y asociar el reCAPTCHA con el sitio web.
   siteKey: string;
 
@@ -41,8 +41,8 @@ export class LoginRoutedComponent implements OnInit {
     private oCryptoService: CryptoService,
     private oTranslocoService: TranslocoService
   ) {
-        // Asignación de la clave proporcionada por Google a la variable 'siteKey'.
-        this.siteKey = '6LfAIy8pAAAAALy82ZqPGMAze-k4cdOW1gC-aKxx'
+    // Asignación de la clave proporcionada por Google a la variable 'siteKey'.
+    this.siteKey = '6LfAIy8pAAAAALy82ZqPGMAze-k4cdOW1gC-aKxx'
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],

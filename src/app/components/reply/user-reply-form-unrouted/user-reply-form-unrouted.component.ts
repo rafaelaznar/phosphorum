@@ -55,6 +55,7 @@ export class UserReplyFormUnroutedComponent implements OnInit {
 
   }
 
+  // FORMULARIO PARA CREAR UN REPLY
   initializeForm(oReply: IReply) {
     this.replyForm = this.formBuilder.group({
       id: [oReply.id],
@@ -70,6 +71,11 @@ export class UserReplyFormUnroutedComponent implements OnInit {
     });
   }
 
+
+  // Inicializa el formulario
+  // Comprueba si la operación es editar o crear
+  // Si es editar, recupera el reply del servidor y lo muestra en el formulario
+  // Si es crear, inicializa el formulario con un reply vacío
   ngOnInit() {
     if (this.operation == 'EDIT') {
       this.oReplyAjaxService.getOne(this.id).subscribe({
@@ -87,10 +93,17 @@ export class UserReplyFormUnroutedComponent implements OnInit {
     }
   }
 
+  // Comprueba si un campo del formulario tiene un error
   public hasError = (controlName: string, errorName: string) => {
     return this.replyForm.controls[controlName].hasError(errorName);
   }
 
+  // Comprueba si el formulario es válido
+  // Si es válido, envía el reply al servidor
+  // Si no es válido, muestra un mensaje de error
+  // Si la operación es crear, muestra un mensaje de creación correcta
+  // Si la operación es editar, muestra un mensaje de edición correcta
+  // Cierra el diálogo
   onSubmit() {
     if (this.replyForm.valid) {
       if (this.operation == 'NEW') {

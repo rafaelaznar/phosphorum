@@ -13,6 +13,7 @@ export class UserAjaxService {
         private oHttpClient: HttpClient
     ) { }
 
+
     getOne(id: number): Observable<IUser> {
         return this.oHttpClient.get<IUser>(this.sUrl + "/" + id);
     }
@@ -20,7 +21,6 @@ export class UserAjaxService {
     getByUsername(username: string): Observable<IUser> {
         return this.oHttpClient.get<IUser>(this.sUrl + "/byUsername/" + username);
     }
-
 
     getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string): Observable<IUserPage> {
         let sUrl_filter: string;
@@ -41,7 +41,7 @@ export class UserAjaxService {
             return new Observable<number>();
         }
     }
-     
+
     newOne(oUser: IUser): Observable<IUser> {
         return this.oHttpClient.post<IUser>(this.sUrl, oUser);
     }

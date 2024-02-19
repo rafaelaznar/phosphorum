@@ -18,11 +18,13 @@ export type ChartOptions = {
 })
 
 export class AdminUserViewRoutedComponent implements OnInit {
-  
+
+  id: number = 1;
+
+ 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
 
-  id: number = 1;
   status: HttpErrorResponse | null = null;
 
   constructor(

@@ -19,6 +19,10 @@ import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { AdminRatingPlistRoutedComponent } from './components/rating/admin-rating-plist-routed/admin-rating-plist-routed.component';
+import { AdminRatingViewRoutedComponent } from './components/rating/admin-rating-view-routed/admin-rating-view-routed.component';
+import { AdminRatingNewRoutedComponent } from './components/rating/admin-rating-new-routed/admin-rating-new-routed.component';
+
 import { SendEmailComponent } from './components/send-email/send-email.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
@@ -30,6 +34,9 @@ const routes: Routes = [
   { path: 'home', component: HomeRoutedComponent },
   { path: 'login', component: LoginRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
+  //--
+  { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
+  { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },
   { path: 'user/confirm-account', component: ConfirmAccountComponent },
 
   { path: 'user/user/new', component: UserUserNewRoutedComponent },
@@ -42,6 +49,23 @@ const routes: Routes = [
   //--  
   { path: 'admin/thread/plist', component: AdminThreadPlistRoutedComponent },
   { path: 'admin/thread/plist/byuser/:id', component: AdminThreadPlistRoutedComponent },
+  { path: 'admin/thread/view/:id', component: AdminThreadViewRoutedComponent },
+  { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },
+  { path: 'admin/thread/edit/:id', component: AdminThreadEditRoutedComponent },
+  //--
+  { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent },
+  { path: 'admin/reply/plist/byuser/:iduser', component: AdminReplyPlistRoutedComponent },
+  { path: 'admin/reply/plist/bythread/:idthread', component: AdminReplyPlistRoutedComponent },
+  { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },
+  { path: 'admin/reply/new', component: AdminReplyNewRoutedComponent },
+  { path: 'admin/reply/edit/:id', component: AdminReplyEditRoutedComponent },
+  //--
+  { path: 'admin/rating/plist', component: AdminRatingPlistRoutedComponent },
+  { path: 'admin/rating/view/:id', component: AdminRatingViewRoutedComponent },
+  { path: 'admin/rating/new', component: AdminRatingNewRoutedComponent },
+
+
+
   { path: 'admin/thread/view/:id', component: AdminThreadViewRoutedComponent },    
   { path: 'admin/thread/new', component: AdminThreadNewRoutedComponent },  
   { path: 'admin/thread/edit/:id', component: AdminThreadEditRoutedComponent },  

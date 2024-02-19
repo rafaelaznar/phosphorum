@@ -148,6 +148,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
 
     })
   }
+
+
   getValue(event: any): string {
     return event.target.value;
   }
@@ -190,10 +192,8 @@ export class AdminReplyPlistUnroutedComponent implements OnInit {
     delete replyToUpdate.thread.user.replies;
     delete replyToUpdate.thread.user.threads;
 
-
-
     replyToUpdate.active = !replyToUpdate.active;
-  
+
     this.oReplyAjaxService.updateOne(replyToUpdate).subscribe({
       next: () => {
         this.forceReload.next(true);
