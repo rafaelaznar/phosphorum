@@ -73,4 +73,8 @@ export class UserAjaxService {
         return this.oHttpClient.get<string>(this.sUrl + "/confirm-account?token=" + token + "&password=" + pass);
       }
 
+      updateUserCoordinates(userId: number, latitude: number, longitude: number): Observable<any> {
+        const coordinates = { latitude: latitude, longitude: longitude };
+        return this.oHttpClient.put<any>(this.sUrl + `/${userId}/coordinates`, coordinates, { headers: {'Content-Type': 'application/json'} });
+    }
 }

@@ -1,0 +1,14 @@
+@import '~leaflet/dist/leaflet.css';
+#map {
+    height: 100%; /* Ajusta la altura según tus preferencias */
+    min-height: 400px; /* Altura mínima para evitar problemas con el contenedor */
+    margin-bottom: 5px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh; /* Esto asegura que el contenedor ocupe el 100% del alto de la ventana */
+  }
+  
