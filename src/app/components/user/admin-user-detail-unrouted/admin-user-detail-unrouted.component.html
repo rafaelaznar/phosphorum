@@ -47,6 +47,14 @@
                 </td>
             </tr>
             <tr>
+                <th>latitude</th>
+                <td>{{oUser.latitude}}</td>
+            </tr>
+            <tr>
+                <th>longitude</th>
+                <td>{{oUser.longitude}}</td>
+            </tr>
+            <tr>
                 <th>{{ "thread.uppercase.plural" | transloco }}</th>
                 <td>
                     <a [routerLink]="['/admin','thread','plist','byuser',oUser.id]"

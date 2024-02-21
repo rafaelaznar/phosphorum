@@ -37,6 +37,7 @@ import { SessionAjaxService } from './service/session.ajax.service.ts.service';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { MapaRoutedComponent } from './components/shared/mapa-routed/mapa-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { ConfirmAccountComponent } from './components/shared/confirm-account/confirm-account.component';
@@ -110,6 +111,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         HomeRoutedComponent,
         MenuUnroutedComponent,
         FooterUnroutedComponent,
+        MapaRoutedComponent,
         LoginRoutedComponent,
         LogoutRoutedComponent,
         ChangePasswordComponent,

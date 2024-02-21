@@ -32,6 +32,8 @@
           <th (click)="doOrder('email')">{{ "user.email" | transloco }}</th>
           <th (click)="doOrder('username')">{{ "user.username" | transloco }}</th>
           <th (click)="doOrder('role')">{{ "user.role.role" | transloco }}</th>
+          <th (click)="doOrder('latitude')">Latitude</th>
+          <th (click)="doOrder('longitude')">Longitude</th>
           <th (click)="doOrder('verified')">Verified</th>
           <th>{{ "thread.uppercase.plural" | transloco }}</th>
           <th>{{ "reply.uppercase.plural" | transloco }}</th>
@@ -50,6 +52,8 @@
             <span *ngIf="u.role==true">{{ "user.role.user" | transloco }}</span>
             <span *ngIf="u.role==false">{{ "user.role.admin" | transloco }}</span>
           </td>
+          <td>{{u.latitude}}</td>
+          <td>{{u.longitude}}</td>
           <td class="text-center">
             <span *ngIf="u.verified==true">Yes</span>
             <span *ngIf="u.verified==false">No</span>

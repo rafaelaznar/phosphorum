@@ -50,6 +50,8 @@ export interface IUser extends IEntity {
     role: boolean,
     threads?: number,
     replies?: number,
+    latitude: number,
+    longitude: number,
     verified: boolean,
     token: string,
     active: boolean
