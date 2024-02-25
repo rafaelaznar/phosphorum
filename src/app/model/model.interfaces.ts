@@ -54,7 +54,8 @@ export interface IUser extends IEntity {
     longitude: number,
     verified: boolean,
     token: string,
-    active: boolean
+    active: boolean,
+    profileImageUrl?: string
 }
 
 export interface IUserPage extends IPage<IUser> {

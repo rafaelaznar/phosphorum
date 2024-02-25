@@ -20,11 +20,11 @@
 
 
 
-
   <div class="mb-5 ">
     <table class="table table-bordered table-striped table-hover table-sm">
       <thead>
         <tr>
+          <th>Foto</th>
           <th (click)="doOrder('id')">{{ "global.id" | transloco }}</th>
           <th (click)="doOrder('name')">{{ "user.name" | transloco }}</th>
           <th (click)="doOrder('surname')">{{ "user.surname" | transloco }}</th>
@@ -42,6 +42,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let u of oPage?.content" class="align-middle">
+          <td><img [src]="u.profileImageUrl" alt="Profile Image" style="width: 50px; border-radius: 50%; border: 2px gray solid;">
+          </td>
           <td class="text-end"><strong>{{u.id}}</strong></td>
           <td>{{u.name}}</td>
           <td>{{u.surname}}</td>

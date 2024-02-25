@@ -70,6 +70,21 @@
           <mat-error *ngIf="hasError('role', 'required')">{{ "user.type" | transloco }} {{ "form.is-required" | transloco }}</mat-error>
         </mat-radio-group>
 
+        <div class="container">
+          <div class="mb-5">
+            <label for="image" class="form-label">Imagen de perfil</label>
+            <input type="file" class="form-control" id="image" formControlName="image" accept="image/*" (change)="upload($event)">
+            <!-- Mostrar el nombre de la imagen si es una operación de edición -->
+            <span *ngIf="operation==='EDIT' && userForm.get('profileImageUrl')!.value">{{ userForm.get('profileImageUrl')!.value.split('/').pop() }}</span>
+          </div>
+        </div>
+        <!-- Botón para eliminar imagen de perfil (solo visible en modo edición) -->
+        <button *ngIf="operation === 'EDIT' && userForm.get('profileImageUrl')!.value !== 'http://localhost:8083/media/default.png'"
+                 class="btn btn-danger btn-sm mt-3"
+                 (click)="removeProfileImage()">
+                 Eliminar Imagen
+        </button>
+
         <div class="text-center mt-5">
           <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">{{ "global.save" | transloco }} {{ "user.lowercase.singular" | transloco }}</button>
         </div>
